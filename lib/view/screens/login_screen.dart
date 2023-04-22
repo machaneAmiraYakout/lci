@@ -5,9 +5,9 @@ import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:elearning/view/widgets/my_custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../presenter/controller/login_controller.dart';
 class LoginScreen extends StatelessWidget {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passWordController = TextEditingController();
+  final LoginController _loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,17 +28,22 @@ class LoginScreen extends StatelessWidget {
               DefaultTextField(onPressed:(){} ,
                 hintText:'Enter your email' ,
                 prefixIcon:const Icon(Icons.email,color: primaryColor,) ,
-                controller: emailController,
+                controller: _loginController.mailController,
                 type:TextInputType.emailAddress,),
               const SizedBox(height: 70,),
               DefaultTextField(onPressed:(){} ,
                 hintText:'Enter your email' ,
                 prefixIcon:const Icon(Icons.lock,color: primaryColor,) ,
-                controller: passWordController,
+                controller: _loginController.passwordController,
                 type:TextInputType.visiblePassword,
-              obscuretext: true),
+                obscuretext: true,
+                suffix: Icons.remove_red_eye_outlined,
+                suffixFunction: (){},
+              ),
               const SizedBox(height: 90,),
-              CustomButton(onPressed: (){},text:'LOGIN' ,primary: buttonColor,
+              CustomButton(onPressed: (){
+                _loginController.login();
+              },text:'LOGIN' ,primary: buttonColor,
                 onPrimary: Colors.white,sideColor:buttonColor ,),
               GestureDetector(child: Center(
                 child: MyCustomTextWidget(text: 'Forget Password?',index: 3,),),),
@@ -49,7 +54,7 @@ class LoginScreen extends StatelessWidget {
                        MyCustomTextWidget(text: 'Don’t have an account?',index: 4,),
                        MyCustomTextWidget(text: 'Sign Up',index: 5,),
 
-],)),
+                ],)),
               ),
             ],
           ),

@@ -41,10 +41,6 @@ class DefaultTextField extends StatelessWidget {
           return null;
         },
         controller: controller,
-
-
-
-
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,

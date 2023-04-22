@@ -6,11 +6,10 @@ import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:elearning/view/widgets/my_custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-class SignupScreen extends StatelessWidget {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passWordController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
 
+import '../../presenter/controller/signup_controller.dart';
+class SignupScreen extends StatelessWidget {
+  final SignupController _SignupController = Get.put(SignupController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,24 +30,28 @@ class SignupScreen extends StatelessWidget {
               DefaultTextField(onPressed:(){} ,
                 hintText:'Enter your Name' ,
                 prefixIcon:const Icon(Icons.person,color: primaryColor,) ,
-                controller: nameController,
-                type:TextInputType.text,),
+                controller: _SignupController.nameController,
+                type:TextInputType.text,
+              ),
               const SizedBox(height: 50,),
-              DefaultTextField(onPressed:(){} ,
+              DefaultTextField(onPressed:(){print(_SignupController.mailController.text);} ,
                 hintText:'Enter your email' ,
                 prefixIcon:const Icon(Icons.email,color: primaryColor,) ,
-                controller: emailController,
+                controller: _SignupController.mailController,
                 type:TextInputType.emailAddress,),
               const SizedBox(height: 50,),
-              DefaultTextField(onPressed:(){} ,
+              DefaultTextField(onPressed:(){print(_SignupController.passwordController.text);},
                   hintText:'Enter your Password' ,
                   prefixIcon:const Icon(Icons.lock,color: primaryColor,) ,
-                  controller: passWordController,
+                  controller: _SignupController.passwordController,
                   type:TextInputType.visiblePassword,
                   obscuretext: true),
               const SizedBox(height: 90,),
-              CustomButton(onPressed: (){},text:'SIGNUP' ,primary: buttonColor,
+              CustomButton(
+                onPressed: (){ _SignupController.signup();},
+                text:'SIGNUP' ,primary: buttonColor,
                 onPrimary: Colors.white,sideColor:buttonColor ,),
+
               SizedBox(height: 80,),
               Padding(padding: EdgeInsets.symmetric(horizontal: 40),
                 child: GestureDetector(onTap: ()=>Get.to(() =>    LoginScreen()),

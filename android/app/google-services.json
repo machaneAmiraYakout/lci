@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "16097792232",
+    "project_id": "groupelci",
+    "storage_bucket": "groupelci.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:16097792232:android:cedbb59f4bdef87760b95d",
+        "android_client_info": {
+          "package_name": "com.lcigroupe.elearning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "16097792232-th7c0tq0abeoi1a838jce2st0n3pevoa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4nubsrr5QnYO1sMqJaN8wGPdicYGN51M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "16097792232-hqqhs0c5bear0meihe9cv6jj40h405j2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
