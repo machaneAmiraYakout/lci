@@ -8,10 +8,11 @@ class DefaultTextField extends StatelessWidget {
   final  GestureTapCallback onPressed ;
   final double borderRadius;
   final TextInputType type;
+  final String? Function(String? value)? validatorFn;
+
   IconData? suffix ;
   Function? suffixFunction;
   bool obscuretext  ;
-  String? textForEmptyUnValid ;
   DefaultTextField({Key? key,
     required this.prefixIcon,
     required this.hintText,
@@ -22,7 +23,8 @@ class DefaultTextField extends StatelessWidget {
     this.suffix,
     this.suffixFunction,
     this.obscuretext=false,
-    this.textForEmptyUnValid= 'this element is required',
+
+    this.validatorFn,
   }) : super(key: key);
 
 
@@ -34,12 +36,6 @@ class DefaultTextField extends StatelessWidget {
         obscureText: obscuretext,
         keyboardType:type ,
         onTap: onPressed,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return textForEmptyUnValid;
-          }
-          return null;
-        },
         controller: controller,
         decoration: InputDecoration(
           filled: true,
@@ -49,16 +45,39 @@ class DefaultTextField extends StatelessWidget {
           suffixIcon: IconButton(
             onPressed: () {
               suffixFunction!();
-            },
+              print('icon pressed');
+              },
             icon: Icon(suffix),
           ),
           enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey),
+            borderSide: BorderSide(color: Colors.white),
           ),
           hintText: hintText,
+          errorStyle: TextStyle(color:primaryColor), // Set the color of the error text
         ),
-
+        validator: validatorFn,
       ),
     );
   }
+}
+String? validatePassword(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'Password is required';
+  }
+  if (value.length <= 8) {
+    return 'Password should contain exactly 8 characters';
+  }
+  if (!value.contains(new RegExp(r'[A-Z]'))) {
+    return 'Password should contain at least one uppercase letter';
+  }
+  return null;
+}
+String? validateEmail(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'Email is required';
+  }
+  if (!value.contains('@gmail.com')) {
+    return 'Email should be a valid gmail address';
+  }
+  return null;
 }

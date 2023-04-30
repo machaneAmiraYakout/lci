@@ -7,56 +7,70 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../presenter/controller/login_controller.dart';
 class LoginScreen extends StatelessWidget {
+
   final LoginController _loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(25),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              IconButton(onPressed: ()=>Get.to(() =>   const StartScreen()),
+        child: Form(
+          key: _loginController.formKey,
+          child: Padding(
+            padding: const EdgeInsets.all(25),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                IconButton(onPressed: ()=>Get.to(() =>   const StartScreen()),
                   icon: const Icon(Icons.arrow_back,size: 25,color: primaryColor,),),
-              Padding(padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: MyCustomTextWidget(text:'Welcome!' ,index: 1,),),
-              Padding(padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: MyCustomTextWidget(text:'Sign in to continue' ,index: 2,),),
-              const SizedBox(height: 80,),
-              DefaultTextField(onPressed:(){} ,
-                hintText:'Enter your email' ,
-                prefixIcon:const Icon(Icons.email,color: primaryColor,) ,
-                controller: _loginController.mailController,
-                type:TextInputType.emailAddress,),
-              const SizedBox(height: 70,),
-              DefaultTextField(onPressed:(){} ,
-                hintText:'Enter your email' ,
-                prefixIcon:const Icon(Icons.lock,color: primaryColor,) ,
-                controller: _loginController.passwordController,
-                type:TextInputType.visiblePassword,
-                obscuretext: true,
-                suffix: Icons.remove_red_eye_outlined,
-                suffixFunction: (){},
-              ),
-              const SizedBox(height: 90,),
-              CustomButton(onPressed: (){
-                _loginController.login();
-              },text:'LOGIN' ,primary: buttonColor,
-                onPrimary: Colors.white,sideColor:buttonColor ,),
-              GestureDetector(child: Center(
-                child: MyCustomTextWidget(text: 'Forget Password?',index: 3,),),),
-              SizedBox(height: 80,),
-              Padding(padding: EdgeInsets.symmetric(horizontal: 40),
-                child: GestureDetector(
-                     onTap: ()=>Get.to(() =>    LoginScreen()),child: Row(children: [
-                       MyCustomTextWidget(text: 'Don’t have an account?',index: 4,),
-                       MyCustomTextWidget(text: 'Sign Up',index: 5,),
+                Padding(padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: MyCustomTextWidget(text:'Welcome!' ,index: 1,),),
+                Padding(padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: MyCustomTextWidget(text:'Sign in to continue' ,index: 2,),),
+                const SizedBox(height: 80,),
+                DefaultTextField(onPressed:(){} ,
+                  hintText:'Enter your email' ,
+                  prefixIcon:const Icon(Icons.email,color: primaryColor,) ,
+                  controller: _loginController.mailController,
+                  type:TextInputType.emailAddress,
+                  validatorFn: validateEmail,
+                ),
+                const SizedBox(height: 70,),
+                DefaultTextField(onPressed:(){} ,
+                  hintText:'Enter your password' ,
+                  prefixIcon:const Icon(Icons.lock,color: primaryColor,),
+                  controller: _loginController.passwordController,
+                  type:TextInputType.visiblePassword,
+                  obscuretext: true,
+                  suffix: Icons.remove_red_eye_outlined,
+                  suffixFunction: (){},
+                  validatorFn: validatePassword,
+                ),
+                const SizedBox(height: 90,),
+                CustomButton(
+                  onPressed: (){
+                    if (_loginController.formKey.currentState!.validate()) {
+                      _loginController.login();
+                    }
+                },text:'LOGIN' ,primary: buttonColor,
+                  onPrimary: Colors.white,sideColor:buttonColor ,),
+                GestureDetector(
+                  onTap: (){
+                    Get.find<LoginController>().resetPassword();
+                  },
+                  child: Center(
+                    child: MyCustomTextWidget(text: 'Forget Password?',index: 3,),),),
+                SizedBox(height: 80,),
+                Padding(padding: EdgeInsets.symmetric(horizontal: 40),
+                  child: GestureDetector(
+                      onTap: ()=>Get.to(() =>    LoginScreen()),child: Row(children: [
+                    MyCustomTextWidget(text: 'Don’t have an account?',index: 4,),
+                    MyCustomTextWidget(text: 'Sign Up',index: 5,),
 
-                ],)),
-              ),
-            ],
+                  ],)),
+                ),
+              ],
+            ),
           ),
         ),
       ),
