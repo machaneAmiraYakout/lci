@@ -4,6 +4,8 @@ import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:elearning/view/widgets/my_custom_page.dart';
+
+import '../widgets/my_custom_container.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -91,10 +93,33 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
+        child: Padding(
 
-          ],
+          padding: EdgeInsets.all(20),
+          child: Column(
+            children: [
+              SizedBox(height:50 ,),
+              MyContainer(
+                text: 'Services',
+                urlimage: 'assets/images/service.png',
+                borderRadius: 16.0,
+                borderColor: primaryColor,
+                borderWidth: 2.0,
+                index: 6,
+              ),
+              SizedBox(height: 40,),
+              MyContainer(
+                text: 'Online',
+                urlimage: 'assets/images/online.png',
+                borderRadius: 16.0,
+                borderColor: buttonColor,
+                borderWidth: 2.0,
+                index: 6,
+              ),
+
+
+            ],
+          ),
         ),
       ),
 

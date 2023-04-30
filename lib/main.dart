@@ -1,6 +1,7 @@
 import 'package:elearning/presenter/cache_helper.dart';
 import 'package:elearning/view/screens/home_page.dart';
 import 'package:elearning/view/screens/signup_screen.dart';
+import 'package:elearning/view/screens/splash_screen.dart';
 import 'package:elearning/view/screens/started_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,10 +20,10 @@ void main() async{
   else{
     startedScreen= HomeScreen();
   }
-  runApp(  GetMaterialApp(
+  runApp(   GetMaterialApp(
       title: 'ELearning',
       debugShowCheckedModeBanner: false,
-      home:  startedScreen,
+      home:  SplashScreen(),
     ));
 
 }
