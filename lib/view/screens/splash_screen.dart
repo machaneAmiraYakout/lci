@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../presenter/controller/splash_controller.dart';
 class SplashScreen extends StatelessWidget {
-  final splashController = Get.put(SplashController());
+  final SplashController splashController;
+  const SplashScreen({Key? key, required this.splashController}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +13,7 @@ class SplashScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/images/logo.png',width: 200,height: 200,),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
           ],
         ),
       ),
