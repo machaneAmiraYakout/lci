@@ -84,6 +84,7 @@ class HomeScreen extends StatelessWidget {
             ),
             ListTile(
               onTap: (){
+                Get.lazyPut(() => LoginController()); // Initialize the controller
                 Get.find<LoginController>().logout();
               },
               leading: const Icon(Icons.logout,color: thirdColor),

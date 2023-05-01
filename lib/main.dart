@@ -14,16 +14,14 @@ void main() async {
   await Firebase.initializeApp();
   String? token = '';
   token = await CacheHelper.importData(key: 'token');
-  Widget startedScreen = StartScreen();
-  if (token == null) {
-    startedScreen = SignupScreen();
-  }
-  else {
-    startedScreen = HomeScreen();
-    runApp(GetMaterialApp(
+  Widget startedScreen = const StartScreen();
+  token ==null? startedScreen =  SplashScreen():  startedScreen = const HomeScreen();
+
+  runApp(
+    GetMaterialApp(
       title: 'ELearning',
       debugShowCheckedModeBanner: false,
-      home:startedScreen,
-    ));
-  }
+      home: startedScreen,
+    ),
+  );
 }

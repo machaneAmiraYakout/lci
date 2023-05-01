@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../presenter/controller/splash_controller.dart';
 class SplashScreen extends StatelessWidget {
-  final SplashController splashController;
-  const SplashScreen({Key? key, required this.splashController}) : super(key: key);
+  final splashController = Get.put(SplashController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

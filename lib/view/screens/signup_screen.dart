@@ -10,14 +10,14 @@ import 'package:get/get.dart';
 import '../../presenter/controller/signup_controller.dart';
 
 class SignupScreen extends StatelessWidget {
-  final SignupController _SignupController = Get.put(SignupController());
+  final SignupController signupController = Get.put(SignupController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Form(
-          key: _SignupController.formKeys,
+          key: signupController.formKeys,
           child: Padding(
             padding: const EdgeInsets.all(25),
             child: Column(
@@ -55,7 +55,7 @@ class SignupScreen extends StatelessWidget {
                     Icons.person,
                     color: primaryColor,
                   ),
-                  controller: _SignupController.nameController,
+                  controller: signupController.nameController,
                   type: TextInputType.text,
                 ),
                 const SizedBox(
@@ -63,14 +63,14 @@ class SignupScreen extends StatelessWidget {
                 ),
                 DefaultTextField(
                   onPressed: () {
-                    print(_SignupController.mailController.text);
+                    print(signupController.mailController.text);
                   },
                   hintText: 'Enter your email',
                   prefixIcon: const Icon(
                     Icons.email,
                     color: primaryColor,
                   ),
-                  controller: _SignupController.mailController,
+                  controller: signupController.mailController,
                   type: TextInputType.emailAddress,
                   validatorFn: validateEmail,
                 ),
@@ -79,19 +79,19 @@ class SignupScreen extends StatelessWidget {
                 ),
                 GetBuilder<SignupController>(
                   init: SignupController(),
-                  builder: (_SignupController) => DefaultTextField(
+                  builder: (signupController) => DefaultTextField(
                     onPressed: () {},
                     hintText: 'Enter your Password',
                     prefixIcon: const Icon(Icons.lock, color: primaryColor),
-                    controller: _SignupController.passwordController,
+                    controller: signupController.passwordController,
                     type: TextInputType.visiblePassword,
                     validatorFn: validatePassword,
-                    obscuretext: _SignupController.obscurePassword.value,
-                    suffix: _SignupController.obscurePassword.value
-                        ? Icons.visibility
-                        : Icons.visibility_off,
+                    obscuretext: signupController.obscurePassword.value,
+                    suffix: signupController.obscurePassword.value ? Icons.visibility_off : Icons.visibility,
                     suffixFunction: () {
-                      _SignupController.toggleObscurePassword();
+                      signupController.obscurePassword.toggle();
+                      print('whyyyyyyyyyyyyyyyyyyyyyy');
+
                     },
                   ),
                 ),
@@ -100,8 +100,8 @@ class SignupScreen extends StatelessWidget {
                 ),
                 CustomButton(
                   onPressed: () {
-                    if (_SignupController.formKeys.currentState!.validate()) {
-                      _SignupController.signup();
+                    if (signupController.formKeys.currentState!.validate()) {
+                      signupController.signup();
                     }
                   },
                   text: 'SIGNUP',

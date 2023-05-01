@@ -5,25 +5,24 @@ class DefaultTextField extends StatelessWidget {
   final Icon prefixIcon;
   final String hintText;
   final TextEditingController controller ;
-  final  GestureTapCallback onPressed ;
+  final  GestureTapCallback? onPressed ;
   final double borderRadius;
   final TextInputType type;
   final String? Function(String? value)? validatorFn;
 
   IconData? suffix ;
-  Function? suffixFunction;
+  var suffixFunction;
   bool obscuretext  ;
   DefaultTextField({Key? key,
     required this.prefixIcon,
     required this.hintText,
     required this.controller,
-    required this.onPressed,
     required this.type,
+    this.onPressed,
     this.borderRadius = 14.0,
     this.suffix,
     this.suffixFunction,
     this.obscuretext=false,
-
     this.validatorFn,
   }) : super(key: key);
 
@@ -31,7 +30,12 @@ class DefaultTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: textFieldCBackgroundColor,
+        decoration: BoxDecoration(
+        border: Border.all(
+        color: primaryColor,
+        width: 1.0,),
+          borderRadius: BorderRadius.circular(5.0),
+        ),
       child:  TextFormField(
         obscureText: obscuretext,
         keyboardType:type ,
@@ -39,12 +43,11 @@ class DefaultTextField extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           filled: true,
-          fillColor: Colors.white,
-          border: InputBorder.none,
+          fillColor: primaryColor.withOpacity(0.1),
           prefixIcon: prefixIcon,
           suffixIcon: IconButton(
             onPressed: () {
-              suffixFunction!();
+              suffixFunction();
               print('icon pressed');
               },
             icon: Icon(suffix),
@@ -53,7 +56,7 @@ class DefaultTextField extends StatelessWidget {
             borderSide: BorderSide(color: Colors.white),
           ),
           hintText: hintText,
-          errorStyle: TextStyle(color:primaryColor), // Set the color of the error text
+          errorStyle: const TextStyle(color:primaryColor), // Set the color of the error text
         ),
         validator: validatorFn,
       ),

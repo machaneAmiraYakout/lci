@@ -3,7 +3,6 @@ import 'package:elearning/presenter/cache_helper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../view/screens/home_page.dart';
 import '../../view/widgets/my_custom_snackbar.dart';
 class SignupController extends GetxController {
@@ -12,17 +11,10 @@ class SignupController extends GetxController {
   final passwordController = TextEditingController();
   final FirebaseAuth auth = FirebaseAuth.instance;
   final formKeys = GlobalKey<FormState>();
-  var obscurePassword = true.obs;
-
-
-  void toggleObscurePassword() {
-    obscurePassword.value = !obscurePassword.value;
-  }
-
+  final RxBool obscurePassword = true.obs;
   late final bool isSuccess;
   late PageController _pageController;
   double currentPageValue = 0.0;
-
   @override
   void onInit() {
     super.onInit();
@@ -45,10 +37,6 @@ class SignupController extends GetxController {
       CustomSnackbar('Error', e.toString());
     }
   }
-
-
-
-
 }
 
 

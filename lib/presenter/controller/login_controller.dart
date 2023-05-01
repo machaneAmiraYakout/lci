@@ -14,10 +14,6 @@ class LoginController extends GetxController {
   final RxBool rememberMe = false.obs;
   final RxString email = ''.obs;
   final RxString password = ''.obs;
-
-
-
-
   Future<void> login() async {
     final email = mailController.text;
     final password = passwordController.text;
@@ -41,7 +37,6 @@ class LoginController extends GetxController {
       Get.snackbar('Error', 'Please enter email and password!');
     }
   }
-
   @override
   void dispose() {
     mailController.dispose();
@@ -53,7 +48,6 @@ class LoginController extends GetxController {
     Get.offAll(() => LoginScreen());
     CacheHelper.removeData(key: 'token');
   }
-
   void resetPassword() async {
     String email = mailController.text.trim();
     if (email.isNotEmpty) {
