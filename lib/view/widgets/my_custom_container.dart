@@ -27,7 +27,7 @@ class MyContainer extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset(urlimage,width: 200,height:200,),
+          Image.asset(urlimage,width: 150,height:150,),
           SizedBox(width: 30,),
           MyCustomTextWidget(index: index,text:text, ),
         ],

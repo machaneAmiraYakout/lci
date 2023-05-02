@@ -14,9 +14,9 @@ void main() async{
   String? token='';
    token=await CacheHelper.importData(key: 'token');
    print(token);
-  Widget startedScreen= SplashScreen();
+  Widget startedScreen;
   if(token==null){
-    startedScreen= SignupScreen() ;
+    startedScreen= SplashScreen() ;
   }
   else{
     startedScreen= HomeScreen();

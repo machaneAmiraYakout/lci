@@ -47,8 +47,9 @@ class LoginScreen extends StatelessWidget {
                     index: 2,
                   ),
                 ),
+                Center(child: Image.asset('assets/images/login.png',width: 250,height: 250,),),
                 const SizedBox(
-                  height: 120,
+                  height: 30,
                 ),
                 DefaultTextField(
                   onPressed: () {},
@@ -62,7 +63,7 @@ class LoginScreen extends StatelessWidget {
                   validatorFn: validateEmail,
                 ),
                 const SizedBox(
-                  height: 25,
+                  height: 15,
                 ),
                 GetBuilder<LoginController>(
                   init: LoginController(),
@@ -81,7 +82,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 90,
+                  height: 70,
                 ),
                 CustomButton(
                   onPressed: () {
@@ -106,7 +107,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 80,
+                  height: 50,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40),

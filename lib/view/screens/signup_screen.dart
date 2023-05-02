@@ -43,8 +43,9 @@ class SignupScreen extends StatelessWidget {
                     index: 2,
                   ),
                 ),
+                Center(child: Image.asset('assets/images/Mobile.png',width: 300,height: 300,),),
                 const SizedBox(
-                  height: 80,
+                  height: 30,
                 ),
                 DefaultTextField(
                   onPressed: () {},
@@ -57,7 +58,7 @@ class SignupScreen extends StatelessWidget {
                   type: TextInputType.text,
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 15,
                 ),
                 DefaultTextField(
                   onPressed: () {
@@ -73,7 +74,7 @@ class SignupScreen extends StatelessWidget {
                   validatorFn: validateEmail,
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 15,
                 ),
                 GetBuilder<SignupController>(
                   init: SignupController(),
@@ -92,7 +93,7 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 90,
+                  height: 50,
                 ),
                 CustomButton(
                   onPressed: () {
@@ -106,7 +107,7 @@ class SignupScreen extends StatelessWidget {
                   sideColor: buttonColor,
                 ),
                 SizedBox(
-                  height: 80,
+                  height: 30,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40),
