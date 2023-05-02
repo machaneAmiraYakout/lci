@@ -11,9 +11,13 @@ class SignupController extends GetxController {
   final passwordController = TextEditingController();
   final FirebaseAuth auth = FirebaseAuth.instance;
   final formKeys = GlobalKey<FormState>();
-  final RxBool obscurePassword = true.obs;
+  late bool obscurePassword = true;
   late final bool isSuccess;
   late PageController _pageController;
+  void togglePasswordVisibility() {
+    obscurePassword = !obscurePassword;
+    update(); // Update the state of the widget
+  }
   double currentPageValue = 0.0;
   @override
   void onInit() {

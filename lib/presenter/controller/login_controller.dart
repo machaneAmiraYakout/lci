@@ -14,6 +14,12 @@ class LoginController extends GetxController {
   final RxBool rememberMe = false.obs;
   final RxString email = ''.obs;
   final RxString password = ''.obs;
+  late bool obscurePassword = true;
+  late PageController _pageController;
+  void togglePasswordVisibility() {
+    obscurePassword = !obscurePassword;
+    update(); // Update the state of the widget
+  }
   Future<void> login() async {
     final email = mailController.text;
     final password = passwordController.text;

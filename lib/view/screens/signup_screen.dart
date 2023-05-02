@@ -6,9 +6,7 @@ import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:elearning/view/widgets/my_custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../presenter/controller/signup_controller.dart';
-
 class SignupScreen extends StatelessWidget {
   final SignupController signupController = Get.put(SignupController());
   @override
@@ -80,18 +78,16 @@ class SignupScreen extends StatelessWidget {
                 GetBuilder<SignupController>(
                   init: SignupController(),
                   builder: (signupController) => DefaultTextField(
-                    onPressed: () {},
                     hintText: 'Enter your Password',
                     prefixIcon: const Icon(Icons.lock, color: primaryColor),
                     controller: signupController.passwordController,
                     type: TextInputType.visiblePassword,
                     validatorFn: validatePassword,
-                    obscuretext: signupController.obscurePassword.value,
-                    suffix: signupController.obscurePassword.value ? Icons.visibility_off : Icons.visibility,
+                    obscuretext: signupController.obscurePassword,
+                    suffix: signupController.obscurePassword ? Icons.visibility_off : Icons.visibility,
                     suffixFunction: () {
-                      signupController.obscurePassword.toggle();
+                      signupController.togglePasswordVisibility();
                       print('whyyyyyyyyyyyyyyyyyyyyyy');
-
                     },
                   ),
                 ),

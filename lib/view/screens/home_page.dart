@@ -1,4 +1,5 @@
 import 'package:elearning/presenter/controller/login_controller.dart';
+import 'package:elearning/view/screens/online_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:flutter/material.dart';
@@ -109,14 +110,17 @@ class HomeScreen extends StatelessWidget {
                 index: 6,
               ),
               SizedBox(height: 40,),
-              MyContainer(
-                text: 'Online',
-                urlimage: 'assets/images/online.png',
-                borderRadius: 16.0,
-                borderColor: buttonColor,
-                borderWidth: 2.0,
-                index: 6,
-              ),
+              GestureDetector(
+                  onTap: () => Get.to(() => OnlineScreen()),
+                child: MyContainer(
+                  text: 'Online',
+                  urlimage: 'assets/images/online.png',
+                  borderRadius: 16.0,
+                  borderColor: buttonColor,
+                  borderWidth: 2.0,
+                  index: 6,
+                ),
+              )
 
 
             ],

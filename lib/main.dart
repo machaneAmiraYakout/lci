@@ -1,5 +1,4 @@
 import 'package:elearning/presenter/cache_helper.dart';
-import 'package:elearning/presenter/controller/splash_controller.dart';
 import 'package:elearning/view/screens/home_page.dart';
 import 'package:elearning/view/screens/signup_screen.dart';
 import 'package:elearning/view/screens/splash_screen.dart';
@@ -9,19 +8,24 @@ import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 
-void main() async {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  String? token = '';
-  token = await CacheHelper.importData(key: 'token');
-  Widget startedScreen = const StartScreen();
-  token ==null? startedScreen =  SplashScreen():  startedScreen = const HomeScreen();
-
-  runApp(
-    GetMaterialApp(
+  await  Firebase.initializeApp();
+  String? token='';
+   token=await CacheHelper.importData(key: 'token');
+   print(token);
+  Widget startedScreen= SplashScreen();
+  if(token==null){
+    startedScreen= SignupScreen() ;
+  }
+  else{
+    startedScreen= HomeScreen();
+  }
+  runApp(   GetMaterialApp(
       title: 'ELearning',
       debugShowCheckedModeBanner: false,
-      home: startedScreen,
-    ),
-  );
+      home:  startedScreen,
+    ));
+
 }
+

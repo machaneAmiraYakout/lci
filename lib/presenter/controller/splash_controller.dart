@@ -8,7 +8,7 @@ class SplashController extends GetxController {
     super.onReady();
     // Wait for some time and then navigate to the home screen
     Future.delayed(const Duration(seconds: 3), () {
-      Get.off(() => const StartScreen());
+      //Get.off(() => const StartScreen());
 
 
     });

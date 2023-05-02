@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'my_custom_text.dart';
 class MyContainer extends StatelessWidget {
   final String text;
@@ -8,8 +7,6 @@ class MyContainer extends StatelessWidget {
   final double borderWidth;
   final String urlimage;
   final int index;
-
-
   MyContainer({
     required this.text,
     this.borderRadius = 20.0,
@@ -18,7 +15,6 @@ class MyContainer extends StatelessWidget {
     required this.urlimage,
     required this.index,
   });
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,6 +28,7 @@ class MyContainer extends StatelessWidget {
       child: Row(
         children: [
           Image.asset(urlimage,width: 200,height:200,),
+          SizedBox(width: 30,),
           MyCustomTextWidget(index: index,text:text, ),
         ],
       ),

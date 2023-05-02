@@ -18,12 +18,13 @@ class MyCustomTextWidget extends StatelessWidget {
           letterSpacing: 2,
         );
         break;
+
       case 2://Subtitle
         textStyle =const TextStyle(
             fontFamily: 'Poppins',
             fontSize: 15,
             fontWeight: FontWeight.w400,
-            color: subTitleTextColor,
+            color: buttonColor,
         );
         break;
       case 3://Subtitle
@@ -56,6 +57,15 @@ class MyCustomTextWidget extends StatelessWidget {
           fontSize: 20,
           fontWeight: FontWeight.w400,
           color: thirdColor,
+        );
+        break;
+      case 7://head
+        textStyle =const TextStyle(
+          fontFamily: 'Poppins',
+          fontSize: 25,
+          fontWeight: FontWeight.w700,
+          color: buttonColor,
+          letterSpacing: 2,
         );
         break;
       default:

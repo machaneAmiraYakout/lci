@@ -43,7 +43,7 @@ class DefaultTextField extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           filled: true,
-          fillColor: primaryColor.withOpacity(0.1),
+          fillColor: Colors.white,
           prefixIcon: prefixIcon,
           suffixIcon: IconButton(
             onPressed: () {
