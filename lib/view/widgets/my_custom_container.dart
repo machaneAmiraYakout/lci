@@ -6,6 +6,7 @@ class MyContainer extends StatelessWidget {
   final Color borderColor;
   final double borderWidth;
   final String urlimage;
+  final Color containerColor;
   final int index;
   MyContainer({
     required this.text,
@@ -14,23 +15,27 @@ class MyContainer extends StatelessWidget {
     this.borderWidth = 1.0,
     required this.urlimage,
     required this.index,
+    this.containerColor=Colors.white,
   });
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(borderRadius),
-        border: Border.all(
-          color: borderColor,
-          width: borderWidth,
+    return Padding(padding: EdgeInsets.symmetric(horizontal: 30),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(borderRadius),
+          border: Border.all(
+            color: borderColor,
+            width: borderWidth,
+          ),
+          color: containerColor,
         ),
-      ),
-      child: Row(
-        children: [
-          Image.asset(urlimage,width: 150,height:150,),
-          SizedBox(width: 30,),
-          MyCustomTextWidget(index: index,text:text, ),
-        ],
+        child: Row(
+          children: [
+            Image.asset(urlimage,width: 150,height:150,),
+            SizedBox(width: 30,),
+            MyCustomTextWidget(index: index,text:text, ),
+          ],
+        ),
       ),
     );
   }

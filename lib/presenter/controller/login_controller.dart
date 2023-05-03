@@ -1,9 +1,9 @@
-
 import 'package:elearning/presenter/cache_helper.dart';
 import 'package:elearning/view/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../view/screens/BottomBar_screen.dart';
 import '../../view/screens/home_page.dart';
 import '../../view/widgets/my_custom_snackbar.dart';
 class LoginController extends GetxController {
@@ -29,13 +29,11 @@ class LoginController extends GetxController {
         final UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
         //save login info
         await CacheHelper.saveData(key: 'token', value: userCredential.user!.uid);
-
         // Clear the input fields and show a success message
         mailController.clear();
         passwordController.clear();
         CustomSnackbar('Success', 'Login successful', isSuccess: true);
-        Get.to(() => HomeScreen());
-
+        Get.to(() => BottomBar());
       } catch (e) {
         CustomSnackbar('Error', e.toString());
       }
@@ -67,5 +65,4 @@ class LoginController extends GetxController {
       Get.snackbar('Error', 'Please enter your email!');
     }
   }
-
 }

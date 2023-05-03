@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 IconButton(
-                  onPressed: () => Get.to(() => const StartScreen()),
+                  onPressed: () => Get.back(),
                   icon: const Icon(
                     Icons.arrow_back,
                     size: 25,
@@ -88,7 +88,10 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () {
                     if (loginController.formKey.currentState!.validate()) {
                       loginController.login();
+
+
                     }
+
                   },
                   text: 'LOGIN',
                   primary: buttonColor,

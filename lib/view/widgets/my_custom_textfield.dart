@@ -9,8 +9,7 @@ class DefaultTextField extends StatelessWidget {
   final double borderRadius;
   final TextInputType type;
   final String? Function(String? value)? validatorFn;
-
-  IconData? suffix ;
+  final IconData? suffix ;
   var suffixFunction;
   bool obscuretext  ;
   DefaultTextField({Key? key,

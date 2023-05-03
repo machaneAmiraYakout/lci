@@ -1,4 +1,5 @@
 import 'package:elearning/presenter/cache_helper.dart';
+import 'package:elearning/view/screens/BottomBar_screen.dart';
 import 'package:elearning/view/screens/home_page.dart';
 import 'package:elearning/view/screens/signup_screen.dart';
 import 'package:elearning/view/screens/splash_screen.dart';
@@ -19,7 +20,7 @@ void main() async{
     startedScreen= SplashScreen() ;
   }
   else{
-    startedScreen= HomeScreen();
+    startedScreen= BottomBar();
   }
   runApp(   GetMaterialApp(
       title: 'ELearning',
