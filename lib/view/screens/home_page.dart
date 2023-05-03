@@ -183,9 +183,8 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: 40,
             ),
-            GestureDetector(
-              onTap: () => Get.to(() => OnlineScreen()),
-              child: MyContainer(
+             MyContainer(
+               gestuorTap: OnlineScreen(),
                 text: 'Online',
                 urlimage: 'assets/images/online.png',
                 borderRadius: 16.0,
@@ -193,7 +192,7 @@ class HomeScreen extends StatelessWidget {
                 borderWidth: 2.0,
                 index: 6,
               ),
-            )
+
           ],
         ),
       ),

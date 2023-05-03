@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'my_custom_text.dart';
 class MyContainer extends StatelessWidget {
   final String text;
@@ -8,6 +9,7 @@ class MyContainer extends StatelessWidget {
   final String urlimage;
   final Color containerColor;
   final int index;
+  Widget? gestuorTap;
   MyContainer({
     required this.text,
     this.borderRadius = 20.0,
@@ -16,11 +18,14 @@ class MyContainer extends StatelessWidget {
     required this.urlimage,
     required this.index,
     this.containerColor=Colors.white,
+    this.gestuorTap,
   });
   @override
   Widget build(BuildContext context) {
     return Padding(padding: EdgeInsets.symmetric(horizontal: 30),
-      child: Container(
+      child:GestureDetector(
+        onTap:  () => Get.to(() => gestuorTap),
+        child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius),
           border: Border.all(
@@ -36,7 +41,7 @@ class MyContainer extends StatelessWidget {
             MyCustomTextWidget(index: index,text:text, ),
           ],
         ),
-      ),
+      ),),
     );
   }
 }
