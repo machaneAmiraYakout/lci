@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elearning/presenter/cache_helper.dart';
+import 'package:elearning/presenter/controller/home_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,6 +42,9 @@ class SignupController extends GetxController {
       await FirebaseFirestore.instance.collection('userInformation').doc(userCredential.user!.uid).set({
         'name': name,
       });
+      // Update the name field
+      final HomeController homeController = Get.put(HomeController());
+      await homeController.loadUserName();
       await CacheHelper.saveData(key: 'token', value: userCredential.user!.uid);
       CustomSnackbar('Success', 'Registration successful', isSuccess: true);
       Get.to(() => BottomBar());

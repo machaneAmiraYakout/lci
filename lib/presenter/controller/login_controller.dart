@@ -1,4 +1,5 @@
 import 'package:elearning/presenter/cache_helper.dart';
+import 'package:elearning/presenter/controller/home_controller.dart';
 import 'package:elearning/view/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,9 @@ class LoginController extends GetxController {
         final UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
         //save login info
         await CacheHelper.saveData(key: 'token', value: userCredential.user!.uid);
+        // Update the HomeController instance to load the user name
+        final HomeController homeController = Get.put(HomeController());
+        await homeController.loadUserName();
         // Clear the input fields and show a success message
         mailController.clear();
         passwordController.clear();

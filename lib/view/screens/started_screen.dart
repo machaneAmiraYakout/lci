@@ -19,9 +19,9 @@ class StartScreen extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Image.asset('assets/images/logo.png', height: 40,width: 40,),
+                  Image.asset('assets/images/lg.jpg', height: 40,width: 40,),
                   const SizedBox(width: 10,),
-                  const Text('LCI group'),
+                  MyCustomTextWidget(index: 3,text: 'LCI Group' ,)
                 ],
               ),
               Image.asset('assets/images/started.png'),

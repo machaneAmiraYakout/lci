@@ -19,6 +19,9 @@ class HomeController extends GetxController {
         final data = docSnapshot.data()!;
         name.value = data['name'] ?? '';
         update();
+        print('${name.value}gggggggggggggggggggg');
+        print(data['name']);
+
       }
     }
   }

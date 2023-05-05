@@ -9,6 +9,8 @@ class MyContainer extends StatelessWidget {
   final String urlimage;
   final Color containerColor;
   final int index;
+  final double widthImage;
+  final double heightImage;
   Widget? gestuorTap;
   MyContainer({
     required this.text,
@@ -19,6 +21,8 @@ class MyContainer extends StatelessWidget {
     required this.index,
     this.containerColor=Colors.white,
     this.gestuorTap,
+     this.widthImage=150,
+     this.heightImage=150,
   });
   @override
   Widget build(BuildContext context) {
@@ -36,7 +40,7 @@ class MyContainer extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Image.asset(urlimage,width: 150,height:150,),
+            Image.asset(urlimage,width: widthImage,height:heightImage,),
             SizedBox(width: 30,),
             MyCustomTextWidget(index: index,text:text, ),
           ],

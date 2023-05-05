@@ -1,4 +1,5 @@
 import 'package:elearning/presenter/controller/login_controller.dart';
+import 'package:elearning/view/screens/contact.dart';
 import 'package:elearning/view/screens/online_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
@@ -15,11 +16,20 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: primaryColor,
+        backgroundColor: Colors.white,
         elevation: 0.0,
         iconTheme: const IconThemeData(
           color: buttonColor, // Set the color of the drawer icon
         ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Image.asset('assets/images/lg.jpg', height: 40,width: 40,),
+            const SizedBox(width: 10,),
+            MyCustomTextWidget(index: 10,text: 'LCI Group' ,)
+          ],
+        ),
+
       ),
       drawer: Drawer(
         child: ListView(
@@ -30,9 +40,16 @@ class HomeScreen extends StatelessWidget {
                 height: 70,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50.0),
-                  color: buttonColor.withOpacity(0.4),
+                  color: Colors.white,
                 ),
-                child: Image.asset('assets/images/graduated.png'),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                  children: [
+                    Image.asset('assets/images/lg.jpg', height: 40,width: 40,),
+                    const SizedBox(width: 10,),
+                    MyCustomTextWidget(index: 10,text: 'LCI Group' ,)
+                  ],),)
               ),
             ),
             ListTile(
@@ -42,7 +59,7 @@ class HomeScreen extends StatelessWidget {
                       'LCI Formation & Conseils est un institut privé créé en 2014, certifié ISO 9001 : 2015 par AFAQ AFNOR International sous le N° 94219, spécialisé en formation inter et intra entreprises dans les différents domaines et en conseils d’entreprises. Il assure aussi les services en tant que centre d’examen International pour : TFI, TOEIC, TOEFL Junior, CERT et Bright.'
                       ' \n\n LCI « Land of Creativity & Instruction » est géré par un staff jeune, qualifié, doté d’un esprit d’équipe développé, source de son dynamisme et sa régularité.'
                       '\n\n  L’institut bénéficie aussi d’un agrément délivré par le ministère du tourisme sous le nom : ZINE EL ABIDINE Travel Agency N°2329, qui assure l’organisation des évènements à l’échelle internationale.')),
-              leading: const Icon(Icons.info, color: thirdColor),
+              leading: const Icon(Icons.info, color: primaryColor),
               title: MyCustomTextWidget(index: 6, text: 'Presentation'),
             ),
             ListTile(
@@ -55,7 +72,7 @@ class HomeScreen extends StatelessWidget {
                       '\n\n Dr.Zine El Abidine HAMDI CHERIF'
                       '\n\n Directeur Général')),
               leading: const Icon(Icons.mode_edit_outline_rounded,
-                  color: thirdColor),
+                  color: primaryColor),
               title: MyCustomTextWidget(index: 6, text: 'Edito'),
             ),
             ListTile(
@@ -67,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                       '\n\n Notre établissement certifié ISO 9001:2015, est un témoignage et une reconnaissance de notre sérieux professionnel et de l’éfficacité de notre système de Management qualité.'
                       '\n\n Flexibilité et disponibilité :'
                       '\n\n Horaire, disponibilité, et flexibilité, sont des critères qui seront adaptés à vos besoins. le respect de la ponctualité est nécéssaire à la réussite du parcours de la formation.')),
-              leading: const Icon(Icons.high_quality, color: thirdColor),
+              leading: const Icon(Icons.high_quality, color: primaryColor),
               title: MyCustomTextWidget(index: 6, text: 'Valeurs'),
             ),
             ListTile(
@@ -75,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                   title: 'Objectif',
                   text:
                       'Notre objectif principal à travers notre mission, est de favoriser et promouvoir l’accès à la formation professionnelle pour TOUS, quelque soit la taille, et l’activité de votre entreprise, nous saurons vous apporter des solutions et des conseils pour la réussite de vos projets par nos experts reconnus dans leur domaine')),
-              leading: const Icon(Icons.emoji_objects, color: thirdColor),
+              leading: const Icon(Icons.emoji_objects, color: primaryColor),
               title: MyCustomTextWidget(index: 6, text: 'Objectifs'),
             ),
             ListTile(
@@ -83,7 +100,7 @@ class HomeScreen extends StatelessWidget {
                   title: 'Partners',
                   text:
                       'Depuis sa création, LCI Formation & Conseils ne cesse de tisser et de développer des relations de formation, de coopération avec des partenaires internationaux afin d’assurer l’évolution de l’institut et la réalisation de ces projets.')),
-              leading: const Icon(Icons.boy, color: thirdColor),
+              leading: const Icon(Icons.boy, color: primaryColor),
               title: MyCustomTextWidget(index: 6, text: 'Partners'),
             ),
             ListTile(
@@ -92,7 +109,7 @@ class HomeScreen extends StatelessWidget {
                     () => LoginController()); // Initialize the controller
                 Get.find<LoginController>().logout();
               },
-              leading: const Icon(Icons.logout, color: thirdColor),
+              leading: const Icon(Icons.logout, color: primaryColor),
               title: MyCustomTextWidget(index: 6, text: 'Logout'),
             ),
           ],
@@ -118,33 +135,42 @@ class HomeScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    child: Row(children: [
-                      Image.asset('assets/images/femelle.png'),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Row(children: [
-                        Column(
-                          children: [
-                            MyCustomTextWidget(
-                              index: 8,
-                              text: 'Welcome, ${controller.name.value}!',
-                            ),
-                            MyCustomTextWidget(
-                              index: 9,
-                              text: 'Ready to Learn Today ?',
-                            ),
-                          ],
-                        ),
+                    child:Row(
+                      children: [
+                        Image.asset('assets/images/femelle.png'),
                         const SizedBox(
-                          width: 10,
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Welcome, ${controller.name.value}!',
+                                style: const TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                  letterSpacing: 2,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              const SizedBox(height: 5),
+                              MyCustomTextWidget(
+                                index: 9,
+                                text: 'Ready to Learn Today ?',
+                              ),
+                            ],
+                          ),
                         ),
                         const Icon(
                           Icons.waving_hand,
                           color: buttonColor,
                         ),
-                      ]),
-                    ]),
+                      ],
+                    ),
+
                   ),
                   Container(
                     margin: const EdgeInsets.symmetric(
@@ -196,6 +222,18 @@ class HomeScreen extends StatelessWidget {
                 borderWidth: 2.0,
                 index: 6,
               ),
+            const SizedBox(
+              height: 40,
+            ),
+            MyContainer(
+              gestuorTap:  Contact(),
+              text: 'Contact Us',
+              urlimage: 'assets/images/Contactus.png',
+              borderRadius: 16.0,
+              borderColor: primaryColor,
+              borderWidth: 2.0,
+              index: 6,
+            ),
 
           ],
         ),
