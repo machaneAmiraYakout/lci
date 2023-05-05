@@ -88,10 +88,7 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () {
                     if (loginController.formKey.currentState!.validate()) {
                       loginController.login();
-
-
                     }
-
                   },
                   text: 'LOGIN',
                   primary: buttonColor,

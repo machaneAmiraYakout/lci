@@ -24,7 +24,7 @@ class MyContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(padding: EdgeInsets.symmetric(horizontal: 30),
       child:GestureDetector(
-        onTap:  () => Get.to(() => gestuorTap),
+        onTap:  () => gestuorTap != null ? Get.to(() => gestuorTap!) : null,
         child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius),

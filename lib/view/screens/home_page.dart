@@ -5,9 +5,11 @@ import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:elearning/view/widgets/my_custom_page.dart';
+import '../../presenter/controller/home_controller.dart';
 import '../widgets/my_custom_container.dart';
 class HomeScreen extends StatelessWidget {
-   HomeScreen({Key? key}) : super(key: key);
+  final HomeController controller = Get.put(HomeController());
+  HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +25,7 @@ class HomeScreen extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               child: Container(
                 height: 70,
                 decoration: BoxDecoration(
@@ -96,7 +98,9 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: SingleChildScrollView(
+      body:GetBuilder<HomeController>(
+          init: HomeController(),
+          builder: (controller)=> SingleChildScrollView(
         child: Column(
           children: [
             Container(
@@ -113,10 +117,10 @@ class HomeScreen extends StatelessWidget {
                     height: 10,
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     child: Row(children: [
                       Image.asset('assets/images/femelle.png'),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
                       Row(children: [
@@ -124,7 +128,7 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             MyCustomTextWidget(
                               index: 8,
-                              text: 'Hey Name',
+                              text: 'Welcome, ${controller.name.value}!',
                             ),
                             MyCustomTextWidget(
                               index: 9,
@@ -132,10 +136,10 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Icon(
+                        const Icon(
                           Icons.waving_hand,
                           color: buttonColor,
                         ),
@@ -169,7 +173,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             MyContainer(
@@ -180,11 +184,11 @@ class HomeScreen extends StatelessWidget {
               borderWidth: 2.0,
               index: 6,
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
              MyContainer(
-               gestuorTap: OnlineScreen(),
+               gestuorTap: const OnlineScreen(),
                 text: 'Online',
                 urlimage: 'assets/images/online.png',
                 borderRadius: 16.0,
@@ -195,7 +199,7 @@ class HomeScreen extends StatelessWidget {
 
           ],
         ),
-      ),
+      )),
     );
   }
 }

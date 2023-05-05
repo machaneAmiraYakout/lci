@@ -3,6 +3,7 @@ import 'package:elearning/presenter/cache_helper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../view/screens/BottomBar_screen.dart';
 import '../../view/screens/home_page.dart';
 import '../../view/widgets/my_custom_snackbar.dart';
 class SignupController extends GetxController {
@@ -29,14 +30,20 @@ class SignupController extends GetxController {
     });
   }
   Future<void> signup() async {
+    String name = nameController.text;
     String email = mailController.text;
     String password = passwordController.text;
     try {
       // Create a new user account in Firebase
-      final UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: email, password: password,);
+      final UserCredential userCredential =
+      await auth.createUserWithEmailAndPassword(email: email, password: password,);
+      // Store the user's name in Cloud Firestore
+      await FirebaseFirestore.instance.collection('userInformation').doc(userCredential.user!.uid).set({
+        'name': name,
+      });
       await CacheHelper.saveData(key: 'token', value: userCredential.user!.uid);
       CustomSnackbar('Success', 'Registration successful', isSuccess: true);
-      Get.to(() => HomeScreen());
+      Get.to(() => BottomBar());
     } catch (e) {
       CustomSnackbar('Error', e.toString());
     }

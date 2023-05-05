@@ -20,6 +20,7 @@ class LoginController extends GetxController {
     obscurePassword = !obscurePassword;
     update(); // Update the state of the widget
   }
+
   Future<void> login() async {
     final email = mailController.text;
     final password = passwordController.text;

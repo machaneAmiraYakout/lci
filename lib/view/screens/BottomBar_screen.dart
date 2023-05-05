@@ -13,7 +13,9 @@ class BottomBar extends StatelessWidget {
       body:GetBuilder<BottomBarController>(
         init: BottomBarController(),
     builder: (bottomBarController) => bottomBarController.widgetOptions.elementAt(bottomBarController.selectedIndex)),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar:GetBuilder<BottomBarController>(
+        init: BottomBarController(),
+        builder: (bottomBarController) =>  BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
@@ -32,7 +34,7 @@ class BottomBar extends StatelessWidget {
           selectedItemColor: buttonColor,
           unselectedItemColor:primaryColor,
           onTap:bottomBarController.onItemTapped,
-        ),
+        ),),
 
     );
   }
