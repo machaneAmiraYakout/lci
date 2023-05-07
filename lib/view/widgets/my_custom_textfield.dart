@@ -78,8 +78,5 @@ String? validateEmail(String? value) {
   if (value == null || value.isEmpty) {
     return 'Email is required';
   }
-  if (!value.contains('@gmail.com')) {
-    return 'Email should be a valid gmail address';
-  }
   return null;
 }

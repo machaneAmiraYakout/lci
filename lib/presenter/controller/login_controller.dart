@@ -34,6 +34,7 @@ class LoginController extends GetxController {
         // Update the HomeController instance to load the user name
         final HomeController homeController = Get.put(HomeController());
         await homeController.loadUserName();
+        homeController.startTimer();
         // Clear the input fields and show a success message
         mailController.clear();
         passwordController.clear();

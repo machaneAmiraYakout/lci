@@ -1,23 +1,24 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class HomeController extends GetxController {
-
   final scrollController = ScrollController();
   Timer? timer;
   final name = ''.obs;
   final currentIndex = 0.obs;
-
   @override
   void onInit() {
     super.onInit();
     loadUserName();
     startTimer();
   }
-
+  @override
+  void onClose() {
+    super.onClose();
+    cancelTimer();
+  }
   Future<void> loadUserName() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
@@ -42,7 +43,8 @@ class HomeController extends GetxController {
           scrollController.position.maxScrollExtent + Get.width;
       if (currentIndex.value * Get.width >= maxWidth) {
         // When we reach the end of the scroll view, scroll back to the beginning
-        scrollController.animateTo(0.0,
+        scrollController.animateTo(
+          0.0,
           duration: Duration(seconds: 1),
           curve: Curves.easeInOut,
         );
@@ -56,5 +58,9 @@ class HomeController extends GetxController {
         );
       }
     });
+  }
+  void cancelTimer() {
+    timer?.cancel();
+    timer = null;
   }
 }

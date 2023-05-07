@@ -1,7 +1,6 @@
 import 'package:elearning/presenter/controller/login_controller.dart';
 import 'package:elearning/view/screens/contact.dart';
 import 'package:elearning/view/screens/online_screen.dart';
-import 'package:elearning/view/screens/principal_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:elearning/view/widgets/my_custom_page.dart';
 import '../../presenter/controller/home_controller.dart';
 import '../widgets/my_custom_container.dart';
-
 class HomeScreen extends StatelessWidget {
   final HomeController controller = Get.put(HomeController());
   HomeScreen({Key? key}) : super(key: key);
@@ -265,7 +263,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
