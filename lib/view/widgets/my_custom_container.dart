@@ -12,6 +12,7 @@ class MyContainer extends StatelessWidget {
   final double widthImage;
   final double heightImage;
   Widget? gestuorTap;
+  final double? widthContainer;
   MyContainer({
     required this.text,
     this.borderRadius = 20.0,
@@ -22,7 +23,7 @@ class MyContainer extends StatelessWidget {
     this.containerColor=Colors.white,
     this.gestuorTap,
      this.widthImage=150,
-     this.heightImage=150,
+     this.heightImage=150,  this.widthContainer,
   });
   @override
   Widget build(BuildContext context) {

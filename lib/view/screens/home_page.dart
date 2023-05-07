@@ -1,6 +1,7 @@
 import 'package:elearning/presenter/controller/login_controller.dart';
 import 'package:elearning/view/screens/contact.dart';
 import 'package:elearning/view/screens/online_screen.dart';
+import 'package:elearning/view/screens/principal_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:elearning/view/widgets/my_custom_page.dart';
 import '../../presenter/controller/home_controller.dart';
 import '../widgets/my_custom_container.dart';
+
 class HomeScreen extends StatelessWidget {
   final HomeController controller = Get.put(HomeController());
   HomeScreen({Key? key}) : super(key: key);
@@ -24,12 +26,20 @@ class HomeScreen extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Image.asset('assets/images/lg.jpg', height: 40,width: 40,),
-            const SizedBox(width: 10,),
-            MyCustomTextWidget(index: 10,text: 'LCI Group' ,)
+            Image.asset(
+              'assets/images/lg.jpg',
+              height: 40,
+              width: 40,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            MyCustomTextWidget(
+              index: 10,
+              text: 'LCI Group',
+            )
           ],
         ),
-
       ),
       drawer: Drawer(
         child: ListView(
@@ -37,20 +47,30 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Container(
-                height: 70,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50.0),
-                  color: Colors.white,
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                  children: [
-                    Image.asset('assets/images/lg.jpg', height: 40,width: 40,),
-                    const SizedBox(width: 10,),
-                    MyCustomTextWidget(index: 10,text: 'LCI Group' ,)
-                  ],),)
-              ),
+                  height: 70,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50.0),
+                    color: Colors.white,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/images/lg.jpg',
+                          height: 40,
+                          width: 40,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        MyCustomTextWidget(
+                          index: 10,
+                          text: 'LCI Group',
+                        )
+                      ],
+                    ),
+                  )),
             ),
             ListTile(
               onTap: () => Get.to(() => const CustomPage(
@@ -115,9 +135,7 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      body:GetBuilder<HomeController>(
-          init: HomeController(),
-          builder: (controller)=> SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
@@ -134,8 +152,9 @@ class HomeScreen extends StatelessWidget {
                     height: 10,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    child:Row(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: Row(
                       children: [
                         Image.asset('assets/images/femelle.png'),
                         const SizedBox(
@@ -145,17 +164,20 @@ class HomeScreen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Welcome, ${controller.name.value}!',
-                                style: const TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white,
-                                  letterSpacing: 2,
-                                ),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                              GetBuilder<HomeController>(
+                                  init: HomeController(),
+                                  builder: (controller) => Text(
+                                        'Welcome, ${controller.name.value}!',
+                                        style: const TextStyle(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white,
+                                          letterSpacing: 2,
+                                        ),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      )),
                               const SizedBox(height: 5),
                               MyCustomTextWidget(
                                 index: 9,
@@ -170,7 +192,6 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-
                   ),
                   Container(
                     margin: const EdgeInsets.symmetric(
@@ -202,42 +223,52 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
-            MyContainer(
-              text: 'Services',
-              urlimage: 'assets/images/service.png',
-              borderRadius: 16.0,
-              borderColor: primaryColor,
-              borderWidth: 2.0,
-              index: 6,
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-             MyContainer(
-               gestuorTap: const OnlineScreen(),
-                text: 'Online',
-                urlimage: 'assets/images/online.png',
-                borderRadius: 16.0,
-                borderColor: buttonColor,
-                borderWidth: 2.0,
-                index: 6,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              controller: controller.scrollController,
+              child: Row(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: MyContainer(
+                      text: 'Services',
+                      urlimage: 'assets/images/service.png',
+                      borderRadius: 16.0,
+                      borderColor: primaryColor,
+                      borderWidth: 2.0,
+                      index: 6,
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: MyContainer(
+                      gestuorTap: const OnlineScreen(),
+                      text: 'Online',
+                      urlimage: 'assets/images/online.png',
+                      borderRadius: 16.0,
+                      borderColor: buttonColor,
+                      borderWidth: 2.0,
+                      index: 6,
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: MyContainer(
+                      gestuorTap: Contact(),
+                      text: 'Contact Us',
+                      urlimage: 'assets/images/Contactus.png',
+                      borderRadius: 16.0,
+                      borderColor: primaryColor,
+                      borderWidth: 2.0,
+                      index: 6,
+                    ),
+                  ),
+                ],
               ),
-            const SizedBox(
-              height: 40,
-            ),
-            MyContainer(
-              gestuorTap:  Contact(),
-              text: 'Contact Us',
-              urlimage: 'assets/images/Contactus.png',
-              borderRadius: 16.0,
-              borderColor: primaryColor,
-              borderWidth: 2.0,
-              index: 6,
-            ),
-
+            )
           ],
         ),
-      )),
+      ),
     );
   }
 }
