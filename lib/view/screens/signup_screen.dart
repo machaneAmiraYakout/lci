@@ -44,13 +44,23 @@ class SignupScreen extends StatelessWidget {
                     index: 2,
                   ),
                 ),
-                Center(
-                  child: Image.asset(
-                    'assets/images/Mobile.png',
-                    width: 300,
-                    height: 300,
+                Stack(children: [
+                  Center(
+                    child: Image.asset(
+                      'assets/images/Mobile.png',
+                      width: 300,
+                      height: 300,
+                    ),
                   ),
-                ),
+                  Positioned(
+                    top: 90,
+                    left: 160,
+                    child:  Image.asset(
+                    'assets/images/lg.jpg',
+                    width: 50,
+                    height: 50,
+                  ),),
+                ],),
                 const SizedBox(
                   height: 30,
                 ),

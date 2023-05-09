@@ -55,12 +55,23 @@ class Contact extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: ()  {
-                    controller.launchUrl('https://www.facebook.com/');
+                    controller.launchUrl('https://www.facebook.com/GroupeLCI');
                   },
                   child:Image.asset('assets/images/fb.png',width: 40,height: 40,),
                 ),
                 const SizedBox(width:30,),
-                Image.asset('assets/images/in.png',width: 40,height: 40,),
+                GestureDetector(
+                  onTap: ()  {
+                    controller.launchUrl('https://www.instagram.com/groupe_lci/');
+                  },
+                  child:Image.asset('assets/images/in.png',width: 40,height: 40,),
+                ),
+                const SizedBox(width:30,),
+                GestureDetector(
+                  onTap: ()  {
+                    controller.launchUrl('https://www.linkedin.com/company/groupelci/');
+                  }, child:Image.asset('assets/images/lin.png',width: 40,height: 40,),
+                ),
               ],
             ),
           ),
