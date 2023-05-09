@@ -49,7 +49,7 @@ class DefaultTextField extends StatelessWidget {
               suffixFunction();
               print('icon pressed');
               },
-            icon: Icon(suffix),
+            icon: Icon(suffix,color: buttonColor,),
           ),
           enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.white),

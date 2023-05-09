@@ -7,6 +7,7 @@ import 'package:elearning/view/widgets/my_custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../presenter/controller/signup_controller.dart';
+
 class SignupScreen extends StatelessWidget {
   final SignupController signupController = Get.put(SignupController());
   @override
@@ -43,12 +44,17 @@ class SignupScreen extends StatelessWidget {
                     index: 2,
                   ),
                 ),
-                Center(child: Image.asset('assets/images/Mobile.png',width: 300,height: 300,),),
+                Center(
+                  child: Image.asset(
+                    'assets/images/Mobile.png',
+                    width: 300,
+                    height: 300,
+                  ),
+                ),
                 const SizedBox(
                   height: 30,
                 ),
                 DefaultTextField(
-                  onPressed: () {},
                   hintText: 'Enter your Name',
                   prefixIcon: const Icon(
                     Icons.person,
@@ -85,15 +91,43 @@ class SignupScreen extends StatelessWidget {
                     type: TextInputType.visiblePassword,
                     validatorFn: validatePassword,
                     obscuretext: signupController.obscurePassword,
-                    suffix: signupController.obscurePassword ? Icons.visibility_off : Icons.visibility,
+                    suffix: signupController.obscurePassword ? Icons.visibility_off : Icons.visibility ,
                     suffixFunction: () {
                       signupController.togglePasswordVisibility();
                       print('whyyyyyyyyyyyyyyyyyyyyyy');
                     },
+
                   ),
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 15,
+                ),
+                DropdownButtonFormField<String>(
+                  value: signupController.role,
+                  items: const [
+                    DropdownMenuItem(
+                      value: 'boss',
+                      child: Text('boss'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'user',
+                      child: Text('user'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'controller',
+                      child: Text('controller'),
+                    ),
+                  ],
+                  onChanged: (value) {
+                    signupController.role = value!;
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'Role',
+                    icon: Icon(Icons.people_alt_outlined, color: buttonColor),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                    ),
+                  ),
                 ),
                 CustomButton(
                   onPressed: () {
@@ -106,7 +140,7 @@ class SignupScreen extends StatelessWidget {
                   onPrimary: Colors.white,
                   sideColor: buttonColor,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Padding(

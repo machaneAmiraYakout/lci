@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../view/screens/BottomBar_screen.dart';
-import '../../view/screens/home_page.dart';
 import '../../view/widgets/my_custom_snackbar.dart';
 class SignupController extends GetxController {
   final nameController = TextEditingController();
@@ -16,6 +15,8 @@ class SignupController extends GetxController {
   late bool obscurePassword = true;
   late final bool isSuccess;
   late PageController _pageController;
+  var role = 'user';
+
   void togglePasswordVisibility() {
     obscurePassword = !obscurePassword;
     update(); // Update the state of the widget
@@ -30,6 +31,7 @@ class SignupController extends GetxController {
       update();
     });
   }
+
   Future<void> signup() async {
     String name = nameController.text;
     String email = mailController.text;
@@ -41,6 +43,7 @@ class SignupController extends GetxController {
       // Store the user's name in Cloud Firestore
       await FirebaseFirestore.instance.collection('userInformation').doc(userCredential.user!.uid).set({
         'name': name,
+        'role': role,
       });
       // Update the name field
       final HomeController homeController = Get.put(HomeController());

@@ -1,14 +1,10 @@
 import 'package:elearning/presenter/cache_helper.dart';
 import 'package:elearning/view/screens/BottomBar_screen.dart';
-import 'package:elearning/view/screens/home_page.dart';
-import 'package:elearning/view/screens/signup_screen.dart';
 import 'package:elearning/view/screens/splash_screen.dart';
-import 'package:elearning/view/screens/started_screen.dart';
+import 'package:elearning/view/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
-
-
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await  Firebase.initializeApp();
@@ -26,7 +22,10 @@ void main() async{
       title: 'ELearning',
       debugShowCheckedModeBanner: false,
       home:  startedScreen,
+    theme: ThemeData(
+      inputDecorationTheme: const InputDecorationTheme(
+      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: primaryColor)))
+    ),
     ));
-
 }
 
