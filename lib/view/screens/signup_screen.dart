@@ -65,7 +65,7 @@ class SignupScreen extends StatelessWidget {
                   height: 30,
                 ),
                 DefaultTextField(
-                  hintText: 'Enter your Name',
+                  hintText: 'Name',
                   prefixIcon: const Icon(
                     Icons.person,
                     color: primaryColor,
@@ -80,7 +80,7 @@ class SignupScreen extends StatelessWidget {
                   onPressed: () {
                     print(signupController.mailController.text);
                   },
-                  hintText: 'Enter your email',
+                  hintText: 'Email',
                   prefixIcon: const Icon(
                     Icons.email,
                     color: primaryColor,
@@ -95,7 +95,7 @@ class SignupScreen extends StatelessWidget {
                 GetBuilder<SignupController>(
                   init: SignupController(),
                   builder: (signupController) => DefaultTextField(
-                    hintText: 'Enter your Password',
+                    hintText: 'Password',
                     prefixIcon: const Icon(Icons.lock, color: primaryColor),
                     controller: signupController.passwordController,
                     type: TextInputType.visiblePassword,

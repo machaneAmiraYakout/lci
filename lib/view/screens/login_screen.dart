@@ -52,8 +52,7 @@ class LoginScreen extends StatelessWidget {
                   height: 30,
                 ),
                 DefaultTextField(
-                  onPressed: () {},
-                  hintText: 'Enter your email',
+                  hintText: 'Email',
                   prefixIcon: const Icon(
                     Icons.email,
                     color: primaryColor,
@@ -68,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                 GetBuilder<LoginController>(
                   init: LoginController(),
                   builder: (loginController) => DefaultTextField(
-                    hintText: 'Enter your Password',
+                    hintText: 'Password',
                     prefixIcon: const Icon(Icons.lock, color: primaryColor),
                     controller: loginController.passwordController,
                     type: TextInputType.visiblePassword,

@@ -23,9 +23,11 @@ void main() async{
       debugShowCheckedModeBanner: false,
       home:  startedScreen,
     theme: ThemeData(
+      primarySwatch: Colors.orange,
       inputDecorationTheme: const InputDecorationTheme(
       enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: primaryColor)))
     ),
+
     ));
 }
 
