@@ -94,6 +94,24 @@ class MyCustomTextWidget extends StatelessWidget {
           color: buttonColor,
         );
         break;
+      case 11://head
+        textStyle =const TextStyle(
+          fontFamily: 'Poppins',
+          fontSize: 21,
+          fontWeight: FontWeight.w700,
+          color: buttonColor,
+          letterSpacing: 2,
+        );
+        break;
+      case 12://head
+        textStyle =const TextStyle(
+          fontFamily: 'Poppins',
+          fontSize: 19,
+          fontWeight: FontWeight.w700,
+          color: buttonColor,
+          letterSpacing: 2,
+        );
+        break;
       default:
         textStyle =const TextStyle(
           fontFamily: 'Poppins',

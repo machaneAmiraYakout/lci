@@ -240,7 +240,9 @@ class HomeScreen extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: MyContainer(
-                      gestuorTap: const OnlineScreen(),
+                      gestuorTap: (){
+                        Get.to(() => OnlineScreen());
+                      },
                       text: 'Online',
                       urlimage: 'assets/images/online.png',
                       borderRadius: 16.0,
@@ -252,7 +254,9 @@ class HomeScreen extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: MyContainer(
-                      gestuorTap: Contact(),
+                      gestuorTap: (){
+                        Get.to(() => Contact());
+                      },
                       text: 'Contact Us',
                       urlimage: 'assets/images/Contactus.png',
                       borderRadius: 16.0,

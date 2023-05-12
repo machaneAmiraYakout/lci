@@ -9,8 +9,8 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await  Firebase.initializeApp();
   String? token='';
-   token=await CacheHelper.importData(key: 'token');
-   print(token);
+  token=await CacheHelper.importData(key: 'token');
+  print(token);
   Widget startedScreen;
   if(token==null){
     startedScreen= SplashScreen() ;
@@ -19,13 +19,14 @@ void main() async{
     startedScreen= BottomBar();
   }
   runApp(   GetMaterialApp(
-      title: 'ELearning',
-      debugShowCheckedModeBanner: false,
-      home:  startedScreen,
+    title: 'ELearning',
+    debugShowCheckedModeBanner: false,
+    home:  startedScreen,
     theme: ThemeData(
-      inputDecorationTheme: const InputDecorationTheme(
-      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: primaryColor)))
+        primarySwatch: Colors.orange,
+        inputDecorationTheme: const InputDecorationTheme(
+            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: primaryColor)))
     ),
-    ));
-}
 
+  ));
+}
