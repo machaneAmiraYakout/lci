@@ -1,6 +1,5 @@
 import 'package:elearning/presenter/controller/login_controller.dart';
 import 'package:elearning/view/screens/contact.dart';
-import 'package:elearning/view/screens/inscription_screen.dart';
 import 'package:elearning/view/screens/online_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
@@ -241,7 +240,9 @@ class HomeScreen extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: MyContainer(
-                      gestuorTap: Inscription(),
+                      gestuorTap: (){
+                        Get.to(() => OnlineScreen());
+                      },
                       text: 'Online',
                       urlimage: 'assets/images/online.png',
                       borderRadius: 16.0,
@@ -253,7 +254,9 @@ class HomeScreen extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: MyContainer(
-                      gestuorTap: Contact(),
+                      gestuorTap: (){
+                        Get.to(() => Contact());
+                      },
                       text: 'Contact Us',
                       urlimage: 'assets/images/Contactus.png',
                       borderRadius: 16.0,
