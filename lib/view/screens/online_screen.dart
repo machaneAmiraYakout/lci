@@ -1,8 +1,10 @@
 import 'package:elearning/view/screens/contact.dart';
 import 'package:elearning/view/screens/feedback_screen.dart';
+import 'package:elearning/view/screens/hiring_screen.dart';
 import 'package:elearning/view/screens/inscription_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../widgets/my_custom_container.dart';
 class OnlineScreen extends StatelessWidget {
   @override
@@ -20,7 +22,7 @@ class OnlineScreen extends StatelessWidget {
               Container(
                 width: MediaQuery.of(context).size.width,
                 child: MyContainer(
-                  gestuorTap:Inscription(),
+                  gestuorTap:() => Get.to(() => Inscription()),
                   text: 'Inscription',
                   urlimage: 'assets/images/inscription.png',
                   borderRadius: 16.0,
@@ -31,7 +33,7 @@ class OnlineScreen extends StatelessWidget {
               ),
               SizedBox(height: 30,),
               MyContainer(
-                gestuorTap: Contact(),
+                gestuorTap:() => Get.to(() => Hiring()),
                 text: 'Hiring',
                 urlimage: 'assets/images/hiring.png',
                 borderRadius: 16.0,
@@ -41,7 +43,7 @@ class OnlineScreen extends StatelessWidget {
               ),
               SizedBox(height: 30,),
               MyContainer(
-                gestuorTap: FeedBack(),
+                gestuorTap:() => Get.to(() => FeedBack()),
                 text: 'Feedback',
                 urlimage: 'assets/images/feedback.png',
                 borderRadius: 16.0,

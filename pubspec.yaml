@@ -47,6 +47,7 @@ dependencies:
   url_launcher_platform_interface: ^2.0.2
   url_launcher_android: ^6.0.5
   font_awesome_flutter: ^10.4.0
+  file_picker: ^4.0.0
 
 
 

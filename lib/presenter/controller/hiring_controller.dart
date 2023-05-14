@@ -19,19 +19,26 @@ class HiringController extends GetxController{
     birthdayFocusNode = FocusNode();
   }
   var selectedDate = DateTime.now().obs;
+
   Future<void> pickDate(BuildContext context) async {
-    final DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: selectedDate.value,
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
-    );
-    if (pickedDate != null && pickedDate != selectedDate.value) {
-      selectedDate.value = pickedDate;
-      final formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
-      birthdayController.text = formattedDate;
+    try {
+      final DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: selectedDate.value,
+        firstDate: DateTime(1900),
+        lastDate: DateTime.now(),
+      );
+      if (pickedDate != null && pickedDate != selectedDate.value) {
+        selectedDate.value = pickedDate;
+        final formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+        birthdayController.text = formattedDate;
+      }
+    } catch (error) {
+      print('Error while picking date: $error');
     }
   }
+
+
   @override
   void onClose() {
     birthdayFocusNode.dispose();
@@ -51,7 +58,7 @@ class HiringController extends GetxController{
   }
   // Function to upload a PDF file to Firebase Storage
   Future<String> uploadPdfFile(File file) async {
-    final storageRef = FirebaseStorage.instance.ref().child('/.pdf');
+    final storageRef = FirebaseStorage.instance.ref().child('pdf');
     final fileName = path.basename(file.path);
     final pdfRef = storageRef.child(fileName);
     try {
