@@ -129,9 +129,7 @@ class Hiring extends StatelessWidget {
                           ),
                           const SizedBox(height: 20),
                           CustomButton(
-                            onPressed: () async{
-                             await hiringController.submitForm();
-                            },
+                            onPressed: () async{await hiringController.submitForm();},
                             text: 'Apply',
                             primary: buttonColor,
                             onPrimary: Colors.white,

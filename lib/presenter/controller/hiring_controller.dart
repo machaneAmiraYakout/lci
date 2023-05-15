@@ -19,7 +19,6 @@ class HiringController extends GetxController{
     birthdayFocusNode = FocusNode();
   }
   var selectedDate = DateTime.now().obs;
-
   Future<void> pickDate(BuildContext context) async {
     try {
       final DateTime? pickedDate = await showDatePicker(
@@ -37,8 +36,6 @@ class HiringController extends GetxController{
       print('Error while picking date: $error');
     }
   }
-
-
   @override
   void onClose() {
     birthdayFocusNode.dispose();
@@ -59,10 +56,11 @@ class HiringController extends GetxController{
   // Function to upload a PDF file to Firebase Storage
   Future<String> uploadPdfFile(File file) async {
     final storageRef = FirebaseStorage.instance.ref().child('pdf');
-    final fileName = path.basename(file.path);
+    final filePath = file.path;
+    final fileName = path.basename(filePath);
     final pdfRef = storageRef.child(fileName);
     try {
-      await pdfRef.putFile(file);
+      await pdfRef.putFile(File(filePath));
       final pdfUrl = await pdfRef.getDownloadURL();
       print('File path: $fileName');
       print('File URL: $pdfUrl');
@@ -76,7 +74,26 @@ class HiringController extends GetxController{
       return '';
     }
   }
-  // Function to store the date and PDF URL in the "hiring" collection
+  // Function to store the hiring information in the "hiring" collection
+  Future<void> storeHiringInfo(
+      String fullName,
+      String email,
+      DateTime date,
+      String address,
+      String mobile,
+      String pdfUrl,
+      ) async {
+    final hiringCollection = FirebaseFirestore.instance.collection('hiring');
+    await hiringCollection.add({
+      'fullName': fullName,
+      'email': email,
+      'date': date,
+      'address': address,
+      'mobile': mobile,
+      'pdfUrl': pdfUrl,
+    });
+  }
+// Submit the form and store the hiring information
   Future<void> submitForm() async {
     final fullName = fullNameController.text.trim();
     final email = emailController.text.trim();
@@ -84,39 +101,28 @@ class HiringController extends GetxController{
     final address = adressController.text.trim();
     final mobile = mobileController.text.trim();
     final file = selectedFile.value;
+
     if (fullName.isEmpty || email.isEmpty || date == null || file == null) {
       // Show an error message if any required field is missing
       return;
     }
-    Future<void> storeHiringInfo(
-        String fullName,
-        String email,
-        DateTime date,
-        String address,
-        String mobile,
-        String pdfUrl,
-        ) async {
-      final hiringCollection = FirebaseFirestore.instance.collection('hiring');
-      await hiringCollection.add({
-        'fullName': fullName,
-        'email': email,
-        'date': date,
-        'address': address,
-        'mobile': mobile,
-        'pdfUrl': pdfUrl,
-      });
-    }
-    final pdfUrl = await uploadPdfFile(file);
-    await storeHiringInfo(fullName, email, date, address, mobile, pdfUrl);
-    // Clear the form fields after submission
-    fullNameController.clear();
-    emailController.clear();
-    birthdayController.clear();
-    adressController.clear();
-    mobileController.clear();
-    selectedDate.value = DateTime.now();
-    selectedFile.value = null;
-  }
 
+    try {
+      final pdfUrl = await uploadPdfFile(file);
+      await storeHiringInfo(fullName, email, date, address, mobile, pdfUrl);
+
+      // Clear the form fields after successful submission
+      fullNameController.clear();
+      emailController.clear();
+      birthdayController.clear();
+      adressController.clear();
+      mobileController.clear();
+      selectedDate.value = DateTime.now();
+      selectedFile.value = null;
+    } catch (error) {
+      // Handle any errors that occurred during the upload process
+      print('Error submitting form: $error');
+    }
+  }
 
 }
