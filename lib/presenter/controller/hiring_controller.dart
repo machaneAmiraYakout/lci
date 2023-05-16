@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart' as path;
+import '../../view/widgets/my_custom_snackbar.dart';
 class HiringController extends GetxController{
   TextEditingController fullNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -84,14 +85,23 @@ class HiringController extends GetxController{
       String pdfUrl,
       ) async {
     final hiringCollection = FirebaseFirestore.instance.collection('hiring');
-    await hiringCollection.add({
-      'fullName': fullName,
-      'email': email,
-      'date': date,
-      'address': address,
-      'mobile': mobile,
-      'pdfUrl': pdfUrl,
-    });
+    // Query the collection for a document with the same email
+    final querySnapshot = await hiringCollection.where('email', isEqualTo: email).get();
+    // Only store the hiring information if no document with the same email exists
+    if (querySnapshot.docs.isEmpty) {
+      await hiringCollection.add({
+        'fullName': fullName,
+        'email': email,
+        'date': date,
+        'address': address,
+        'mobile': mobile,
+        'pdfUrl': pdfUrl,
+      });
+    } else {
+      print('User with email $email already subscribed');
+      CustomSnackbar('Refused', 'User with email $email already subscribed', isSuccess: false);
+      // You can show an error message or take any other action to notify the user that they have already subscribed
+    }
   }
 // Submit the form and store the hiring information
   Future<void> submitForm() async {
@@ -101,16 +111,13 @@ class HiringController extends GetxController{
     final address = adressController.text.trim();
     final mobile = mobileController.text.trim();
     final file = selectedFile.value;
-
     if (fullName.isEmpty || email.isEmpty || date == null || file == null) {
       // Show an error message if any required field is missing
       return;
     }
-
     try {
       final pdfUrl = await uploadPdfFile(file);
       await storeHiringInfo(fullName, email, date, address, mobile, pdfUrl);
-
       // Clear the form fields after successful submission
       fullNameController.clear();
       emailController.clear();
@@ -124,5 +131,4 @@ class HiringController extends GetxController{
       print('Error submitting form: $error');
     }
   }
-
 }

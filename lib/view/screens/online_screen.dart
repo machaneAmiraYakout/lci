@@ -1,7 +1,6 @@
-import 'package:elearning/view/screens/contact.dart';
-import 'package:elearning/view/screens/feedback_screen.dart';
 import 'package:elearning/view/screens/hiring_screen.dart';
 import 'package:elearning/view/screens/inscription_screen.dart';
+import 'package:elearning/view/screens/feedback_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +11,7 @@ class OnlineScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
+        leading: IconButton(icon:Icon(Icons.arrow_back,color: buttonColor, ),onPressed: (){Get.back();}),
       ),
       body: Padding(
         padding: EdgeInsets.all(20),

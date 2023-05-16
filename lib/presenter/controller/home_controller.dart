@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class HomeController extends GetxController {
-  final scrollController = ScrollController();
+  late ScrollController scrollController;
   Timer? timer;
   final name = ''.obs;
   final currentIndex = 0.obs;
@@ -13,6 +13,7 @@ class HomeController extends GetxController {
     super.onInit();
     loadUserName();
     startTimer();
+    scrollController = ScrollController();
   }
   @override
   void onClose() {
@@ -39,8 +40,7 @@ class HomeController extends GetxController {
     // Start the timer when the controller is initialized
     timer = Timer.periodic(Duration(seconds: 5), (_) {
       currentIndex.value++;
-      final double maxWidth =
-          scrollController.position.maxScrollExtent + Get.width;
+      final double maxWidth = scrollController.position.maxScrollExtent + Get.width;
       if (currentIndex.value * Get.width >= maxWidth) {
         // When we reach the end of the scroll view, scroll back to the beginning
         scrollController.animateTo(
@@ -57,8 +57,13 @@ class HomeController extends GetxController {
           curve: Curves.easeInOut,
         );
       }
+      // Access the position property of the ScrollController
+      ScrollPosition position = scrollController.position;
+      // Use the position object as needed
+      print('Scroll position: ${position.pixels}');
     });
   }
+
   void cancelTimer() {
     timer?.cancel();
     timer = null;

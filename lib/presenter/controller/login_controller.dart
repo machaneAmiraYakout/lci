@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../view/screens/BottomBar_screen.dart';
-import '../../view/screens/home_page.dart';
+import '../../view/screens/home_screen.dart';
 import '../../view/widgets/my_custom_snackbar.dart';
 class LoginController extends GetxController {
   TextEditingController mailController = TextEditingController();

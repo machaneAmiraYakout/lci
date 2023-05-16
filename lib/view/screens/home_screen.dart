@@ -4,6 +4,7 @@ import 'package:elearning/view/screens/online_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:elearning/view/widgets/my_custom_page.dart';
 import '../../presenter/controller/home_controller.dart';
@@ -13,6 +14,7 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -74,7 +76,7 @@ class HomeScreen extends StatelessWidget {
               onTap: () => Get.to(() => const CustomPage(
                   title: 'Presentation',
                   text:
-                      'LCI Formation & Conseils est un institut privé créé en 2014, certifié ISO 9001 : 2015 par AFAQ AFNOR International sous le N° 94219, spécialisé en formation inter et intra entreprises dans les différents domaines et en conseils d’entreprises. Il assure aussi les services en tant que centre d’examen International pour : TFI, TOEIC, TOEFL Junior, CERT et Bright.'
+                  'LCI Formation & Conseils est un institut privé créé en 2014, certifié ISO 9001 : 2015 par AFAQ AFNOR International sous le N° 94219, spécialisé en formation inter et intra entreprises dans les différents domaines et en conseils d’entreprises. Il assure aussi les services en tant que centre d’examen International pour : TFI, TOEIC, TOEFL Junior, CERT et Bright.'
                       ' \n\n LCI « Land of Creativity & Instruction » est géré par un staff jeune, qualifié, doté d’un esprit d’équipe développé, source de son dynamisme et sa régularité.'
                       '\n\n  L’institut bénéficie aussi d’un agrément délivré par le ministère du tourisme sous le nom : ZINE EL ABIDINE Travel Agency N°2329, qui assure l’organisation des évènements à l’échelle internationale.')),
               leading: const Icon(Icons.info, color: primaryColor),
@@ -84,7 +86,7 @@ class HomeScreen extends StatelessWidget {
               onTap: () => Get.to(() => const CustomPage(
                   title: 'Edito',
                   text:
-                      'Nous ne pouvons nier l’importance du savoir, toujours considéré comme un pilier incontournable de l’émancipation des sociétés et des personnes.'
+                  'Nous ne pouvons nier l’importance du savoir, toujours considéré comme un pilier incontournable de l’émancipation des sociétés et des personnes.'
                       ' \n\n Envisager la formation professionnelle sur le seul aspect de la transmission d’un savoir-faire peut sembler insuffisant pour cela, nous devons la placer dans une vision globale de la société prenant en compte, non seulement le geste technique mais aussi l’individu et les enjeux de la transition écologique qui sera demain au cœur des préoccupations de nos sociétés.'
                       '\n\n Nous n’avons pas pour seule ambition, de répondre aux politiques adéquationnistes – emplois et formations – mais nous souhaitons former des citoyens qui auront à apprendre et se former tout au long de la vie afin de s’adapter aux défis futurs auxquels ils serons confrontés .'
                       '\n\n Dr.Zine El Abidine HAMDI CHERIF'
@@ -109,7 +111,7 @@ class HomeScreen extends StatelessWidget {
               onTap: () => Get.to(() => const CustomPage(
                   title: 'Objectif',
                   text:
-                      'Notre objectif principal à travers notre mission, est de favoriser et promouvoir l’accès à la formation professionnelle pour TOUS, quelque soit la taille, et l’activité de votre entreprise, nous saurons vous apporter des solutions et des conseils pour la réussite de vos projets par nos experts reconnus dans leur domaine')),
+                  'Notre objectif principal à travers notre mission, est de favoriser et promouvoir l’accès à la formation professionnelle pour TOUS, quelque soit la taille, et l’activité de votre entreprise, nous saurons vous apporter des solutions et des conseils pour la réussite de vos projets par nos experts reconnus dans leur domaine')),
               leading: const Icon(Icons.emoji_objects, color: primaryColor),
               title: MyCustomTextWidget(index: 6, text: 'Objectifs'),
             ),
@@ -117,14 +119,14 @@ class HomeScreen extends StatelessWidget {
               onTap: () => Get.to(() => const CustomPage(
                   title: 'Partners',
                   text:
-                      'Depuis sa création, LCI Formation & Conseils ne cesse de tisser et de développer des relations de formation, de coopération avec des partenaires internationaux afin d’assurer l’évolution de l’institut et la réalisation de ces projets.')),
+                  'Depuis sa création, LCI Formation & Conseils ne cesse de tisser et de développer des relations de formation, de coopération avec des partenaires internationaux afin d’assurer l’évolution de l’institut et la réalisation de ces projets.')),
               leading: const Icon(Icons.boy, color: primaryColor),
               title: MyCustomTextWidget(index: 6, text: 'Partners'),
             ),
             ListTile(
               onTap: () {
                 Get.lazyPut(
-                    () => LoginController()); // Initialize the controller
+                        () => LoginController()); // Initialize the controller
                 Get.find<LoginController>().logout();
               },
               leading: const Icon(Icons.logout, color: primaryColor),
@@ -165,17 +167,17 @@ class HomeScreen extends StatelessWidget {
                               GetBuilder<HomeController>(
                                   init: HomeController(),
                                   builder: (controller) => Text(
-                                        'Welcome, ${controller.name.value}!',
-                                        style: const TextStyle(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.white,
-                                          letterSpacing: 2,
-                                        ),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      )),
+                                    'Welcome, ${controller.name.value}!',
+                                    style: const TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white,
+                                      letterSpacing: 2,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  )),
                               const SizedBox(height: 5),
                               MyCustomTextWidget(
                                 index: 9,
@@ -223,7 +225,7 @@ class HomeScreen extends StatelessWidget {
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              controller: controller.scrollController,
+              controller: controller.scrollController, // Assign the scroll controller here
               child: Row(
                 children: [
                   Container(
