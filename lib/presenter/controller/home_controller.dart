@@ -63,7 +63,6 @@ class HomeController extends GetxController {
       print('Scroll position: ${position.pixels}');
     });
   }
-
   void cancelTimer() {
     timer?.cancel();
     timer = null;

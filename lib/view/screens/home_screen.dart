@@ -1,10 +1,10 @@
 import 'package:elearning/presenter/controller/login_controller.dart';
 import 'package:elearning/view/screens/contact.dart';
 import 'package:elearning/view/screens/online_screen.dart';
+import 'package:elearning/view/screens/service_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:elearning/view/widgets/my_custom_page.dart';
 import '../../presenter/controller/home_controller.dart';
@@ -14,7 +14,6 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -138,90 +137,77 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-              width: double.infinity,
-              height: 180,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-                color: primaryColor,
-              ),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    child: Row(
-                      children: [
-                        Image.asset('assets/images/femelle.png'),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              GetBuilder<HomeController>(
-                                  init: HomeController(),
-                                  builder: (controller) => Text(
-                                    'Welcome, ${controller.name.value}!',
-                                    style: const TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white,
-                                      letterSpacing: 2,
-                                    ),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  )),
-                              const SizedBox(height: 5),
-                              MyCustomTextWidget(
-                                index: 9,
-                                text: 'Ready to Learn Today ?',
-                              ),
-                            ],
+           Padding(padding: EdgeInsets.symmetric(vertical: 20,horizontal: 25),
+             child:Stack(
+               children: [
+                 Container(
+                   width: double.infinity,
+                   height: 180,
+                   decoration: BoxDecoration(
+                     color: primaryColor,
+                     borderRadius: BorderRadius.circular(20),
+                   ),
+                 ),
+                Positioned(bottom: 0,child:  Row(children: [
+                  Column(children: [
+                    Padding(padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10) ,
+                      child:Row(children: [
+                        GetBuilder<HomeController>(
+                          init: HomeController(),
+                          builder: (controller) => Text(
+                            'Welcome, ${controller.name.value}!',
+                            style: const TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                              letterSpacing: 2,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         const Icon(
                           Icons.waving_hand,
                           color: buttonColor,
                         ),
-                      ],
+                      ],),),
+                    MyCustomTextWidget(
+                      index: 9,
+                      text: 'Ready to Learn Today ?',
                     ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 15),
-                    width: double.infinity,
-                    height: 50,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        color: Colors.white),
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Find Course ',
-                        hintStyle: TextStyle(
-                          color: buttonColor,
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 15),
+                      width: 200,
+                      height: 50,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: Colors.white),
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Find Course ',
+                          hintStyle: TextStyle(
+                            color: subTitleColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: buttonColor,
+                          ),
                         ),
-                        prefixIcon: Icon(
-                          Icons.search,
-                          color: buttonColor,
-                        ),
+                        onTap: () {},
                       ),
-                      onTap: () {},
                     ),
-                  ),
-                ],
-              ),
-            ),
+                  ],),
+                  Image.asset('assets/images/serr.png',height: 170,),
+                ],),)
+               ],
+             )
+           ),
             const SizedBox(
-              height: 50,
+              height: 30,
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -231,6 +217,9 @@ class HomeScreen extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: MyContainer(
+                      gestuorTap: (){
+                        Get.to(() => Service());
+                      },
                       text: 'Services',
                       urlimage: 'assets/images/service.png',
                       borderRadius: 16.0,
@@ -270,6 +259,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: 20,),
           ],
         ),
       ),

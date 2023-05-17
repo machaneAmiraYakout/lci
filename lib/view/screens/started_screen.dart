@@ -24,7 +24,7 @@ class StartScreen extends StatelessWidget {
                   MyCustomTextWidget(index: 3,text: 'LCI Group' ,)
                 ],
               ),
-              Image.asset('assets/images/started.png'),
+              Image.asset('assets/images/burea.jpg'),
               MyCustomTextWidget(index:1 ,text:'Hello!' ,),
               const SizedBox(height: 20,),
               MyCustomTextWidget(index:2 ,text:'Welcome to LCI group,' ,),
