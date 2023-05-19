@@ -10,7 +10,7 @@ import 'package:elearning/view/widgets/my_custom_page.dart';
 import '../../presenter/controller/home_controller.dart';
 import '../widgets/my_custom_container.dart';
 class HomeScreen extends StatelessWidget {
-  final HomeController controller = Get.put(HomeController());
+  final HomeController homeController = Get.put(HomeController());
   HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -155,7 +155,7 @@ class HomeScreen extends StatelessWidget {
                         GetBuilder<HomeController>(
                           init: HomeController(),
                           builder: (controller) => Text(
-                            'Welcome, ${controller.name.value}!',
+                            'Welcome, ${controller.name.value}',
                             style: const TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: 20,
@@ -167,6 +167,7 @@ class HomeScreen extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
+                        SizedBox(width: 10,),
                         const Icon(
                           Icons.waving_hand,
                           color: buttonColor,
@@ -176,6 +177,7 @@ class HomeScreen extends StatelessWidget {
                       index: 9,
                       text: 'Ready to Learn Today ?',
                     ),
+                    SizedBox(height: 15,),
                     Container(
                       margin: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 15),
@@ -183,18 +185,20 @@ class HomeScreen extends StatelessWidget {
                       height: 50,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
+                          borderRadius: BorderRadius.circular(25.0),
                           color: Colors.white),
                       child: TextFormField(
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Find Course ',
                           hintStyle: TextStyle(
-                            color: subTitleColor,
+                            color: Colors.grey,
+                            fontSize: 13,
                           ),
                           prefixIcon: Icon(
                             Icons.search,
                             color: buttonColor,
+                            size: 20,
                           ),
                         ),
                         onTap: () {},
@@ -211,7 +215,7 @@ class HomeScreen extends StatelessWidget {
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              controller: controller.scrollController, // Assign the scroll controller here
+              controller: homeController.scrollController, // Assign the scroll controller here
               child: Row(
                 children: [
                   Container(

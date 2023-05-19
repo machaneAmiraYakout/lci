@@ -7,12 +7,16 @@ import 'package:elearning/view/widgets/my_custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../presenter/controller/signup_controller.dart';
-
 class SignupScreen extends StatelessWidget {
   final SignupController signupController = Get.put(SignupController());
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return GestureDetector(
+        onTap: () {
+          // hide keyboard when user taps outside of textfield
+          FocusScope.of(context).unfocus();
+        },
+        child:Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Form(
@@ -22,28 +26,33 @@ class SignupScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(
-                  onPressed: () => Get.to(() => const StartScreen()),
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    size: 25,
-                    color: primaryColor,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: MyCustomTextWidget(
-                    text: 'Hi!',
-                    index: 1,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: MyCustomTextWidget(
-                    text: 'Create a new account',
-                    index: 2,
-                  ),
-                ),
+                Row(children: [
+                 IconButton(
+                   onPressed: () => Get.back(),
+                   icon: const Icon(
+                     Icons.arrow_back,
+                     size: 25,
+                     color: primaryColor,
+                   ),
+                 ),
+                 Column(
+                   crossAxisAlignment: CrossAxisAlignment.start,
+                   children: [
+                   Padding(
+                   padding: const EdgeInsets.symmetric(horizontal: 30),
+                   child: MyCustomTextWidget(
+                     text: 'Hi!',
+                     index: 1,
+                   ),
+                 ),
+                   Padding(
+                     padding: const EdgeInsets.symmetric(horizontal: 30),
+                     child: MyCustomTextWidget(
+                       text: 'Create a new account',
+                       index: 2,
+                     ),
+                   ),],)
+               ],),
                 Stack(children: [
                   Center(
                     child: Image.asset(
@@ -61,9 +70,6 @@ class SignupScreen extends StatelessWidget {
                     height: 50,
                   ),),
                 ],),
-                const SizedBox(
-                  height: 30,
-                ),
                 DefaultTextField(
                   hintText: 'Name',
                   prefixIcon: const Icon(
@@ -74,7 +80,7 @@ class SignupScreen extends StatelessWidget {
                   type: TextInputType.text,
                 ),
                 const SizedBox(
-                  height: 15,
+                  height: 10,
                 ),
                 DefaultTextField(
                   onPressed: () {
@@ -90,7 +96,7 @@ class SignupScreen extends StatelessWidget {
                   validatorFn: validateEmail,
                 ),
                 const SizedBox(
-                  height: 15,
+                  height: 10,
                 ),
                 GetBuilder<SignupController>(
                   init: SignupController(),
@@ -110,7 +116,7 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 15,
+                  height: 10,
                 ),
                 DropdownButtonFormField<String>(
                   value: signupController.role,
@@ -133,10 +139,10 @@ class SignupScreen extends StatelessWidget {
                   },
                   decoration: const InputDecoration(
                     labelText: 'Role',
-                    icon: Icon(Icons.people_alt_outlined, color: buttonColor),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
+                    prefixIcon: Icon(Icons.people_outlined,color: primaryColor,),
                   ),
                 ),
                 CustomButton(
@@ -151,7 +157,7 @@ class SignupScreen extends StatelessWidget {
                   sideColor: buttonColor,
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 10,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40),
@@ -178,6 +184,6 @@ class SignupScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }

@@ -12,8 +12,8 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     loadUserName();
-    startTimer();
     scrollController = ScrollController();
+    startTimer();
   }
   @override
   void onClose() {
@@ -61,6 +61,7 @@ class HomeController extends GetxController {
       ScrollPosition position = scrollController.position;
       // Use the position object as needed
       print('Scroll position: ${position.pixels}');
+      print('Scroll activity: ${position.activity}');
     });
   }
   void cancelTimer() {

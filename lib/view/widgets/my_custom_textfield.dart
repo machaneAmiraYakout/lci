@@ -19,7 +19,7 @@ class DefaultTextField extends StatelessWidget {
     required this.controller,
     required this.type,
     this.onPressed,
-    this.borderRadius = 14.0,
+    this.borderRadius = 20.0,
     this.suffix,
     this.suffixFunction,
     this.obscuretext = false,
@@ -33,12 +33,7 @@ class DefaultTextField extends StatelessWidget {
       keyboardType: type,
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
-        suffixIcon: suffix != null
-            ? IconButton(
-                onPressed: suffixFunction,
-                icon: Icon(suffix, color: buttonColor),
-              )
-            : null,
+        suffixIcon: suffix != null ? IconButton(onPressed: suffixFunction, icon: Icon(suffix, color: buttonColor),) : null,
         labelText: hintText,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),

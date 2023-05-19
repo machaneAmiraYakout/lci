@@ -7,18 +7,22 @@ import 'package:elearning/view/widgets/my_custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../presenter/controller/login_controller.dart';
-
 class LoginScreen extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return GestureDetector(
+        onTap: () {
+          // hide keyboard when user taps outside of textfield
+          FocusScope.of(context).unfocus();
+        },
+        child:Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Form(
           key: loginController.formKey,
           child: Padding(
-            padding: const EdgeInsets.all(25),
+            padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -30,26 +34,24 @@ class LoginScreen extends StatelessWidget {
                     color: primaryColor,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: MyCustomTextWidget(
-                    text: 'Welcome!',
-                    index: 1,
-                  ),
+                MyCustomTextWidget(
+                  text: 'Welcome back !',
+                  index: 1,
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: MyCustomTextWidget(
-                    text: 'Sign in to continue',
-                    index: 2,
-                  ),
+                MyCustomTextWidget(
+                  text: 'Sign in to continue',
+                  index: 2,
                 ),
-                Center(child: Image.asset('assets/images/login.png',width: 250,height: 250,),),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
+                ),
+                Center(
+                  child: Image.asset('assets/images/login.png',width: 250,height: 250,),),
+                const SizedBox(
+                  height: 20,
                 ),
                 DefaultTextField(
                   hintText: 'Email',
@@ -62,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                   validatorFn: validateEmail,
                 ),
                 const SizedBox(
-                  height: 15,
+                  height: 5,
                 ),
                 GetBuilder<LoginController>(
                   init: LoginController(),
@@ -81,18 +83,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 70,
-                ),
-                CustomButton(
-                  onPressed: () {
-                    if (loginController.formKey.currentState!.validate()) {
-                      loginController.login();
-                    }
-                  },
-                  text: 'LOGIN',
-                  primary: buttonColor,
-                  onPrimary: Colors.white,
-                  sideColor: buttonColor,
+                  height: 7,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -106,7 +97,21 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 40,
+                ),
+                CustomButton(
+                  onPressed: () {
+                    if (loginController.formKey.currentState!.validate()) {
+                      loginController.login();
+                    }
+                  },
+                  text: 'LOGIN',
+                  primary: buttonColor,
+                  onPrimary: Colors.white,
+                  sideColor: buttonColor,
+                ),
+                const SizedBox(
+                  height: 30,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40),
@@ -130,6 +135,6 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }
