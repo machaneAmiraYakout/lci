@@ -1,5 +1,6 @@
 import 'package:elearning/presenter/controller/login_controller.dart';
 import 'package:elearning/view/screens/contact.dart';
+import 'package:elearning/view/screens/course_details_screen.dart';
 import 'package:elearning/view/screens/online_screen.dart';
 import 'package:elearning/view/screens/service_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
@@ -330,10 +331,13 @@ class HomeScreen extends StatelessWidget {
                        child:Column(
                          children: [
                            InkWell(
-                             onTap:(){} ,
+                             onTap:(){
+                               print(homeController.l[i]);
+                               Get.to(CourseDetails(img:'${homeController.l[i]}'));
+                             } ,
                              child: Container(
                                margin: EdgeInsets.all(10),
-                               child: Image.asset('assets/images/${homeController.img[i]}.png',
+                               child: Image.asset('assets/images/${homeController.l[i]}.png',
                                  width:120 ,
                                  height: 100,
                                  fit: BoxFit.contain,),
@@ -346,7 +350,8 @@ class HomeScreen extends StatelessWidget {
                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                    children: [
                                      Expanded(child:MyCustomTextWidget(text:homeController.l[i] ,index:5 )),
-                                     IconButton(onPressed: (){}, icon: Icon(Icons.favorite,color: buttonColor,))
+                                     IconButton(onPressed: (){}, icon: Icon(Icons.favorite,color: buttonColor,)),
+
                                    ],
                                  ),
                              ),)

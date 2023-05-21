@@ -4,7 +4,8 @@ class MyCustomTextWidget extends StatelessWidget {
   final int index;
   final String text;
   final Color? color;
-  MyCustomTextWidget({required this.index, required this.text,this.color=primaryColor});
+  final TextAlign alignment;
+  MyCustomTextWidget({required this.index, required this.text,this.color=primaryColor, this.alignment=TextAlign.center,});
   @override
   Widget build(BuildContext context) {
     TextStyle textStyle;
