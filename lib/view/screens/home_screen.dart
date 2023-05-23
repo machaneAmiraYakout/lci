@@ -1,6 +1,7 @@
 import 'package:elearning/presenter/controller/login_controller.dart';
 import 'package:elearning/view/screens/contact.dart';
 import 'package:elearning/view/screens/course_details_screen.dart';
+import 'package:elearning/view/screens/linguistic_screen.dart';
 import 'package:elearning/view/screens/online_screen.dart';
 import 'package:elearning/view/screens/service_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
@@ -139,11 +140,11 @@ class HomeScreen extends StatelessWidget {
         ),
         body: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
-              child: Stack(
+                   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+                   child: Stack(
                 children: [
                   Container(
                     width: double.infinity,
@@ -286,81 +287,75 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
+                  SizedBox(height: 40,),
+                  Padding(
+                    padding:EdgeInsets.symmetric(horizontal: 30) ,
+                    child:MyCustomTextWidget(index: 6,text: 'Our Courses',),),
                   SizedBox(height: 20,),
-                  Padding(padding: EdgeInsets.symmetric(horizontal: 25),
-                    child: ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(buttonColor),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                  Padding(padding: EdgeInsets.symmetric(horizontal: 20),
+                    child:Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap:(){
+                          Get.to(Linguistic());
+                        },
+                        child: Container(
+                          height: 180,
+                          width: 175,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                            boxShadow:[
+                              BoxShadow(
+                                  color:primaryColor.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 8),],
+                          ),
+                          child:  Column(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.all(10),
+                                child: Image.asset('assets/images/lingue.png',
+                                  width:120 ,
+                                  height: 100,
+                                  fit: BoxFit.contain,),
+                              ),
+                              const SizedBox(height: 20,),
+                              MyCustomTextWidget(text:'Linguistic' ,index:5,),
+                            ],
+                          )
                         ),
                       ),
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                        EdgeInsets.symmetric(horizontal: 16, vertical: 8), // Adjust padding as needed
+                      SizedBox(width:20,),
+                      Container(
+                          height: 180,
+                          width: 175,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                            boxShadow:[
+                              BoxShadow(
+                                  color:primaryColor.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 8),],
+                          ),
+                          child:  Column(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.all(10),
+                                child: Image.asset('assets/images/tec.png',
+                                  width:120 ,
+                                  height: 120,
+                                  fit: BoxFit.contain,),
+                              ),
+                              MyCustomTextWidget(text:'Technical' ,index:5,),
+                            ],
+                          )
                       ),
-                    ),
-                    child: Text(
-                      'See More',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16, // Adjust font size as needed
-                      ),
-                    ),
-                  ),
-                      ),
-                  GridView.count(
-                   crossAxisCount: 2,
-                   physics: NeverScrollableScrollPhysics(),
-                   shrinkWrap: true,
-                   children: [
-                     for(int i=0;i<homeController.l.length;i++)
-                     Padding(padding: EdgeInsets.symmetric(horizontal: 20),
-                     child: Container(
-                       margin:EdgeInsets.symmetric(vertical:10 ,),
-                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(20),
-                         color: Colors.white,
-                         boxShadow:[
-                           BoxShadow(
-                               color:primaryColor.withOpacity(0.5),
-                               spreadRadius: 1,
-                               blurRadius: 8),],
-                       ),
-                       child:Column(
-                         children: [
-                           InkWell(
-                             onTap:(){
-                               print(homeController.l[i]);
-                               Get.to(CourseDetails(img:'${homeController.l[i]}'));
-                             } ,
-                             child: Container(
-                               margin: EdgeInsets.all(10),
-                               child: Image.asset('assets/images/${homeController.l[i]}.png',
-                                 width:120 ,
-                                 height: 100,
-                                 fit: BoxFit.contain,),
-                             ),
-                           ),
-                           Padding(padding: EdgeInsets.only(bottom: 8,left: 10),
-                             child: Container(
-                                 alignment:Alignment.centerLeft,
-                                 child: Row(
-                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                   children: [
-                                     Expanded(child:MyCustomTextWidget(text:homeController.l[i] ,index:5 )),
-                                     IconButton(onPressed: (){}, icon: Icon(Icons.favorite,color: buttonColor,)),
+                    ],),),
+                  SizedBox(height: 40,)
 
-                                   ],
-                                 ),
-                             ),)
-                         ],
-                       ),
-                     ),
-                     )
-                   ],
-                 )
                 ])));
   }
 }
