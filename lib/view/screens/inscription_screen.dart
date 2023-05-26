@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../presenter/controller/course_controller.dart';
 import '../../presenter/controller/inscription_controller.dart';
 import '../widgets/colors.dart';
 import '../widgets/my_custom_button.dart';
 import '../widgets/my_custom_text.dart';
 import '../widgets/my_custom_textfield.dart';
 class Inscription extends StatelessWidget {
-  final InscriptionController inscriptionController =
-  Get.put(InscriptionController());
+  final InscriptionController inscriptionController = Get.put(InscriptionController());
+  final CourseController courseController = Get.put(CourseController());
   Inscription({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -100,12 +101,66 @@ class Inscription extends StatelessWidget {
                             inscriptionController.fonctionController,
                           ),
                           const SizedBox(height: 10),
-                          DefaultTextField(
-                            type: TextInputType.text,
-                            hintText: 'Formation',
-                            prefixIcon: const Icon(Icons.language),
-                            controller:
-                            inscriptionController.formationController,
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(color: Colors.grey),
+                            ),
+                            child: Obx(
+                                  () => DropdownButtonHideUnderline(
+                                child: ButtonTheme(
+                                  alignedDropdown: true,
+                                  child: DropdownButton<String>(
+                                    value: courseController.selectedCourseId.value,
+                                    hint: Text('Select a course'),
+                                    isExpanded: true,
+                                    onChanged:courseController.onCourseSelected,
+                                    items: courseController.courseList.map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Padding(
+                                            padding: EdgeInsets.all(10),
+                                            child: Text(value),
+                                          ),
+                                        );
+                                      },
+                                    ).toList(),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 16),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(color: Colors.grey),
+                            ),
+                            child: Obx(
+                                  () => DropdownButtonHideUnderline(
+                                child: ButtonTheme(
+                                  alignedDropdown: true,
+                                  child: DropdownButton<String>(
+                                    value: courseController.selectedSubCourseId.value,
+                                    hint: Text('Select a course'),
+                                    isExpanded: true,
+                                     onChanged: courseController.onSubCourseSelected,
+                                    items:courseController.subCourseList.map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Padding(
+                                            padding: EdgeInsets.all(10),
+                                            child: Text(value),
+                                          ),
+                                        );
+                                      },
+                                    ).toList(),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                           const SizedBox(height: 10),
                           DefaultTextField(

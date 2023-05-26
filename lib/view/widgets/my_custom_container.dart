@@ -38,12 +38,15 @@ class MyContainer extends StatelessWidget {
           ),
           color: containerColor,
         ),
-        child: Row(
-          children: [
-            Image.asset(urlimage,width: widthImage,height:heightImage,),
-            SizedBox(width: 30,),
-            MyCustomTextWidget(index: index,text:text, ),
-          ],
+        child:Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child:  Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Image.asset(urlimage,width: widthImage,height:heightImage,),
+              MyCustomTextWidget(index: index,text:text, ),
+            ],
+          ),
         ),
       ),),
     );

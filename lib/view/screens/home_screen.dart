@@ -277,7 +277,7 @@ class HomeScreen extends StatelessWidget {
                       Get.to(() => Contact());
                     },
                     text: 'Contact Us',
-                    urlimage: 'assets/images/Contactus.png',
+                    urlimage: 'assets/images/contact.png',
                     borderRadius: 16.0,
                     borderColor: primaryColor,
                     borderWidth: 2.0,
