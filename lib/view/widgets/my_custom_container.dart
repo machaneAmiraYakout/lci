@@ -21,8 +21,8 @@ class MyContainer extends StatelessWidget {
     required this.index,
     this.containerColor=Colors.white,
     this.gestuorTap,
-     this.widthImage=150,
-     this.heightImage=150,  this.widthContainer,
+    this.widthImage=150,
+    this.heightImage=150,  this.widthContainer,
   });
   @override
   Widget build(BuildContext context) {
@@ -30,25 +30,25 @@ class MyContainer extends StatelessWidget {
       child:GestureDetector(
         onTap: gestuorTap,
         child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(borderRadius),
-          border: Border.all(
-            color: borderColor,
-            width: borderWidth,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(borderRadius),
+            border: Border.all(
+              color: borderColor,
+              width: borderWidth,
+            ),
+            color: containerColor,
           ),
-          color: containerColor,
-        ),
-        child:Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child:  Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image.asset(urlimage,width: widthImage,height:heightImage,),
-              MyCustomTextWidget(index: index,text:text, ),
-            ],
+          child:Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child:  Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.asset(urlimage,width: widthImage,height:heightImage,),
+                MyCustomTextWidget(index: index,text:text, ),
+              ],
+            ),
           ),
-        ),
-      ),),
+        ),),
     );
   }
 }

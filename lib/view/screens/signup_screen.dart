@@ -17,13 +17,13 @@ class SignupScreen extends StatelessWidget {
           FocusScope.of(context).unfocus();
         },
         child:Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Form(
-          key: signupController.formKeys,
-          child: Padding(
-            padding: const EdgeInsets.all(25),
-            child: Column(
+          backgroundColor: Colors.white,
+          body: SingleChildScrollView(
+           child: Form(
+            key: signupController.formKeys,
+             child: Padding(
+              padding: const EdgeInsets.all(25),
+              child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(children: [

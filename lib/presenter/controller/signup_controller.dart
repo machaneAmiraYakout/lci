@@ -16,7 +16,6 @@ class SignupController extends GetxController {
   late final bool isSuccess;
   late PageController _pageController;
   var role = 'user';
-
   void togglePasswordVisibility() {
     obscurePassword = !obscurePassword;
     update(); // Update the state of the widget

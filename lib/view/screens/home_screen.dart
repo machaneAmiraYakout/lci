@@ -1,3 +1,4 @@
+import 'package:elearning/presenter/controller/course_controller.dart';
 import 'package:elearning/presenter/controller/login_controller.dart';
 import 'package:elearning/view/screens/contact.dart';
 import 'package:elearning/view/screens/course_details_screen.dart';
@@ -15,6 +16,7 @@ import '../../presenter/controller/home_controller.dart';
 import '../widgets/my_custom_container.dart';
 class HomeScreen extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
+  final CourseController courseController = Get.put(CourseController());
   HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -292,17 +294,15 @@ class HomeScreen extends StatelessWidget {
                     padding:EdgeInsets.symmetric(horizontal: 30) ,
                     child:MyCustomTextWidget(index: 6,text: 'Our Courses',),),
                   SizedBox(height: 20,),
-                  Padding(padding: EdgeInsets.symmetric(horizontal: 20),
-                    child:Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  GridView.count(
+                    crossAxisCount: 2,
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
                     children: [
-                      GestureDetector(
-                        onTap:(){
-                          Get.to(Linguistic());
-                        },
+                   for(int i=0;i<courseController.courseList.length;i++)
+                      Padding(padding: EdgeInsets.symmetric(horizontal: 20),
                         child: Container(
-                          height: 180,
-                          width: 175,
+                          margin:EdgeInsets.symmetric(vertical:10 ,),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white,
@@ -312,48 +312,37 @@ class HomeScreen extends StatelessWidget {
                                   spreadRadius: 1,
                                   blurRadius: 8),],
                           ),
-                          child:  Column(
+                          child:Column(
                             children: [
-                              Container(
-                                margin: EdgeInsets.all(10),
-                                child: Image.asset('assets/images/lingue.png',
-                                  width:120 ,
-                                  height: 100,
-                                  fit: BoxFit.contain,),
+                              InkWell(
+                                onTap:(){
+                                  //   Get.to(CourseDetails(img:'${homeController.l[i]}'));
+                                } ,
+                                child: Container(
+                                  margin: EdgeInsets.all(10),
+                                  child: Image.asset('assets/images/Computer.png',
+                                    width:120 ,
+                                    height: 100,
+                                    fit: BoxFit.contain,),
+                                ),
                               ),
-                              const SizedBox(height: 20,),
-                              MyCustomTextWidget(text:'Linguistic' ,index:5,),
+                              Padding(padding: EdgeInsets.only(bottom: 8,left: 10),
+                                child: Container(
+                                  alignment:Alignment.centerLeft,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(child:MyCustomTextWidget(text:'${courseController.courseList[i]}',index:14 )),
+                                      IconButton(onPressed: (){}, icon: Icon(Icons.favorite,color: buttonColor,)),
+                                    ],
+                                  ),
+                                ),)
                             ],
-                          )
+                          ),
                         ),
-                      ),
-                      SizedBox(width:20,),
-                      Container(
-                          height: 180,
-                          width: 175,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white,
-                            boxShadow:[
-                              BoxShadow(
-                                  color:primaryColor.withOpacity(0.5),
-                                  spreadRadius: 1,
-                                  blurRadius: 8),],
-                          ),
-                          child:  Column(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.all(10),
-                                child: Image.asset('assets/images/tec.png',
-                                  width:120 ,
-                                  height: 120,
-                                  fit: BoxFit.contain,),
-                              ),
-                              MyCustomTextWidget(text:'Technical' ,index:5,),
-                            ],
-                          )
-                      ),
-                    ],),),
+                      )
+                    ],
+                  ),
                   SizedBox(height: 40,)
 
                 ])));

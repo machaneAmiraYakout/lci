@@ -10,24 +10,20 @@ class CourseController extends GetxController {
   void onInit() {
     super.onInit();
     fetchCourses();
-    fetchSubCourses();
   }
+
   Future<void> fetchCourses() async {
     try {
-      final querySnapshot =
-      await FirebaseFirestore.instance.collection('courses').get();
+      final querySnapshot = await FirebaseFirestore.instance.collection('courses').get();
       querySnapshot.docs.forEach((doc) {
         courseList.add(doc.id);
       });
-
       if (courseList.isNotEmpty) {
         selectedCourseId.value = courseList[0];
         selectedCourseName.value = courseList[0];
-        fetchSubCourses();
-        print('courses:${courseList}');
-
+        print('courses: $courseList');
       }
-
+      await fetchSubCourses(); // Call fetchSubCourses after updating course values
       update();
     } catch (e) {
       print('Error fetching courses: $e');
@@ -36,36 +32,18 @@ class CourseController extends GetxController {
   Future<void> fetchSubCourses() async {
     try {
       subCourseList.clear();
-
-      final courseDocSnapshot = await FirebaseFirestore.instance
+      final subcollectionsSnapshot = await FirebaseFirestore.instance
           .collection('courses')
           .doc(selectedCourseId.value)
+          .collection('subcourses')
           .get();
-
-      final courseData = courseDocSnapshot.data() as Map<String, dynamic>;
-
-      final subcollectionNames = courseData.keys.toList();
-
-      for (final subcollectionName in subcollectionNames) {
-        final subcollectionSnapshot = await FirebaseFirestore.instance
-            .collection('courses')
-            .doc(selectedCourseId.value)
-            .collection(subcollectionName)
-            .get();
-
-        final subcollectionDocs = subcollectionSnapshot.docs;
-
-        for (final doc in subcollectionDocs) {
-          final subCourseName = doc.id;
-
-          subCourseList.add(subCourseName);
-        }
+      for (final doc in subcollectionsSnapshot.docs) {
+        final subCourseName = doc.id;
+        subCourseList.add(subCourseName);
       }
-
       if (subCourseList.isNotEmpty) {
         selectedSubCourseId.value = subCourseList[0];
       }
-
       update();
     } catch (e) {
       print('Error fetching subcourses: $e');
@@ -81,12 +59,7 @@ class CourseController extends GetxController {
   void onSubCourseSelected(String? subCourseId) {
     if (subCourseId != null) {
       selectedSubCourseId.value = subCourseId;
-      print('subcourses taped');
+      print('subcourse selected: $subCourseId');
     }
   }
 }
-
-
-
-
-

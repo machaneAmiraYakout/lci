@@ -25,32 +25,32 @@ class Inscription extends StatelessWidget {
                 height: double.infinity,
                 color: Colors.white,
               ),
-             Stack(children: [
-               Container(
-                 width: double.infinity,
-                 height: 300,
-                 decoration: const BoxDecoration(
-                   gradient: LinearGradient(
-                     colors: [
-                       Colors.white,
-                       primaryColor,
-                       primaryColor,
-                       thirdColor,
-                     ],
-                     begin: Alignment.topCenter,
-                     end: Alignment.bottomCenter,
-                   ),
-                 ),
-               ),
-               Positioned(
-                 right: 10,
-                 top: 25,
-                 child: Column(children: [
-                   Image.asset('assets/images/lgb.png',width: 50,height: 50,),
-                   MyCustomTextWidget(index: 13,text:'Lci groupe' ,),
-                 ]
-                   ,),)
-             ],),
+              Stack(children: [
+                Container(
+                  width: double.infinity,
+                  height: 300,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.white,
+                        primaryColor,
+                        primaryColor,
+                        thirdColor,
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  right: 10,
+                  top: 25,
+                  child: Column(children: [
+                    Image.asset('assets/images/lgb.png',width: 50,height: 50,),
+                    MyCustomTextWidget(index: 13,text:'Lci groupe' ,),
+                  ]
+                    ,),)
+              ],),
               Positioned(
                 top: 120,
                 left: 30,
@@ -145,7 +145,7 @@ class Inscription extends StatelessWidget {
                                     value: courseController.selectedSubCourseId.value,
                                     hint: Text('Select a course'),
                                     isExpanded: true,
-                                     onChanged: courseController.onSubCourseSelected,
+                                    onChanged: courseController.onSubCourseSelected,
                                     items:courseController.subCourseList.map<DropdownMenuItem<String>>(
                                           (String value) {
                                         return DropdownMenuItem<String>(

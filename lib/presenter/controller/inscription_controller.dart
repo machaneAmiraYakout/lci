@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../view/widgets/my_custom_snackbar.dart';
 class InscriptionController extends GetxController {
   TextEditingController fullNameController = TextEditingController();
