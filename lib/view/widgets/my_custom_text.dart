@@ -13,7 +13,7 @@ class MyCustomTextWidget extends StatelessWidget {
       case 1://head
         textStyle =const TextStyle(
             fontFamily: 'Poppins',
-            fontSize: 22,
+            fontSize: 21,
             fontWeight: FontWeight.w700,
             color: primaryColor,
           letterSpacing: 2,
@@ -124,10 +124,11 @@ class MyCustomTextWidget extends StatelessWidget {
       case 14://head
         textStyle =const TextStyle(
           fontFamily: 'Poppins',
-          fontSize: 12,
-          fontWeight: FontWeight.w700,
+          fontSize: 11,
+          fontWeight: FontWeight.w500,
           color: primaryColor,
           letterSpacing: 2,
+
         );
         break;
       default:

@@ -23,18 +23,18 @@ class CourseController extends GetxController {
         selectedCourseName.value = courseList[0];
         print('courses: $courseList');
       }
-      await fetchSubCourses(); // Call fetchSubCourses after updating course values
+      await fetchSubCourses(selectedCourseId.value); // Call fetchSubCourses after updating course values
       update();
     } catch (e) {
       print('Error fetching courses: $e');
     }
   }
-  Future<void> fetchSubCourses() async {
+  Future<void> fetchSubCourses( String selectCourse) async {
     try {
       subCourseList.clear();
       final subcollectionsSnapshot = await FirebaseFirestore.instance
           .collection('courses')
-          .doc(selectedCourseId.value)
+          .doc(selectCourse)
           .collection('subcourses')
           .get();
       for (final doc in subcollectionsSnapshot.docs) {
@@ -53,7 +53,7 @@ class CourseController extends GetxController {
     if (courseId != null) {
       selectedCourseId.value = courseId;
       selectedCourseName.value = courseId;
-      fetchSubCourses();
+      fetchSubCourses(selectedCourseId.value);
     }
   }
   void onSubCourseSelected(String? subCourseId) {

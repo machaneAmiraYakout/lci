@@ -5,6 +5,7 @@ import 'package:elearning/view/screens/course_details_screen.dart';
 import 'package:elearning/view/screens/linguistic_screen.dart';
 import 'package:elearning/view/screens/online_screen.dart';
 import 'package:elearning/view/screens/service_screen.dart';
+import 'package:elearning/view/screens/subcourses_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:elearning/view/widgets/my_custom_button.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
@@ -17,6 +18,7 @@ import '../widgets/my_custom_container.dart';
 class HomeScreen extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
   final CourseController courseController = Get.put(CourseController());
+
   HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -294,7 +296,9 @@ class HomeScreen extends StatelessWidget {
                     padding:EdgeInsets.symmetric(horizontal: 30) ,
                     child:MyCustomTextWidget(index: 6,text: 'Our Courses',),),
                   SizedBox(height: 20,),
-                  GridView.count(
+                  GetBuilder<CourseController>(
+                    init: CourseController(),
+                    builder: (controller) =>GridView.count(
                     crossAxisCount: 2,
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -315,12 +319,13 @@ class HomeScreen extends StatelessWidget {
                           child:Column(
                             children: [
                               InkWell(
-                                onTap:(){
-                                  //   Get.to(CourseDetails(img:'${homeController.l[i]}'));
+                                onTap:()async{
+                                  await courseController.fetchSubCourses(courseController.courseList[i]);
+                                  Get.to(SubCourses(index1: i,));
                                 } ,
                                 child: Container(
                                   margin: EdgeInsets.all(10),
-                                  child: Image.asset('assets/images/Computer.png',
+                                  child: Image.asset('assets/images/${homeController.l[i]}.png',
                                     width:120 ,
                                     height: 100,
                                     fit: BoxFit.contain,),
@@ -329,12 +334,27 @@ class HomeScreen extends StatelessWidget {
                               Padding(padding: EdgeInsets.only(bottom: 8,left: 10),
                                 child: Container(
                                   alignment:Alignment.centerLeft,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Expanded(child:MyCustomTextWidget(text:'${courseController.courseList[i]}',index:14 )),
-                                      IconButton(onPressed: (){}, icon: Icon(Icons.favorite,color: buttonColor,)),
-                                    ],
+                                  child: Expanded(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            '${courseController.courseList[i]}',
+                                            style: const TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.w500,
+                                              color: primaryColor,
+                                              letterSpacing: 2,
+                                            ),
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                        IconButton(onPressed: (){}, icon: Icon(Icons.arrow_circle_right,color: buttonColor,)),
+                                      ],
+                                    ),
                                   ),
                                 ),)
                             ],
@@ -342,7 +362,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       )
                     ],
-                  ),
+                  ),),
                   SizedBox(height: 40,)
 
                 ])));

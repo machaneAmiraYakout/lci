@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class HomeController extends GetxController {
   late ScrollController scrollController;
-  List l=['English','French','Management','Computer'];
+  List l=['appro','marke','exam','finance','import','computer','labo','language','management','mainte','humaine','tourisme'];
   Timer? timer;
   final name = ''.obs;
   final currentIndex = 0.obs;

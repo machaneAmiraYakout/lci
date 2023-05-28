@@ -7,7 +7,8 @@ import 'package:get/get.dart';
 class CourseDetails extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
   String img;
-  CourseDetails({Key? key, required this.img}) : super(key: key);
+  final String subCourseName;
+  CourseDetails({Key? key, required this.img, required this.subCourseName,}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +32,7 @@ class CourseDetails extends StatelessWidget {
                  Center(child:
                  Image.asset('assets/images/${img}.png',width: 280,height: 260,)),
                  Center(child:
-                 MyCustomTextWidget(text:img,index:1,),),
+                 MyCustomTextWidget(text:subCourseName,index:1,),),
                  SizedBox(height: 10,),
                  MyCustomTextWidget(text:'s’iements s’iements s’iements s’iements  ' ,index:2),
                  MyCustomTextWidget(text:'s’iements s’iements s’iements s’iements  ' ,index:2),
@@ -93,11 +94,13 @@ class CourseDetails extends StatelessWidget {
                      ),
                    ),
                  ],),
+                 const SizedBox(
+                   height: 30,),
                  CustomButton(
                    onPressed: () {
 
                    },
-                   text: 'LOGIN',
+                   text: 'Enroll Now',
                    primary: buttonColor,
                    onPrimary: Colors.white,
                    sideColor: buttonColor,
