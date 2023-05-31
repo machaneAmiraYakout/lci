@@ -6,12 +6,13 @@ class CourseController extends GetxController {
   var selectedCourseName = ''.obs;
   var subCourseList = <String>[].obs;
   var selectedSubCourseId = ''.obs;
+  RxBool isGridTapped = false.obs;
+  var currentGridTappedIndex = Rx<int>(-1);
   @override
   void onInit() {
     super.onInit();
     fetchCourses();
   }
-
   Future<void> fetchCourses() async {
     try {
       final querySnapshot = await FirebaseFirestore.instance.collection('courses').get();
@@ -62,4 +63,13 @@ class CourseController extends GetxController {
       print('subcourse selected: $subCourseId');
     }
   }
+  void setGridTapped(bool value, int index) {
+    isGridTapped.value = value;
+    currentGridTappedIndex.value = index;
+  }
+  void resetGridTapped() {
+    isGridTapped.value = false;
+    currentGridTappedIndex.value = -1;
+  }
+
 }

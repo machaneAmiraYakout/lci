@@ -33,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.10.0"
+  back_button_interceptor:
+    dependency: "direct main"
+    description:
+      name: back_button_interceptor
+      sha256: "2feecc291fb74b25b0513700e804e543ed2104c25c0a8748183b869ae59573cf"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.4.2"
   boolean_selector:
     dependency: transitive
     description:

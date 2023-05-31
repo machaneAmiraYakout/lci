@@ -9,6 +9,7 @@ class HomeController extends GetxController {
   Timer? timer;
   final name = ''.obs;
   final currentIndex = 0.obs;
+
   @override
   void onInit() {
     super.onInit();

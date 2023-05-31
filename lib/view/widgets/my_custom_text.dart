@@ -19,7 +19,6 @@ class MyCustomTextWidget extends StatelessWidget {
           letterSpacing: 2,
         );
         break;
-
       case 2://Subtitle
         textStyle =const TextStyle(
             fontFamily: 'Poppins',
