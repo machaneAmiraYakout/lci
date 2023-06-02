@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:get/get.dart';
 class CourseController extends GetxController {
   var courseList = <String>[].obs;
@@ -8,10 +9,16 @@ class CourseController extends GetxController {
   var selectedSubCourseId = ''.obs;
   RxBool isGridTapped = false.obs;
   var currentGridTappedIndex = Rx<int>(-1);
+  final isConnected = true.obs;
+
   @override
   void onInit() {
     super.onInit();
     fetchCourses();
+    checkConnectivity();
+    Connectivity().onConnectivityChanged.listen((result) {
+      isConnected.value = (result != ConnectivityResult.none);
+    });
   }
   Future<void> fetchCourses() async {
     try {
@@ -71,5 +78,8 @@ class CourseController extends GetxController {
     isGridTapped.value = false;
     currentGridTappedIndex.value = -1;
   }
-
+  Future<void> checkConnectivity() async {
+    var connectivityResult = await Connectivity().checkConnectivity();
+    isConnected.value = (connectivityResult != ConnectivityResult.none);
+  }
 }

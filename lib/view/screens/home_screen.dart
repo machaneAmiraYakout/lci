@@ -346,10 +346,9 @@ class HomeScreen extends StatelessWidget {
                                   children: [
                                     InkWell(
                                       onTap: () async {
-                                        await controller.fetchSubCourses(
-                                            controller.courseList[i]);
-                                        Get.to(SubCourses(index1: i));
                                         controller.setGridTapped(true, i);
+                                        await controller.fetchSubCourses(controller.courseList[i]);
+                                        Get.to(SubCourses(index1: i));
                                       },
                                       child: Container(
                                         margin: const EdgeInsets.all(10),
