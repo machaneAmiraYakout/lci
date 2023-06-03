@@ -4,12 +4,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class HomeController extends GetxController {
+  final TextEditingController searchController = TextEditingController();
   late ScrollController scrollController;
   List l=['appro','marke','exam','finance','import','computer','labo','language','management','mainte','humaine','tourisme'];
   Timer? timer;
   final name = ''.obs;
   final currentIndex = 0.obs;
-
   @override
   void onInit() {
     super.onInit();
@@ -25,10 +25,7 @@ class HomeController extends GetxController {
   Future<void> loadUserName() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      final docSnapshot = await FirebaseFirestore.instance
-          .collection('userInformation')
-          .doc(user.uid)
-          .get();
+      final docSnapshot = await FirebaseFirestore.instance.collection('userInformation').doc(user.uid).get();
       if (docSnapshot.exists) {
         final data = docSnapshot.data()!;
         name.value = data['name'] ?? '';

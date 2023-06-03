@@ -2,10 +2,12 @@ import 'package:elearning/presenter/controller/course_controller.dart';
 import 'package:elearning/presenter/controller/login_controller.dart';
 import 'package:elearning/view/screens/contact.dart';
 import 'package:elearning/view/screens/online_screen.dart';
+import 'package:elearning/view/screens/search_screen.dart';
 import 'package:elearning/view/screens/service_screen.dart';
 import 'package:elearning/view/screens/subcourses_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
+import 'package:elearning/view/widgets/my_custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:elearning/view/widgets/my_custom_page.dart';
@@ -220,21 +222,15 @@ class HomeScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(
                                             25.0),
                                         color: Colors.white),
-                                    child: TextFormField(
-                                      decoration: const InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: 'Find Course ',
-                                        hintStyle: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 13,
-                                        ),
-                                        prefixIcon: Icon(
-                                          Icons.search,
-                                          color: buttonColor,
-                                          size: 20,
-                                        ),
-                                      ),
-                                      onTap: () {},
+                                    child:
+                                    DefaultTextField(
+                                      type: TextInputType.none,
+                                      hint: 'Search for course !',
+                                      prefixIcon: const Icon(Icons.search),
+                                      onPressed: ()  {
+                                        Get.to(() => const Search());
+                                        },
+                                      controller: null,
                                     ),
                                   ),
                                 ],

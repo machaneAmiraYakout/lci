@@ -1,5 +1,6 @@
 import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../widgets/colors.dart';
 import '../widgets/curve_container.dart';
 class Service extends StatelessWidget {
@@ -9,7 +10,18 @@ class Service extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          CurvedContainer(height: 130),
+          Stack(
+            children: [
+              CurvedContainer(height: 130),
+              Positioned(
+                  top: 20,
+                  child: IconButton(
+                      onPressed: (){
+                        Get.back();
+                      },
+                      icon: Icon(Icons.arrow_circle_left_outlined,color: Colors.white,size: 30,))),
+            ],
+          ),
           MyCustomTextWidget(index: 1,text: 'Services'),
           Padding(padding: const EdgeInsets.only(left: 20,right: 20, top: 100),
             child:Row(

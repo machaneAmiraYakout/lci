@@ -114,7 +114,10 @@ class Inscription extends StatelessWidget {
                                     value: courseController.selectedCourseId.value,
                                     hint: Text('Select a course'),
                                     isExpanded: true,
-                                    onChanged:courseController.onCourseSelected,
+                                    onChanged:(value){
+                                      courseController.onCourseSelected(value);
+                                      inscriptionController.courseDropdownValue=courseController.selectedCourseId.value;
+                                    },
                                     items: courseController.courseList.map<DropdownMenuItem<String>>(
                                           (String value) {
                                         return DropdownMenuItem<String>(
@@ -131,7 +134,7 @@ class Inscription extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(height: 16),
+                          const SizedBox(height: 16),
                           Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
@@ -145,7 +148,10 @@ class Inscription extends StatelessWidget {
                                     value: courseController.selectedSubCourseId.value,
                                     hint: Text('Select a course'),
                                     isExpanded: true,
-                                    onChanged: courseController.onSubCourseSelected,
+                                    onChanged: (value){
+                                      courseController.onSubCourseSelected(value);
+                                    inscriptionController.subCourseDropdownValue=courseController.selectedSubCourseId.value;
+                                      },
                                     items:courseController.subCourseList.map<DropdownMenuItem<String>>(
                                           (String value) {
                                         return DropdownMenuItem<String>(
@@ -186,8 +192,9 @@ class Inscription extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           CustomButton(
-                            onPressed: () {
-                              inscriptionController.addInscriptionGuest();
+                            onPressed: ()async {
+                              await inscriptionController.addInscriptionGuest();
+                              inscriptionController.clearTextFields();
                             },
                             text: 'Register',
                             primary: buttonColor,

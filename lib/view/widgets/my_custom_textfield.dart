@@ -3,8 +3,9 @@ import 'colors.dart';
 
 class DefaultTextField extends StatelessWidget {
   final Icon prefixIcon;
-  final String hintText;
-  final TextEditingController controller;
+  final String? hintText;
+  final String? hint;
+  final TextEditingController? controller;
   final GestureTapCallback? onPressed;
   final double borderRadius;
   final TextInputType type;
@@ -15,8 +16,8 @@ class DefaultTextField extends StatelessWidget {
   DefaultTextField({
     Key? key,
     required this.prefixIcon,
-    required this.hintText,
-    required this.controller,
+     this.hintText,
+     this.controller,
     required this.type,
     this.onPressed,
     this.borderRadius = 20.0,
@@ -24,6 +25,7 @@ class DefaultTextField extends StatelessWidget {
     this.suffixFunction,
     this.obscuretext = false,
     this.validatorFn,
+    this.hint,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,7 @@ class DefaultTextField extends StatelessWidget {
         prefixIcon: prefixIcon,
         suffixIcon: suffix != null ? IconButton(onPressed: suffixFunction, icon: Icon(suffix, color: buttonColor),) : null,
         labelText: hintText,
+        hintText: hint,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
           borderSide: const BorderSide(

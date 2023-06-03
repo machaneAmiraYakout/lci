@@ -1,6 +1,6 @@
+import 'package:elearning/view/widgets/my_custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 class FeedbackController extends GetxController {
   TextEditingController fullNameController = TextEditingController();
@@ -17,8 +17,16 @@ class FeedbackController extends GetxController {
         'object': object,
       });
       // Data stored successfully
+      CustomSnackbar('Success', 'Your registration has been successfully accepted', isSuccess: true);
     } catch (e) {
       // Error occurred while storing the data
+      CustomSnackbar('Refused', 'Your registration has been refused', isSuccess: false);
+
     }
+  }
+  void clearTextFields() {
+    fullNameController.clear();
+    mobileController.clear();
+    objectController.clear();
   }
 }

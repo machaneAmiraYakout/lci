@@ -80,7 +80,7 @@ class HiringController extends GetxController{
       String fullName,
       String email,
       DateTime date,
-      String address,
+      String address,                                                                                    
       String mobile,
       String pdfUrl,
       ) async {
@@ -97,6 +97,7 @@ class HiringController extends GetxController{
         'mobile': mobile,
         'pdfUrl': pdfUrl,
       });
+      CustomSnackbar('Success', 'Your Apply has been successfully accepted', isSuccess: true);
     } else {
       print('User with email $email already subscribed');
       CustomSnackbar('Refused', 'User with email $email already subscribed', isSuccess: false);
@@ -111,24 +112,34 @@ class HiringController extends GetxController{
     final address = adressController.text.trim();
     final mobile = mobileController.text.trim();
     final file = selectedFile.value;
+
     if (fullName.isEmpty || email.isEmpty || date == null || file == null) {
       // Show an error message if any required field is missing
       return;
     }
+
     try {
       final pdfUrl = await uploadPdfFile(file);
-      await storeHiringInfo(fullName, email, date, address, mobile, pdfUrl);
-      // Clear the form fields after successful submission
-      fullNameController.clear();
-      emailController.clear();
-      birthdayController.clear();
-      adressController.clear();
-      mobileController.clear();
-      selectedDate.value = DateTime.now();
-      selectedFile.value = null;
+
+      if (pdfUrl.isNotEmpty) {
+        await storeHiringInfo(fullName, email, date, address, mobile, pdfUrl);
+        // Clear the form fields after successful submission
+        fullNameController.clear();
+        emailController.clear();
+        birthdayController.clear();
+        adressController.clear();
+        mobileController.clear();
+        selectedDate.value = DateTime.now();
+        selectedFile.value = null;
+      } else {
+        // Handle the case where the PDF upload fails
+        print('Error uploading PDF file');
+        // Display an error message to the user or take appropriate action
+      }
     } catch (error) {
       // Handle any errors that occurred during the upload process
       print('Error submitting form: $error');
     }
   }
+
 }

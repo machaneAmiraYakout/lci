@@ -102,6 +102,7 @@ class FeedBack extends StatelessWidget {
                           CustomButton(
                             onPressed: () {
                               feedbackController.feedbachInfo();
+                              feedbackController.clearTextFields();
                             },
                             text: 'submit',
                             primary: buttonColor,
