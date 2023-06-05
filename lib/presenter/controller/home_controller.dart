@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
   final TextEditingController searchController = TextEditingController();
   late ScrollController scrollController;
-  List l=['appro','marke','exam','finance','import','computer','labo','language','management','mainte','humaine','tourisme'];
+  List l=['appro','mark','exam','finance','import','computer','labo','language','management','mainte','humaine','tourisme'];
   Timer? timer;
   final name = ''.obs;
   final currentIndex = 0.obs;

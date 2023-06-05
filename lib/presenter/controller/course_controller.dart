@@ -10,6 +10,7 @@ class CourseController extends GetxController {
   RxBool isGridTapped = false.obs;
   var currentGridTappedIndex = Rx<int>(-1);
   final isConnected = true.obs;
+  RxBool showAllCourses = false.obs;
   @override
   void onInit() {
     super.onInit();

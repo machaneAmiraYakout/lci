@@ -309,18 +309,39 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 40,),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: MyCustomTextWidget(index: 6, text: 'Our Courses',),),
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        MyCustomTextWidget(index: 6, text: 'Our Courses',),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          onPressed: () {
+                            courseController.showAllCourses.toggle();
+
+                          },
+                          child:  Obx(() => Text(
+                            courseController.showAllCourses.value ? "See Less" : "See More",
+                            style: const TextStyle(color: primaryColor),
+                          )),
+                        ),
+                      ],
+                    )),
                 const SizedBox(height: 20,),
                 GetBuilder<CourseController>(
                   init: CourseController(),
                   builder: (controller) =>
-                      GridView.count(
+                      Obx(() => GridView.count(
                         crossAxisCount: 2,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         children: [
-                          for (int i = 0; i < controller.courseList.length; i++)
+                          for (int i = 0; i < (controller.showAllCourses.value ? controller.courseList.length : 2)
+                              && i < controller.courseList.length; i++)
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 20),
@@ -338,74 +359,74 @@ class HomeScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                child: Column(
-                                  children: [
-                                    InkWell(
-                                      onTap: () async {
-                                        controller.setGridTapped(true, i);
-                                        await controller.fetchSubCourses(controller.courseList[i]);
-                                        Get.to(SubCourses(index1: i));
-                                      },
-                                      child: Container(
-                                        margin: const EdgeInsets.all(10),
-                                        child: Image.asset(
-                                          'assets/images/${homeController
-                                              .l[i]}.png',
-                                          width: 120,
-                                          height: 100,
-                                          fit: BoxFit.contain,
+                                // drt inkwell hna bah l grid kaml tapped
+                                child:  InkWell(
+                                    onTap: () async {
+                                      controller.setGridTapped(true, i);
+                                      await controller.fetchSubCourses(controller.courseList[i]);
+                                      Get.to(SubCourses(index1: i));
+                                    },
+                                    child:Column(
+                                      children: [
+                                        Container(
+                                          margin: const EdgeInsets.all(10),
+                                          child: Image.asset(
+                                            'assets/images/${homeController
+                                                .l[i]}.png',
+                                            width: 120,
+                                            height: 100,
+                                            fit: BoxFit.contain,
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          bottom: 8, left: 5),
-                                      child: Container(
-                                        alignment: Alignment.centerLeft,
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment
-                                              .spaceAround,
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                controller.courseList[i],
-                                                style: const TextStyle(
-                                                  fontFamily: 'Poppins',
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: primaryColor,
-                                                  letterSpacing: 2,
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 8, left: 5),
+                                          child: Container(
+                                            alignment: Alignment.centerLeft,
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment
+                                                  .spaceAround,
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
+                                                    controller.courseList[i],
+                                                    style: const TextStyle(
+                                                      fontFamily: 'Poppins',
+                                                      fontSize: 11,
+                                                      fontWeight: FontWeight.w500,
+                                                      color: primaryColor,
+                                                      letterSpacing: 2,
+                                                    ),
+                                                    maxLines: 2,
+                                                    overflow: TextOverflow.ellipsis,
+                                                  ),
                                                 ),
-                                                maxLines: 2,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
+                                                Obx(() =>
+                                                controller.isGridTapped.value &&
+                                                    controller
+                                                        .currentGridTappedIndex
+                                                        .value == i
+                                                    ? Container(
+                                                  width: 15,
+                                                  height: 15,
+                                                  child: const CircularProgressIndicator(
+                                                    color: buttonColor,
+                                                    strokeWidth: 2.0,
+                                                  ),
+                                                )
+                                                    : const Icon(
+                                                    Icons.arrow_circle_right,
+                                                    color: buttonColor)),
+                                              ],
                                             ),
-                                            Obx(() =>
-                                            controller.isGridTapped.value &&
-                                                controller
-                                                    .currentGridTappedIndex
-                                                    .value == i
-                                                ? Container(
-                                              width: 15,
-                                              height: 15,
-                                              child: CircularProgressIndicator(
-                                                color: buttonColor,
-                                                strokeWidth: 2.0,
-                                              ),
-                                            )
-                                                : const Icon(
-                                                Icons.arrow_circle_right,
-                                                color: buttonColor)),
-                                          ],
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                      ],
+                                    )),
                               ),
                             ),
                         ],
-                      ),
+                      )),
                 ),
                 const SizedBox(height: 40,),
               ])),

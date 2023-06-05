@@ -1,4 +1,5 @@
 import 'package:elearning/presenter/controller/home_controller.dart';
+import 'package:elearning/view/screens/inscription_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:elearning/view/widgets/my_custom_button.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
@@ -98,9 +99,9 @@ class CourseDetails extends StatelessWidget {
                    height: 30,),
                  CustomButton(
                    onPressed: () {
-
+                     Get.to(() => Inscription());
                    },
-                   text: 'Enroll Now',
+                   text: 'Subscribe Now',
                    primary: buttonColor,
                    onPrimary: Colors.white,
                    sideColor: buttonColor,

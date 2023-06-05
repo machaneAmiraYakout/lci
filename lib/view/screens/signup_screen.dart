@@ -116,35 +116,35 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 40,
                 ),
-                DropdownButtonFormField<String>(
-                  value: signupController.role,
-                  items: const [
-                    DropdownMenuItem(
-                      value: 'boss',
-                      child: Text('boss'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'user',
-                      child: Text('user'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'controller',
-                      child: Text('controller'),
-                    ),
-                  ],
-                  onChanged: (value) {
-                    signupController.role = value!;
-                  },
-                  decoration: const InputDecoration(
-                    labelText: 'Role',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                    ),
-                    prefixIcon: Icon(Icons.people_outlined,color: primaryColor,),
-                  ),
-                ),
+                // DropdownButtonFormField<String>(
+                //   value: signupController.role,
+                //   items: const [
+                //     DropdownMenuItem(
+                //       value: 'boss',
+                //       child: Text('boss'),
+                //     ),
+                //     DropdownMenuItem(
+                //       value: 'user',
+                //       child: Text('user'),
+                //     ),
+                //     DropdownMenuItem(
+                //       value: 'controller',
+                //       child: Text('controller'),
+                //     ),
+                //   ],
+                //   onChanged: (value) {
+                //     signupController.role = value!;
+                //   },
+                //   decoration: const InputDecoration(
+                //     labelText: 'Role',
+                //     border: OutlineInputBorder(
+                //       borderRadius: BorderRadius.all(Radius.circular(20)),
+                //     ),
+                //     prefixIcon: Icon(Icons.people_outlined,color: primaryColor,),
+                //   ),
+                // ),
                 CustomButton(
                   onPressed: () {
                     if (signupController.formKeys.currentState!.validate()) {
@@ -157,7 +157,7 @@ class SignupScreen extends StatelessWidget {
                   sideColor: buttonColor,
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40),

@@ -38,7 +38,7 @@ class SubCourses extends StatelessWidget {
                               Get.back();
                               courseController.resetGridTapped();
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.arrow_circle_left_outlined,
                               color: Colors.white,
                               size: 30,
@@ -134,7 +134,6 @@ class SubCourses extends StatelessWidget {
                     children: [
                     MyCustomTextWidget(text: 'No connection. Please check your connectivity', index: 13,),
                     SizedBox(height: 20,),
-                    const Icon(Icons.wifi_off,color: primaryColor,size: 30),
                   ],),
                 ],
               ),

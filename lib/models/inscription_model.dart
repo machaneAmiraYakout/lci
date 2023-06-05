@@ -1,4 +1,4 @@
-class Inscription {
+class InscriptionModel {
   final String id;
   final String fullName;
   final int age;
@@ -8,7 +8,7 @@ class Inscription {
   final String mobile;
   final String commentaire;
 
-  Inscription({
+  InscriptionModel({
     required this.id,
     required this.fullName,
     required this.age,
@@ -19,8 +19,8 @@ class Inscription {
     required this.commentaire,
   });
 
-  factory Inscription.fromJson(Map<String, dynamic> json) {
-    return Inscription(
+  factory InscriptionModel.fromJson(Map<String, dynamic> json) {
+    return InscriptionModel(
       id: json['id'],
       fullName: json['fullName'],
       age: json['age'],

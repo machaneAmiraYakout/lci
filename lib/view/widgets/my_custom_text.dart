@@ -130,6 +130,14 @@ class MyCustomTextWidget extends StatelessWidget {
 
         );
         break;
+      case 15://Subtitle
+        textStyle =const TextStyle(
+          fontFamily: 'Poppins',
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+          color: Colors.white,
+        );
+        break;
       default:
         textStyle =const TextStyle(
           fontFamily: 'Poppins',

@@ -43,6 +43,7 @@ class GuestScreen extends StatelessWidget {
             )
           ],
         ),
+
       ),
       drawer: Drawer(
         child: ListView(
@@ -180,8 +181,7 @@ class GuestScreen extends StatelessWidget {
                                           init: HomeController(),
                                           builder: (controller) =>
                                               Text(
-                                                'Welcome, ${controller.name
-                                                    .value}',
+                                                'Welcome, Guest',
                                                 style: const TextStyle(
                                                   fontFamily: 'Poppins',
                                                   fontSize: 20,
@@ -204,43 +204,33 @@ class GuestScreen extends StatelessWidget {
                                     ),
                                   ),
                                   MyCustomTextWidget(
-                                    index: 9,
+                                    index: 10,
                                     text: 'Ready to Learn Today ?',
                                   ),
                                   const SizedBox(
                                     height: 15,
                                   ),
-                                  Container(
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 20, vertical: 15),
-                                    width: 200,
-                                    height: 50,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                            25.0),
-                                        color: Colors.white),
-                                    child: TextFormField(
-                                      decoration: const InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: 'Find Course ',
-                                        hintStyle: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 13,
-                                        ),
-                                        prefixIcon: Icon(
-                                          Icons.search,
-                                          color: buttonColor,
-                                          size: 20,
+                                  SizedBox(
+                                    width: 70,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(20),
                                         ),
                                       ),
-                                      onTap: () {},
+                                      onPressed: () {
+                                            Get.back();
+                                      },
+                                      child: MyCustomTextWidget(
+                                        index: 15,
+                                        text: 'Signup',
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
                               Image.asset(
-                                'assets/images/serr.png',
+                                'assets/images/signguest.png',
                                 height: 170,
                               ),
                             ],
@@ -314,17 +304,38 @@ class GuestScreen extends StatelessWidget {
                 const SizedBox(height: 40,),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: MyCustomTextWidget(index: 6, text: 'Our Courses',),),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      MyCustomTextWidget(index: 6, text: 'Our Courses',),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        onPressed: () {
+                          courseController.showAllCourses.toggle();
+
+                        },
+                        child:  Obx(() => Text(
+                          courseController.showAllCourses.value ? "See Less" : "See More",
+                          style: const TextStyle(color: primaryColor),
+                        )),
+                      ),
+                    ],
+                  )),
                 const SizedBox(height: 20,),
                 GetBuilder<CourseController>(
                   init: CourseController(),
                   builder: (controller) =>
-                      GridView.count(
+                      Obx(() => GridView.count(
                         crossAxisCount: 2,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         children: [
-                          for (int i = 0; i < controller.courseList.length; i++)
+                          for (int i = 0; i < (controller.showAllCourses.value ? controller.courseList.length : 2)
+                              && i < controller.courseList.length; i++)
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 20),
@@ -342,15 +353,16 @@ class GuestScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                child: Column(
+                                // drt inkwell hna bah l grid kaml tapped
+                                child:  InkWell(
+                                    onTap: () async {
+                                      controller.setGridTapped(true, i);
+                                      await controller.fetchSubCourses(controller.courseList[i]);
+                                      Get.to(SubCourses(index1: i));
+                                    },
+                                    child:Column(
                                   children: [
-                                    InkWell(
-                                      onTap: () async {
-                                        controller.setGridTapped(true, i);
-                                        await controller.fetchSubCourses(controller.courseList[i]);
-                                        Get.to(SubCourses(index1: i));
-                                      },
-                                      child: Container(
+                                    Container(
                                         margin: const EdgeInsets.all(10),
                                         child: Image.asset(
                                           'assets/images/${homeController
@@ -360,7 +372,6 @@ class GuestScreen extends StatelessWidget {
                                           fit: BoxFit.contain,
                                         ),
                                       ),
-                                    ),
                                     Padding(
                                       padding: const EdgeInsets.only(
                                           bottom: 8, left: 5),
@@ -392,7 +403,7 @@ class GuestScreen extends StatelessWidget {
                                                 ? Container(
                                               width: 15,
                                               height: 15,
-                                              child: CircularProgressIndicator(
+                                              child: const CircularProgressIndicator(
                                                 color: buttonColor,
                                                 strokeWidth: 2.0,
                                               ),
@@ -405,11 +416,11 @@ class GuestScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ],
-                                ),
+                                )),
                               ),
                             ),
                         ],
-                      ),
+                      )),
                 ),
                 const SizedBox(height: 40,),
               ])),

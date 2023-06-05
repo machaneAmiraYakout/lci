@@ -1,6 +1,7 @@
 import 'package:elearning/presenter/cache_helper.dart';
 import 'package:elearning/presenter/controller/home_controller.dart';
 import 'package:elearning/view/screens/login_screen.dart';
+import 'package:elearning/view/screens/started_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -55,7 +56,7 @@ class LoginController extends GetxController {
   }
   void logout() async {
     await FirebaseAuth.instance.signOut();
-    Get.offAll(() => LoginScreen());
+    Get.offAll(() => const StartScreen());
     CacheHelper.removeData(key: 'token');
   }
   void resetPassword() async {

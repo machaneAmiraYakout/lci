@@ -9,7 +9,6 @@ import '../widgets/my_custom_textfield.dart';
 class Inscription extends StatelessWidget {
   final InscriptionController inscriptionController = Get.put(InscriptionController());
   final CourseController courseController = Get.put(CourseController());
-  Inscription({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
