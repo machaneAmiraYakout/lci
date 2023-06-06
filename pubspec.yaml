@@ -50,6 +50,7 @@ dependencies:
   file_picker: ^4.0.0
   back_button_interceptor: ^4.0.2
   connectivity: ^3.0.6
+  badges: ^2.0.1
 
 
 

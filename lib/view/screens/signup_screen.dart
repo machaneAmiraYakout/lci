@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import '../../presenter/controller/signup_controller.dart';
 class SignupScreen extends StatelessWidget {
   final SignupController signupController = Get.put(SignupController());
+   SignupScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -160,7 +161,7 @@ class SignupScreen extends StatelessWidget {
                   height: 20,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40),
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
                   child: GestureDetector(
                       onTap: () => Get.to(() => LoginScreen()),
                       child: Row(
@@ -169,7 +170,7 @@ class SignupScreen extends StatelessWidget {
                             text: 'Already have an account?',
                             index: 4,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           MyCustomTextWidget(
