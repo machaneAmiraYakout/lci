@@ -8,3 +8,4 @@ const thirdColor=Color(0xFF11426f);
 const textFieldCBackgroundColor=Color(0xFFcecfce);
 const subTitleColor=Color(0xFF2596be);
 const subTitleTextColor=Color(0xFF7B6F72);
+const scaffoldColor=Color(0xFFf1f2f6);

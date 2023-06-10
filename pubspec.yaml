@@ -43,7 +43,7 @@ dependencies:
   firebase_storage: ^11.1.0
   cloud_firestore: ^4.5.0
   rive: ^0.8.1
-  url_launcher: ^6.0.6
+  url_launcher: ^6.0.9
   url_launcher_platform_interface: ^2.0.2
   url_launcher_android: ^6.0.5
   font_awesome_flutter: ^10.4.0
@@ -51,6 +51,7 @@ dependencies:
   back_button_interceptor: ^4.0.2
   connectivity: ^3.0.6
   badges: ^2.0.1
+  path_provider: ^2.0.5
 
 
 

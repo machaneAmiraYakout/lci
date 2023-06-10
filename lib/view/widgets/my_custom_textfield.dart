@@ -7,6 +7,7 @@ class DefaultTextField extends StatelessWidget {
   final String? hint;
   final TextEditingController? controller;
   final GestureTapCallback? onPressed;
+  final ValueChanged<String>? onChange;
   final double borderRadius;
   final TextInputType type;
   final String? Function(String? value)? validatorFn;
@@ -26,6 +27,7 @@ class DefaultTextField extends StatelessWidget {
     this.obscuretext = false,
     this.validatorFn,
     this.hint,
+    this.onChange,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -63,6 +65,7 @@ class DefaultTextField extends StatelessWidget {
       ),
       onTap: onPressed,
       validator: validatorFn,
+      onChanged:onChange ,
     );
   }
 }

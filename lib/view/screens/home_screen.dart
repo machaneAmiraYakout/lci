@@ -20,7 +20,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 5.0,
@@ -174,26 +173,26 @@ class HomeScreen extends StatelessWidget {
                               Column(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 10, horizontal: 10),
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 10,
+                                      horizontal: MediaQuery.of(context).size.width * 0.05, // Adjust the horizontal padding based on screen width
+                                    ),
                                     child: Row(
                                       children: [
                                         GetBuilder<HomeController>(
                                           init: HomeController(),
-                                          builder: (controller) =>
-                                              Text(
-                                                'Welcome, ${controller.name
-                                                    .value}',
-                                                style: const TextStyle(
-                                                  fontFamily: 'Poppins',
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Colors.white,
-                                                  letterSpacing: 2,
-                                                ),
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
+                                          builder: (controller) => Text(
+                                            'Welcome, ${controller.name.value}',
+                                            style: const TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white,
+                                              letterSpacing: 2,
+                                            ),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
                                         ),
                                         const SizedBox(
                                           width: 10,
@@ -213,35 +212,46 @@ class HomeScreen extends StatelessWidget {
                                     height: 15,
                                   ),
                                   Container(
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 20, vertical: 15),
-                                    width: 200,
+                                    margin: EdgeInsets.symmetric(
+                                      horizontal: MediaQuery.of(context).size.width * 0.05, // Adjust the horizontal margin based on screen width
+                                      vertical: 15,
+                                    ),
+                                    width: MediaQuery.of(context).size.width * 0.5, // Adjust the width based on screen width
                                     height: 50,
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                            25.0),
-                                        color: Colors.white),
-                                    child:
-                                    DefaultTextField(
+                                      borderRadius: BorderRadius.circular(25.0),
+                                      color: Colors.white,
+                                    ),
+                                    child: DefaultTextField(
                                       type: TextInputType.none,
                                       hint: 'Search for course !',
                                       prefixIcon: const Icon(Icons.search),
-                                      onPressed: ()  {
-                                        Get.to(() => const Search());
-                                        },
+                                      onPressed: () {
+                                        Get.to(() => Search());
+                                      },
                                       controller: null,
                                     ),
                                   ),
                                 ],
                               ),
-                              Image.asset(
-                                'assets/images/serr.png',
-                                height: 170,
+                              Container(
+                                height: 0.35 * MediaQuery.of(context).size.width, // Adjust the height as needed
+                                width: 0.35 * MediaQuery.of(context).size.width, // Adjust the width as needed
+                                child: FractionallySizedBox(
+                                  alignment: Alignment.center,
+                                  widthFactor: 1.0,
+                                  heightFactor: 1.0,
+                                  child: Image.asset(
+                                    'assets/images/serr.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                               ),
                             ],
                           ),
                         )
+
                       ],
                     )),
                 const SizedBox(
@@ -277,7 +287,7 @@ class HomeScreen extends StatelessWidget {
                             .width,
                         child: MyContainer(
                           gestuorTap: () {
-                            Get.to(() => OnlineScreen());
+                            Get.to(() => const OnlineScreen());
                           },
                           text: 'Online',
                           urlimage: 'assets/images/online.png',
@@ -406,10 +416,10 @@ class HomeScreen extends StatelessWidget {
                                                     controller
                                                         .currentGridTappedIndex
                                                         .value == i
-                                                    ? Container(
+                                                    ? const SizedBox(
                                                   width: 15,
                                                   height: 15,
-                                                  child: const CircularProgressIndicator(
+                                                  child: CircularProgressIndicator(
                                                     color: buttonColor,
                                                     strokeWidth: 2.0,
                                                   ),

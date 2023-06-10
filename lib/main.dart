@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  SettingsController settingsController=Get.put(SettingsController());
   await  Firebase.initializeApp();
    token='';
    token=await CacheHelper.importData(key: 'token');
@@ -24,12 +25,9 @@ void main() async{
       title: 'ELearning',
       debugShowCheckedModeBanner: false,
       home:  startedScreen,
-    theme: ThemeData(
-      primarySwatch: Colors.orange,
-      inputDecorationTheme: const InputDecorationTheme(
-      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: primaryColor)))
-    ),
-
+    theme: settingsController.lightTheme, // Set the light theme
+    darkTheme: settingsController.darkTheme, // Set the dark theme
+    themeMode: settingsController.currentThemeMode.value, // Set the initial theme mode
     ));
 }
 

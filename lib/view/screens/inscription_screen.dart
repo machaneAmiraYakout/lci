@@ -9,6 +9,8 @@ import '../widgets/my_custom_textfield.dart';
 class Inscription extends StatelessWidget {
   final InscriptionController inscriptionController = Get.put(InscriptionController());
   final CourseController courseController = Get.put(CourseController());
+
+   Inscription({super.key});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -111,7 +113,7 @@ class Inscription extends StatelessWidget {
                                   alignedDropdown: true,
                                   child: DropdownButton<String>(
                                     value: courseController.selectedCourseId.value,
-                                    hint: Text('Select a course'),
+                                    hint: const Text('Select a course'),
                                     isExpanded: true,
                                     onChanged:(value){
                                       courseController.onCourseSelected(value);
@@ -122,7 +124,7 @@ class Inscription extends StatelessWidget {
                                         return DropdownMenuItem<String>(
                                           value: value,
                                           child: Padding(
-                                            padding: EdgeInsets.all(10),
+                                            padding: const EdgeInsets.all(10),
                                             child: Text(value),
                                           ),
                                         );
@@ -145,7 +147,7 @@ class Inscription extends StatelessWidget {
                                   alignedDropdown: true,
                                   child: DropdownButton<String>(
                                     value: courseController.selectedSubCourseId.value,
-                                    hint: Text('Select a course'),
+                                    hint: const Text('Select a course'),
                                     isExpanded: true,
                                     onChanged: (value){
                                       courseController.onSubCourseSelected(value);
@@ -156,7 +158,7 @@ class Inscription extends StatelessWidget {
                                         return DropdownMenuItem<String>(
                                           value: value,
                                           child: Padding(
-                                            padding: EdgeInsets.all(10),
+                                            padding: const EdgeInsets.all(10),
                                             child: Text(value),
                                           ),
                                         );
@@ -185,7 +187,7 @@ class Inscription extends StatelessWidget {
                           DefaultTextField(
                             type: TextInputType.text,
                             hintText: 'Commentaire',
-                            prefixIcon: Icon(Icons.comment),
+                            prefixIcon: const Icon(Icons.comment),
                             controller:
                             inscriptionController.commentaireController,
                           ),

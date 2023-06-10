@@ -31,10 +31,10 @@ class CourseDetails extends StatelessWidget {
                crossAxisAlignment: CrossAxisAlignment.center,
                children: [
                  Center(child:
-                 Image.asset('assets/images/${img}.png',width: 280,height: 260,)),
+                 Image.asset('assets/images/$img.png',width: 280,height: 260,)),
                  Center(child:
                  MyCustomTextWidget(text:subCourseName,index:1,),),
-                 SizedBox(height: 10,),
+                 const SizedBox(height: 10,),
                  MyCustomTextWidget(text:'s’iements s’iements s’iements s’iements  ' ,index:2),
                  MyCustomTextWidget(text:'s’iements s’iements s’iements s’iements  ' ,index:2),
                  MyCustomTextWidget(text:'s’iements s’iements s’iements s’iements  ' ,index:2),
@@ -43,58 +43,71 @@ class CourseDetails extends StatelessWidget {
                  Row(
                    mainAxisAlignment: MainAxisAlignment.center,
                    children: [
-                   Container(
-                     height: 180,
-                     width: 170,
-                     decoration: BoxDecoration(
-                       borderRadius: BorderRadius.circular(20),
-                       color: Colors.white,
-                       boxShadow:[
-                         BoxShadow(
-                             color:primaryColor.withOpacity(0.5),
-                             spreadRadius: 1,
-                             blurRadius: 8),],
+                     Expanded(
+                       child: Container(
+                         height: MediaQuery.of(context).size.width * 0.35,
+                         constraints: BoxConstraints(maxWidth: 170),
+                         decoration: BoxDecoration(
+                           borderRadius: BorderRadius.circular(20),
+                           color: Colors.white,
+                           boxShadow: [
+                             BoxShadow(
+                               color: primaryColor.withOpacity(0.5),
+                               spreadRadius: 1,
+                               blurRadius: 8,
+                             ),
+                           ],
+                         ),
+                         child: Padding(
+                           padding: const EdgeInsets.all(10),
+                           child: Center(
+                             child: Column(
+                               mainAxisAlignment: MainAxisAlignment.center,
+                               children: [
+                                 MyCustomTextWidget(text: '8 Hours', index: 1),
+                                 const Divider(height: 30, endIndent: 50, indent: 50, thickness: 5, color: buttonColor),
+                                 MyCustomTextWidget(text: 'Theory and', index: 4),
+                                 MyCustomTextWidget(text: 'Practices', index: 4),
+                               ],
+                             ),
+                           ),
+                         ),
+                       ),
                      ),
-                     child: Padding(
-                       padding: EdgeInsets.all(10),
-                       child:Center(child:  Column(
-                         mainAxisAlignment: MainAxisAlignment.center,
-                         children: [
-                           MyCustomTextWidget(text:'8 Hours',index:1,),
-                           Divider(height: 30,endIndent: 50,indent: 50,thickness: 5,color: buttonColor),
-                           MyCustomTextWidget(text:'Theory and ',index:4,),
-                           MyCustomTextWidget(text:'Practicies ',index:4,),
-                         ],
-                       ),),
+                     const SizedBox(width: 20),
+                     Expanded(
+                       child: Container(
+                         height: MediaQuery.of(context).size.width * 0.35,
+                         constraints: BoxConstraints(maxWidth: 170),
+                         decoration: BoxDecoration(
+                           borderRadius: BorderRadius.circular(20),
+                           color: Colors.white,
+                           boxShadow: [
+                             BoxShadow(
+                               color: primaryColor.withOpacity(0.5),
+                               spreadRadius: 1,
+                               blurRadius: 8,
+                             ),
+                           ],
+                         ),
+                         child: Padding(
+                           padding: const EdgeInsets.all(10),
+                           child: Center(
+                             child: Column(
+                               mainAxisAlignment: MainAxisAlignment.center,
+                               children: [
+                                 MyCustomTextWidget(text: '17', index: 1),
+                                 const Divider(height: 40, endIndent: 50, indent: 50, thickness: 5, color: buttonColor),
+                                 const SizedBox(height: 15),
+                                 MyCustomTextWidget(text: 'Lectures', index: 4),
+                               ],
+                             ),
+                           ),
+                         ),
+                       ),
                      ),
-                   ),
-                   SizedBox(width:20,),
-                   Container(
-                     height: 180,
-                     width: 170,
-                     decoration: BoxDecoration(
-                       borderRadius: BorderRadius.circular(20),
-                       color: Colors.white,
-                       boxShadow:[
-                         BoxShadow(
-                             color:primaryColor.withOpacity(0.5),
-                             spreadRadius: 1,
-                             blurRadius: 8),],
-                     ),
-                     child: Padding(
-                       padding: EdgeInsets.all(10),
-                       child:Center(child:  Column(
-                         mainAxisAlignment: MainAxisAlignment.center,
-                         children: [
-                           MyCustomTextWidget(text:'17',index:1,),
-                           Divider(height: 40,endIndent: 50,indent: 50,thickness: 5,color: buttonColor),
-                           SizedBox(height: 15,),
-                           MyCustomTextWidget(text:'Lectures',index:4,),
-                         ],
-                       ),),
-                     ),
-                   ),
-                 ],),
+                   ],
+                 ),
                  const SizedBox(
                    height: 30,),
                  CustomButton(

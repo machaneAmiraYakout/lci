@@ -1,5 +1,4 @@
 import 'package:elearning/view/screens/login_screen.dart';
-import 'package:elearning/view/screens/started_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:elearning/view/widgets/my_custom_button.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
@@ -84,9 +83,6 @@ class SignupScreen extends StatelessWidget {
                   height: 10,
                 ),
                 DefaultTextField(
-                  onPressed: () {
-                    print(signupController.mailController.text);
-                  },
                   hintText: 'Email',
                   prefixIcon: const Icon(
                     Icons.email,
@@ -111,7 +107,7 @@ class SignupScreen extends StatelessWidget {
                     suffix: signupController.obscurePassword ? Icons.visibility_off : Icons.visibility ,
                     suffixFunction: () {
                       signupController.togglePasswordVisibility();
-                      print('whyyyyyyyyyyyyyyyyyyyyyy');
+
                     },
 
                   ),
@@ -161,7 +157,7 @@ class SignupScreen extends StatelessWidget {
                   height: 20,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: GestureDetector(
                       onTap: () => Get.to(() => LoginScreen()),
                       child: Row(

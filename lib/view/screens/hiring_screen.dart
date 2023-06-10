@@ -98,7 +98,7 @@ class Hiring extends StatelessWidget {
                             type: TextInputType.text,
                             hintText: 'Current address ',
                             prefixIcon: const Icon(Icons.location_on),
-                            controller: hiringController.adressController,
+                            controller: hiringController.addressController,
                           ),
                           const SizedBox(height: 10),
                           DefaultTextField(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'my_custom_text.dart';
+
 class MyContainer extends StatelessWidget {
   final String text;
   final double borderRadius;
@@ -12,6 +13,7 @@ class MyContainer extends StatelessWidget {
   final double heightImage;
   GestureTapCallback? gestuorTap;
   final double? widthContainer;
+
   MyContainer({
     required this.text,
     this.borderRadius = 20.0,
@@ -19,17 +21,21 @@ class MyContainer extends StatelessWidget {
     this.borderWidth = 1.0,
     required this.urlimage,
     required this.index,
-    this.containerColor=Colors.white,
+    this.containerColor = Colors.white,
     this.gestuorTap,
-    this.widthImage=150,
-    this.heightImage=150,  this.widthContainer,
+    this.widthImage = 150,
+    this.heightImage = 150,
+    this.widthContainer,
   });
+
   @override
   Widget build(BuildContext context) {
-    return Padding(padding: EdgeInsets.symmetric(horizontal: 30),
-      child:GestureDetector(
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      child: GestureDetector(
         onTap: gestuorTap,
         child: Container(
+          width: widthContainer, // Set the width of the container if provided
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(borderRadius),
             border: Border.all(
@@ -38,17 +44,25 @@ class MyContainer extends StatelessWidget {
             ),
             color: containerColor,
           ),
-          child:Padding(
+          child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
-            child:  Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset(urlimage,width: widthImage,height:heightImage,),
-                MyCustomTextWidget(index: index,text:text, ),
+                Expanded(
+                  child: Image.asset(
+                    urlimage,
+                    width: widthImage,
+                    height: heightImage,
+                    fit: BoxFit.contain, // Adjust the fit property as needed
+                  ),
+                ),
+                MyCustomTextWidget(index: index, text: text),
               ],
             ),
           ),
-        ),),
+        ),
+      ),
     );
   }
 }

@@ -6,19 +6,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../widgets/my_custom_container.dart';
 class OnlineScreen extends StatelessWidget {
+  const OnlineScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
-        leading: IconButton(icon:Icon(Icons.arrow_back,color: buttonColor, ),onPressed: (){Get.back();}),
+        leading: IconButton(icon:const Icon(Icons.arrow_back,color: buttonColor, ),onPressed: (){Get.back();}),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Container(
                 width: MediaQuery.of(context).size.width,
                 child: MyContainer(
@@ -31,7 +33,7 @@ class OnlineScreen extends StatelessWidget {
                   index: 6,
                 ),
               ),
-              SizedBox(height: 30,),
+              const SizedBox(height: 30,),
               MyContainer(
                 gestuorTap:() => Get.to(() => Hiring()),
                 text: 'Hiring',
@@ -41,7 +43,7 @@ class OnlineScreen extends StatelessWidget {
                 borderWidth: 2.0,
                 index: 6,
               ),
-              SizedBox(height: 30,),
+              const SizedBox(height: 30,),
               MyContainer(
                 gestuorTap:() => Get.to(() => FeedBack()),
                 text: 'Feedback',

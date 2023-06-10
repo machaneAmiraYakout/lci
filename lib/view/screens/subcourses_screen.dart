@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../presenter/controller/course_controller.dart';
 import '../../presenter/controller/home_controller.dart';
-
 class SubCourses extends StatelessWidget {
   int index1;
   final HomeController homeController = Get.put(HomeController());
@@ -76,7 +75,7 @@ class SubCourses extends StatelessWidget {
                             child: Column(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.all(10),
+                                  padding: const EdgeInsets.all(10),
                                   child: Container(
                                     alignment: Alignment.centerLeft,
                                     child: Row(
@@ -84,7 +83,7 @@ class SubCourses extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            '${courseController.subCourseList[index]}',
+                                            courseController.subCourseList[index],
                                             style: const TextStyle(
                                               fontFamily: 'Poppins',
                                               fontSize: 13,
@@ -96,7 +95,7 @@ class SubCourses extends StatelessWidget {
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
-                                        Icon(
+                                        const Icon(
                                           Icons.arrow_circle_right,
                                           color: buttonColor,
                                           size: 35,
@@ -112,7 +111,7 @@ class SubCourses extends StatelessWidget {
                       );
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                 ],
@@ -133,7 +132,7 @@ class SubCourses extends StatelessWidget {
                   Column(
                     children: [
                     MyCustomTextWidget(text: 'No connection. Please check your connectivity', index: 13,),
-                    SizedBox(height: 20,),
+                    const SizedBox(height: 20,),
                   ],),
                 ],
               ),

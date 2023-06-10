@@ -6,20 +6,25 @@ import 'package:get/get.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart';
 import '../../view/widgets/my_custom_snackbar.dart';
-class HiringController extends GetxController{
+
+class HiringController extends GetxController {
   TextEditingController fullNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController birthdayController = TextEditingController();
-  TextEditingController adressController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
   TextEditingController mobileController = TextEditingController();
   late FocusNode birthdayFocusNode;
+
   @override
   void onInit() {
     super.onInit();
     birthdayFocusNode = FocusNode();
   }
+
   var selectedDate = DateTime.now().obs;
+
   Future<void> pickDate(BuildContext context) async {
     try {
       final DateTime? pickedDate = await showDatePicker(
@@ -37,24 +42,44 @@ class HiringController extends GetxController{
       print('Error while picking date: $error');
     }
   }
+
   @override
   void onClose() {
     birthdayFocusNode.dispose();
     super.onClose();
   }
+
   var selectedFile = Rx<File?>(null);
+
+  Future<String> copyPdfFile(File file) async {
+    try {
+      final appDocDir = await getApplicationDocumentsDirectory();
+      final fileName = path.basename(file.path);
+      final newFilePath = path.join(appDocDir.path, fileName);
+
+      await file.copy(newFilePath);
+      return newFilePath;
+    } catch (e) {
+      print('Error copying PDF file: $e');
+      return '';
+    }
+  }
+
+
   void selectFile() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['pdf'],
     );
     if (result != null) {
-      selectedFile.value = File(result.files.single.path!);
+      final selectedFile = File(result.files.single.path!);
+      final copiedFilePath = await copyPdfFile(selectedFile);
+      if (copiedFilePath.isNotEmpty) {
+        this.selectedFile.value = File(copiedFilePath);
+      }
     }
-    print('file tapped');
-    print('${selectedFile.value}ggggggggg');
   }
-  // Function to upload a PDF file to Firebase Storage
+
   Future<String> uploadPdfFile(File file) async {
     final storageRef = FirebaseStorage.instance.ref().child('pdf');
     final filePath = file.path;
@@ -75,19 +100,17 @@ class HiringController extends GetxController{
       return '';
     }
   }
-  // Function to store the hiring information in the "hiring" collection
+
   Future<void> storeHiringInfo(
       String fullName,
       String email,
       DateTime date,
-      String address,                                                                                    
+      String address,
       String mobile,
       String pdfUrl,
       ) async {
     final hiringCollection = FirebaseFirestore.instance.collection('hiring');
-    // Query the collection for a document with the same email
     final querySnapshot = await hiringCollection.where('email', isEqualTo: email).get();
-    // Only store the hiring information if no document with the same email exists
     if (querySnapshot.docs.isEmpty) {
       await hiringCollection.add({
         'fullName': fullName,
@@ -104,12 +127,12 @@ class HiringController extends GetxController{
       // You can show an error message or take any other action to notify the user that they have already subscribed
     }
   }
-// Submit the form and store the hiring information
+
   Future<void> submitForm() async {
     final fullName = fullNameController.text.trim();
     final email = emailController.text.trim();
     final date = selectedDate.value;
-    final address = adressController.text.trim();
+    final address = addressController.text.trim();
     final mobile = mobileController.text.trim();
     final file = selectedFile.value;
 
@@ -119,27 +142,34 @@ class HiringController extends GetxController{
     }
 
     try {
-      final pdfUrl = await uploadPdfFile(file);
+      final copiedFilePath = await copyPdfFile(file);
 
-      if (pdfUrl.isNotEmpty) {
-        await storeHiringInfo(fullName, email, date, address, mobile, pdfUrl);
-        // Clear the form fields after successful submission
-        fullNameController.clear();
-        emailController.clear();
-        birthdayController.clear();
-        adressController.clear();
-        mobileController.clear();
-        selectedDate.value = DateTime.now();
-        selectedFile.value = null;
+      if (copiedFilePath.isNotEmpty) {
+        final pdfUrl = await uploadPdfFile(File(copiedFilePath));
+
+        if (pdfUrl.isNotEmpty) {
+          await storeHiringInfo(fullName, email, date, address, mobile, pdfUrl);
+          // Clear the form fields after successful submission
+          fullNameController.clear();
+          emailController.clear();
+          birthdayController.clear();
+          addressController.clear();
+          mobileController.clear();
+          selectedDate.value = DateTime.now();
+          selectedFile.value = null;
+        } else {
+          // Handle the case where the PDF upload fails
+          print('Error uploading PDF file');
+          // Display an error message to the user or take appropriate action
+        }
       } else {
-        // Handle the case where the PDF upload fails
-        print('Error uploading PDF file');
+        // Handle the case where the PDF copy fails
+        print('Error copying PDF file');
         // Display an error message to the user or take appropriate action
       }
     } catch (error) {
-      // Handle any errors that occurred during the upload process
       print('Error submitting form: $error');
+      // Handle any errors that occurred during the upload process
     }
   }
-
 }

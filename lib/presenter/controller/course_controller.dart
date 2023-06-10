@@ -1,17 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class CourseController extends GetxController {
   var courseList = <String>[].obs;
   var selectedCourseId = ''.obs;
   var selectedCourseName = ''.obs;
   var subCourseList = <String>[].obs;
+  RxList<String> filteredSubcourses = <String>[].obs;
   var selectedSubCourseId = ''.obs;
   RxBool isGridTapped = false.obs;
   var currentGridTappedIndex = Rx<int>(-1);
   final isConnected = true.obs;
   RxBool showAllCourses = false.obs;
   RxBool hasNewCourses = false.obs;
+  TextEditingController searchController = TextEditingController();
 
   @override
   void onInit() {
@@ -83,5 +86,14 @@ class CourseController extends GetxController {
   Future<void> checkConnectivity() async {
     var connectivityResult = await Connectivity().checkConnectivity();
     isConnected.value = (connectivityResult != ConnectivityResult.none);
+  }
+  void search(String keyword) {
+    if (keyword.isEmpty) {
+      filteredSubcourses.assignAll(courseList);
+    } else {
+      filteredSubcourses.assignAll(
+        courseList.where((course) => course.toLowerCase().contains(keyword.toLowerCase())),
+      );
+    }
   }
 }

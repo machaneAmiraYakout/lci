@@ -1,7 +1,6 @@
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 class Linguistic extends StatelessWidget {
   const Linguistic({Key? key}) : super(key: key);
   @override
@@ -14,13 +13,13 @@ class Linguistic extends StatelessWidget {
           children: [
             GridView.count(
               crossAxisCount: 2,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               children: [
                // for(int i=0;i</l.length;i++)
-                  Padding(padding: EdgeInsets.symmetric(horizontal: 20),
+                  Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Container(
-                      margin:EdgeInsets.symmetric(vertical:10 ,),
+                      margin:const EdgeInsets.symmetric(vertical:10 ,),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.white,
@@ -37,21 +36,21 @@ class Linguistic extends StatelessWidget {
                            //   Get.to(CourseDetails(img:'${homeController.l[i]}'));
                             } ,
                             child: Container(
-                              margin: EdgeInsets.all(10),
+                              margin: const EdgeInsets.all(10),
                               child: Image.asset('assets/images//.png',
                                 width:120 ,
                                 height: 100,
                                 fit: BoxFit.contain,),
                             ),
                           ),
-                          Padding(padding: EdgeInsets.only(bottom: 8,left: 10),
+                          Padding(padding: const EdgeInsets.only(bottom: 8,left: 10),
                             child: Container(
                               alignment:Alignment.centerLeft,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(child:MyCustomTextWidget(text:'',index:5 )),
-                                  IconButton(onPressed: (){}, icon: Icon(Icons.favorite,color: buttonColor,)),
+                                  IconButton(onPressed: (){}, icon: const Icon(Icons.favorite,color: buttonColor,)),
                                 ],
                               ),
                             ),)

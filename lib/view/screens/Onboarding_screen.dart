@@ -6,11 +6,13 @@ import '../widgets/curve_container.dart';
 import '../widgets/my_custom_button.dart';
 class OnboardingScreen extends StatelessWidget {
   final OnboardingController controller = Get.put(OnboardingController());
+
+   OnboardingScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 25.0),
+        padding: const EdgeInsets.symmetric(vertical: 25.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -33,14 +35,14 @@ class OnboardingScreen extends StatelessWidget {
                 onPageChanged: controller.onPageChanged,
               ),
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             Obx(() =>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: controller.buildPageIndicator(),
                 )),
-            SizedBox(height: 10.0),
-            Padding(padding: EdgeInsets.symmetric(horizontal: 20),
+            const SizedBox(height: 10.0),
+            Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
                child:  CustomButton(
                text:'Get Started' ,
                onPressed:controller.goToNextPage,

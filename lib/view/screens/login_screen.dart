@@ -1,5 +1,4 @@
 import 'package:elearning/view/screens/signup_screen.dart';
-import 'package:elearning/view/screens/started_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:elearning/view/widgets/my_custom_button.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
@@ -9,6 +8,8 @@ import 'package:get/get.dart';
 import '../../presenter/controller/login_controller.dart';
 class LoginScreen extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
+
+   LoginScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -114,7 +115,7 @@ class LoginScreen extends StatelessWidget {
                   height: 30,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: GestureDetector(
                       onTap: () => Get.to(() => SignupScreen()),
                       child: Row(

@@ -19,104 +19,127 @@ class Service extends StatelessWidget {
                       onPressed: (){
                         Get.back();
                       },
-                      icon: Icon(Icons.arrow_circle_left_outlined,color: Colors.white,size: 30,))),
+                      icon: const Icon(Icons.arrow_circle_left_outlined,color: Colors.white,size: 30,))),
             ],
           ),
           MyCustomTextWidget(index: 1,text: 'Services'),
-          Padding(padding: const EdgeInsets.only(left: 20,right: 20, top: 100),
-            child:Row(
+          Padding(
+            padding: EdgeInsets.only(
+              left: MediaQuery.of(context).size.width * 0.05,
+              right: MediaQuery.of(context).size.width * 0.05,
+              top: MediaQuery.of(context).size.height * 0.1,
+            ),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap:(){
-
-                  },
+                  onTap: () {},
                   child: Container(
-                      height: 180,
-                      width: 175,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white,
-                        boxShadow:[
-                          BoxShadow(
-                              color:primaryColor.withOpacity(0.5),
-                              spreadRadius: 1,
-                              blurRadius: 8),
-                        ],
-                      ),
-                      child:  Column(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.all(10),
-                            child: Image.asset('assets/images/formation.png',
-                              width:120 ,
-                              height: 100,
-                              fit: BoxFit.contain,),
-                          ),
-                          const SizedBox(height: 20,),
-                          MyCustomTextWidget(text:'Formation' ,index:5,),
-                        ],
-                      )
-                  ),
-                ),
-                const SizedBox(width:20,),
-                Container(
-                    height: 180,
-                    width: 175,
+                    height: MediaQuery.of(context).size.height * 0.25,
+                    width: MediaQuery.of(context).size.width * 0.4,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.white,
-                      boxShadow:[
+                      boxShadow: [
                         BoxShadow(
-                            color:primaryColor.withOpacity(0.5),
-                            spreadRadius: 1,
-                            blurRadius: 8),],
+                          color: primaryColor.withOpacity(0.5),
+                          spreadRadius: 1,
+                          blurRadius: 8,
+                        ),
+                      ],
                     ),
-                    child:  Column(
+                    child: Column(
                       children: [
                         Container(
                           margin: const EdgeInsets.all(10),
-                          child: Image.asset('assets/images/advice.png',
-                            width:120 ,
-                            height: 120,
-                            fit: BoxFit.contain,),
+                          child: Image.asset(
+                            'assets/images/formation.png',
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            height: MediaQuery.of(context).size.height * 0.15,
+                            fit: BoxFit.contain,
+                          ),
                         ),
-                        MyCustomTextWidget(text:'Conseils' ,index:5,),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+
+                        MyCustomTextWidget(text: 'Formation', index: 5),
                       ],
                     ),
+                  ),
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.25,
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: primaryColor.withOpacity(0.5),
+                        spreadRadius: 1,
+                        blurRadius: 8,
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.all(10),
+                        child: Image.asset(
+                          'assets/images/advice.png',
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          height: MediaQuery.of(context).size.height * 0.15,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+
+                      MyCustomTextWidget(text: 'Conseils', index: 5),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20,vertical:20 ),
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.05,
+              vertical: MediaQuery.of(context).size.height * 0.02,
+            ),
             child: Container(
-              height: 180,
+              height: MediaQuery.of(context).size.height * 0.2,
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white,
-                boxShadow:[
+                boxShadow: [
                   BoxShadow(
-                      color:primaryColor.withOpacity(0.5),
-                      spreadRadius: 1,
-                      blurRadius: 8),],
+                    color: primaryColor.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 8,
+                  ),
+                ],
               ),
-              child:  Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
                     margin: const EdgeInsets.all(10),
-                    child: Image.asset('assets/images/tourisme.png',
-                      width:150 ,
-                      height: 150,
-                      fit: BoxFit.contain,),
+                    child: Image.asset(
+                      'assets/images/tourisme.png',
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      fit: BoxFit.contain,
+                    ),
                   ),
-                  MyCustomTextWidget(text:'Tourisme' ,index:5,),
+                  MyCustomTextWidget(text: 'Tourisme', index: 5),
                 ],
               ),
             ),
-          ),
+          )
         ],
       ),
     );

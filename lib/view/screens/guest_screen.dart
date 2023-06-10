@@ -12,13 +12,13 @@ import 'package:get/get.dart';
 import 'package:elearning/view/widgets/my_custom_page.dart';
 import '../../presenter/controller/home_controller.dart';
 import '../widgets/my_custom_container.dart';
-
 class GuestScreen extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
   final CourseController courseController = Get.put(CourseController());
   GuestScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -144,11 +144,11 @@ class GuestScreen extends StatelessWidget {
         length: 2, // Number of tabs
         child: SingleChildScrollView(
           child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
-                child: Stack(
+              Column(crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+                    child: Stack(
                   children: [
                     Container(
                       width: double.infinity,
@@ -160,84 +160,96 @@ class GuestScreen extends StatelessWidget {
                     ),
                     Positioned(
                       bottom: 0,
-                      child: Row(
-                        children: [
-                          Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 10),
-                                child: Row(
-                                  children: [
-                                    GetBuilder<HomeController>(
-                                      init: HomeController(),
-                                      builder: (controller) => const Text(
-                                        'Welcome, Guest',
-                                        style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.white,
-                                          letterSpacing: 2,
+                      left: 0,
+                      right: 0,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.02),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 10),
+                                    child: Row(
+                                      children: const [
+                                        Expanded(
+                                          child: Tooltip(
+                                            message: 'Welcome, Guest',
+                                            child: Text(
+                                              'Welcome,Guest',
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.white,
+                                                letterSpacing: 2,
+                                              ),
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
                                         ),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Icon(
+                                          Icons.waving_hand,
+                                          color: buttonColor,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),  // Add spacing between the text and the image
+                                  MyCustomTextWidget(
+                                    index: 10,
+                                    text: 'Ready to Learn Today ?',
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
                                       ),
                                     ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    const Icon(
-                                      Icons.waving_hand,
-                                      color: buttonColor,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              MyCustomTextWidget(
-                                index: 10,
-                                text: 'Ready to Learn Today ?',
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              SizedBox(
-                                width: 70,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20),
+                                    onPressed: () {
+                                      Get.to(SignupScreen());
+                                    },
+                                    child: MyCustomTextWidget(
+                                      index: 15,
+                                      text: 'SignUp',
                                     ),
                                   ),
-                                  onPressed: () {
-                                    Get.to(SignupScreen());
-                                  },
-                                  child: MyCustomTextWidget(
-                                    index: 15,
-                                    text: 'SignUp',
-                                  ),
-                                ),
+                                ],
                               ),
-                            ],
-                          ),
-                          Image.asset(
-                            'assets/images/signguest.png',
-                            height: 170,
-                          ),
-                        ],
+                            ),
+                            SizedBox(
+                              width: screenWidth * 0.30,
+                              height: screenWidth * 0.40,
+                              child: Image.asset(
+                                'assets/images/signguest.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    )
+                    ),
                   ],
                 )),
-            const SizedBox(
+                const SizedBox(
               height: 30,
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              controller: homeController.scrollController,
+                SingleChildScrollView(
+                 scrollDirection: Axis.horizontal,
+                 controller: homeController.scrollController,
               // Assign the scroll controller here
-              child: Row(
-                children: [
+                 child: Row(
+                  children: [
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: MyContainer(
@@ -256,7 +268,7 @@ class GuestScreen extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     child: MyContainer(
                       gestuorTap: () {
-                        Get.to(() => OnlineScreen());
+                        Get.to(() => const OnlineScreen());
                       },
                       text: 'Online',
                       urlimage: 'assets/images/online.png',
@@ -283,10 +295,10 @@ class GuestScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(
+                 const SizedBox(
               height: 40,
             ),
-            Padding(
+                 Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: TabBar(
                 indicatorColor: primaryColor, //
@@ -299,10 +311,10 @@ class GuestScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(
+                 const SizedBox(
               height: 20,
             ),
-            SizedBox(
+                 SizedBox(
               height: MediaQuery.of(context).size.height - 260,
               child: TabBarView(children: [
                 SingleChildScrollView(
@@ -425,11 +437,11 @@ class GuestScreen extends StatelessWidget {
                                                                       .currentGridTappedIndex
                                                                       .value ==
                                                                   i
-                                                          ? Container(
+                                                          ? const SizedBox(
                                                               width: 15,
                                                               height: 15,
                                                               child:
-                                                                  const CircularProgressIndicator(
+                                                                  CircularProgressIndicator(
                                                                 color:
                                                                     buttonColor,
                                                                 strokeWidth:
@@ -458,7 +470,7 @@ class GuestScreen extends StatelessWidget {
                 Container(
                   color: Colors
                       .grey[200], // Customize tab content background color
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       'New Courses',
                       style: TextStyle(fontSize: 20),
