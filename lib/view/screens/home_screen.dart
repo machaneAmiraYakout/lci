@@ -394,23 +394,22 @@ class HomeScreen extends StatelessWidget {
                                     child:Column(
                                       children: [
                                         Container(
-                                          margin: const EdgeInsets.all(10),
+                                          margin: const EdgeInsets.all(20),
                                           child: Image.asset(
                                             'assets/images/${homeController
                                                 .l[i]}.png',
-                                            width: 120,
-                                            height: 100,
+                                            width: 50,
+                                            height: 50,
                                             fit: BoxFit.contain,
                                           ),
                                         ),
+                                        SizedBox(height:40 ,),
                                         Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 8, left: 5),
+                                          padding: const EdgeInsets.only(bottom:8, left:5),
                                           child: Container(
                                             alignment: Alignment.centerLeft,
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment
-                                                  .spaceAround,
+                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                                               children: [
                                                 Expanded(
                                                   child: Text(
