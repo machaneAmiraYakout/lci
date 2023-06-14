@@ -5,16 +5,19 @@ import 'package:elearning/view/widgets/my_custom_button.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../presenter/controller/settings_controller.dart';
 class CourseDetails extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
+  final SettingsController settingscontroller = Get.put(SettingsController());
   String img;
   final String subCourseName;
   CourseDetails({Key? key, required this.img, required this.subCourseName,}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Colors.white,
+      appBar: AppBar(
+
           leading:   IconButton(
           onPressed: () {
             Get.back();
@@ -49,10 +52,14 @@ class CourseDetails extends StatelessWidget {
                          constraints: BoxConstraints(maxWidth: 170),
                          decoration: BoxDecoration(
                            borderRadius: BorderRadius.circular(20),
-                           color: Colors.white,
+                           color: settingscontroller.isDarkMode.value
+                               ? Colors.black54 // Use dark mode color
+                               : Colors.white, // Use light mode color
                            boxShadow: [
                              BoxShadow(
-                               color: primaryColor.withOpacity(0.5),
+                               color: settingscontroller.isDarkMode.value
+                                   ? Colors.black54 // Use dark mode color
+                                   : primaryColor.withOpacity(0.5), // Use light mode color,
                                spreadRadius: 1,
                                blurRadius: 8,
                              ),
@@ -74,17 +81,22 @@ class CourseDetails extends StatelessWidget {
                          ),
                        ),
                      ),
-                     const SizedBox(width: 20),
+                     const SizedBox(
+                         width: 20),
                      Expanded(
                        child: Container(
                          height: MediaQuery.of(context).size.width * 0.35,
                          constraints: BoxConstraints(maxWidth: 170),
                          decoration: BoxDecoration(
                            borderRadius: BorderRadius.circular(20),
-                           color: Colors.white,
+                           color: settingscontroller.isDarkMode.value
+                               ? Colors.black54 // Use dark mode color
+                               : Colors.white, // Use light mode color
                            boxShadow: [
                              BoxShadow(
-                               color: primaryColor.withOpacity(0.5),
+                               color: settingscontroller.isDarkMode.value
+                                   ? Colors.black54 // Use dark mode color
+                                   : primaryColor.withOpacity(0.5), // Use light mode color,
                                spreadRadius: 1,
                                blurRadius: 8,
                              ),

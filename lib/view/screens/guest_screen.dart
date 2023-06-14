@@ -11,20 +11,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:elearning/view/widgets/my_custom_page.dart';
 import '../../presenter/controller/home_controller.dart';
+import '../../presenter/controller/settings_controller.dart';
 import '../widgets/my_custom_container.dart';
 class GuestScreen extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
   final CourseController courseController = Get.put(CourseController());
+  final SettingsController settingscontroller = Get.put(SettingsController());
   GuestScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 5.0,
-        shadowColor: primaryColor,
+        shadowColor:  settingscontroller.isDarkMode.value
+            ? Colors.black26// Use dark mode color
+            : primaryColor,
         iconTheme: const IconThemeData(
           color: buttonColor, // Set the color of the drawer icon
         ),
@@ -32,7 +34,7 @@ class GuestScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Image.asset(
-              'assets/images/lg.jpg',
+              'assets/images/lgb.png',
               height: 40,
               width: 40,
             ),
@@ -55,14 +57,16 @@ class GuestScreen extends StatelessWidget {
                   height: 70,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50.0),
-                    color: Colors.white,
+                    color:  settingscontroller.isDarkMode.value
+                        ? Colors.black26// Use dark mode color
+                        : Colors.white,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
                       children: [
                         Image.asset(
-                          'assets/images/lg.jpg',
+                          'assets/images/lgb.png',
                           height: 40,
                           width: 40,
                         ),
@@ -154,7 +158,9 @@ class GuestScreen extends StatelessWidget {
                       width: double.infinity,
                       height: 180,
                       decoration: BoxDecoration(
-                        color: primaryColor,
+                        color: settingscontroller.isDarkMode.value
+                            ? Colors.black54// Use dark mode color
+                            : primaryColor, // Use light mode color
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
@@ -257,7 +263,7 @@ class GuestScreen extends StatelessWidget {
                         Get.to(() => const Service());
                       },
                       text: 'Services',
-                      urlimage: 'assets/images/service.png',
+                      // urlimage: 'assets/images/service.png',
                       borderRadius: 16.0,
                       borderColor: primaryColor,
                       borderWidth: 2.0,
@@ -271,7 +277,7 @@ class GuestScreen extends StatelessWidget {
                         Get.to(() => const OnlineScreen());
                       },
                       text: 'Online',
-                      urlimage: 'assets/images/online.png',
+                      // urlimage: 'assets/images/online.png',
                       borderRadius: 16.0,
                       borderColor: buttonColor,
                       borderWidth: 2.0,
@@ -285,7 +291,7 @@ class GuestScreen extends StatelessWidget {
                         Get.to(() => Contact());
                       },
                       text: 'Contact Us',
-                      urlimage: 'assets/images/contact.png',
+                      // urlimage: 'assets/images/contact.png',
                       borderRadius: 16.0,
                       borderColor: primaryColor,
                       borderWidth: 2.0,
@@ -342,26 +348,25 @@ class GuestScreen extends StatelessWidget {
                                       courseController.showAllCourses.value
                                           ? "See Less"
                                           : "See More",
-                                      style:
-                                          const TextStyle(color: primaryColor),
+                                      style: TextStyle(
+                                            color:settingscontroller.isDarkMode.value
+                                                ? Colors.white// Use dark mode color
+                                                : primaryColor,
+                                          ),
                                     )),
                               ),
                             ],
                           )),
                       GetBuilder<CourseController>(
                         init: CourseController(),
-                        builder: (controller) => Obx(() => GridView.count(
+                        builder: (controller) =>
+                            Obx(() => GridView.count(
                               crossAxisCount: 2,
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               children: [
-                                for (int i = 0;
-                                    i <
-                                            (controller.showAllCourses.value
-                                                ? controller.courseList.length
-                                                : 2) &&
-                                        i < controller.courseList.length;
-                                    i++)
+                                for (int i = 0; i < (controller.showAllCourses.value ? controller.courseList.length : 2)
+                                    && i < controller.courseList.length; i++)
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 20),
@@ -370,31 +375,34 @@ class GuestScreen extends StatelessWidget {
                                           vertical: 10),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(20),
-                                        color: Colors.white,
+                                        color: settingscontroller.isDarkMode.value
+                                            ? Colors.black54 // Use dark mode color
+                                            : Colors.white, // Use light mode color
+
                                         boxShadow: [
                                           BoxShadow(
-                                            color:
-                                                primaryColor.withOpacity(0.5),
+                                            color: settingscontroller.isDarkMode.value
+                                                ? Colors.black26 // Use dark mode color
+                                                :primaryColor.withOpacity(0.5), // Use light mode color
                                             spreadRadius: 1,
                                             blurRadius: 8,
                                           ),
                                         ],
                                       ),
                                       // drt inkwell hna bah l grid kaml tapped
-                                      child: InkWell(
+                                      child:  InkWell(
                                           onTap: () async {
                                             controller.setGridTapped(true, i);
-                                            await controller.fetchSubCourses(
-                                                controller.courseList[i]);
+                                            await controller.fetchSubCourses(controller.courseList[i]);
                                             Get.to(SubCourses(index1: i));
                                           },
-                                          child: Column(
+                                          child:Column(
                                             children: [
                                               Container(
-                                                margin:
-                                                    const EdgeInsets.all(10),
+                                                margin: const EdgeInsets.all(10),
                                                 child: Image.asset(
-                                                  'assets/images/${homeController.l[i]}.png',
+                                                  'assets/images/${homeController
+                                                      .l[i]}.png',
                                                   width: 120,
                                                   height: 100,
                                                   fit: BoxFit.contain,
@@ -404,55 +412,43 @@ class GuestScreen extends StatelessWidget {
                                                 padding: const EdgeInsets.only(
                                                     bottom: 8, left: 5),
                                                 child: Container(
-                                                  alignment:
-                                                      Alignment.centerLeft,
+                                                  alignment: Alignment.centerLeft,
                                                   child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceAround,
+                                                    mainAxisAlignment: MainAxisAlignment
+                                                        .spaceAround,
                                                     children: [
                                                       Expanded(
                                                         child: Text(
-                                                          controller
-                                                              .courseList[i],
-                                                          style:
-                                                              const TextStyle(
-                                                            fontFamily:
-                                                                'Poppins',
+                                                          controller.courseList[i],
+                                                          style:  TextStyle(
+                                                            fontFamily: 'Poppins',
                                                             fontSize: 11,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color: primaryColor,
+                                                            fontWeight: FontWeight.w500,
+                                                            color: settingscontroller.isDarkMode.value
+                                                                ? Colors.white // Use dark mode color
+                                                                : primaryColor, // Use light mode color
                                                             letterSpacing: 2,
                                                           ),
                                                           maxLines: 2,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
+                                                          overflow: TextOverflow.ellipsis,
                                                         ),
                                                       ),
-                                                      Obx(() => controller
-                                                                  .isGridTapped
-                                                                  .value &&
-                                                              controller
-                                                                      .currentGridTappedIndex
-                                                                      .value ==
-                                                                  i
+                                                      Obx(() =>
+                                                      controller.isGridTapped.value &&
+                                                          controller
+                                                              .currentGridTappedIndex
+                                                              .value == i
                                                           ? const SizedBox(
-                                                              width: 15,
-                                                              height: 15,
-                                                              child:
-                                                                  CircularProgressIndicator(
-                                                                color:
-                                                                    buttonColor,
-                                                                strokeWidth:
-                                                                    2.0,
-                                                              ),
-                                                            )
+                                                        width: 15,
+                                                        height: 15,
+                                                        child: CircularProgressIndicator(
+                                                          color: buttonColor,
+                                                          strokeWidth: 2.0,
+                                                        ),
+                                                      )
                                                           : const Icon(
-                                                              Icons
-                                                                  .arrow_circle_right,
-                                                              color:
-                                                                  buttonColor)),
+                                                          Icons.arrow_circle_right,
+                                                          color: buttonColor)),
                                                     ],
                                                   ),
                                                 ),
@@ -468,8 +464,9 @@ class GuestScreen extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  color: Colors
-                      .grey[200], // Customize tab content background color
+                  color: settingscontroller.isDarkMode.value
+                      ? Colors.black54 // Use dark mode color
+                      : Colors.white, // Use light mode color// Customize tab content background color
                   child: const Center(
                     child: Text(
                       'New Courses',

@@ -11,7 +11,6 @@ class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(25),
@@ -19,7 +18,7 @@ class StartScreen extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Image.asset('assets/images/lg.jpg', height: 40,width: 40,),
+                  Image.asset('assets/images/lgb.png', height: 40,width: 40,),
                   const SizedBox(width: 10,),
                   MyCustomTextWidget(index: 3,text: 'LCI Group' ,)
                 ],

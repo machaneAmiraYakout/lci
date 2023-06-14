@@ -10,14 +10,18 @@ class SettingsController extends GetxController {
     primaryColor: primaryColor, // Set your primary color
     primarySwatch: Colors.orange,
     inputDecorationTheme: const InputDecorationTheme(
-        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: primaryColor)))
+        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: primaryColor))),
+    appBarTheme: const AppBarTheme( color: Colors.white)
+
   );
   ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     primaryColor: buttonColor, // Set your primary color
       primarySwatch: Colors.orange,
       inputDecorationTheme: const InputDecorationTheme(
-          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: primaryColor)))
+          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: primaryColor))),
+      appBarTheme: const AppBarTheme( color: Colors.black54)
+
   );
   Rx<String> selectedLanguage = Rx<String>('English');
   void changeLanguage(String language) {

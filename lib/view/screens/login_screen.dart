@@ -18,7 +18,6 @@ class LoginScreen extends StatelessWidget {
           FocusScope.of(context).unfocus();
         },
         child:Scaffold(
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Form(
           key: loginController.formKey,

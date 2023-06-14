@@ -1,4 +1,4 @@
-import 'package:elearning/presenter/controller/course_controller.dart';
+import'package:elearning/presenter/controller/course_controller.dart';
 import 'package:elearning/presenter/controller/login_controller.dart';
 import 'package:elearning/view/screens/contact.dart';
 import 'package:elearning/view/screens/online_screen.dart';
@@ -12,18 +12,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:elearning/view/widgets/my_custom_page.dart';
 import '../../presenter/controller/home_controller.dart';
+import '../../presenter/controller/settings_controller.dart';
 import '../widgets/my_custom_container.dart';
 class HomeScreen extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
   final CourseController courseController = Get.put(CourseController());
+  final SettingsController settingscontroller = Get.put(SettingsController());
   HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 5.0,
-        shadowColor: primaryColor,
+        shadowColor:  settingscontroller.isDarkMode.value
+            ? Colors.black26// Use dark mode color
+            : primaryColor,
         iconTheme: const IconThemeData(
           color: buttonColor, // Set the color of the drawer icon
         ),
@@ -31,7 +34,7 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Image.asset(
-              'assets/images/lg.jpg',
+              'assets/images/lgb.png',
               height: 40,
               width: 40,
             ),
@@ -54,14 +57,16 @@ class HomeScreen extends StatelessWidget {
                   height: 70,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50.0),
-                    color: Colors.white,
+                    color:  settingscontroller.isDarkMode.value
+                        ? Colors.black26// Use dark mode color
+                        : Colors.white,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
                       children: [
                         Image.asset(
-                          'assets/images/lg.jpg',
+                          'assets/images/lgb.png',
                           height: 40,
                           width: 40,
                         ),
@@ -162,20 +167,22 @@ class HomeScreen extends StatelessWidget {
                           width: double.infinity,
                           height: 180,
                           decoration: BoxDecoration(
-                            color: primaryColor,
+                            color: settingscontroller.isDarkMode.value
+                                ? Colors.black54// Use dark mode color
+                                : primaryColor, // Use light mode color
                             borderRadius: BorderRadius.circular(20),
                           ),
                         ),
                         Positioned(
                           bottom: 0,
-                          child: Row(
+                          child:Row(
                             children: [
                               Column(
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.symmetric(
                                       vertical: 10,
-                                      horizontal: MediaQuery.of(context).size.width * 0.05, // Adjust the horizontal padding based on screen width
+                                      horizontal: MediaQuery.of(context).size.width * 0.05,
                                     ),
                                     child: Row(
                                       children: [
@@ -194,12 +201,12 @@ class HomeScreen extends StatelessWidget {
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        const Icon(
+                                        const SizedBox(width: 10),
+                                        Icon(
                                           Icons.waving_hand,
-                                          color: buttonColor,
+                                          color: settingscontroller.isDarkMode.value
+                                              ? buttonColor // Use dark mode color
+                                              : thirdColor, // Use light mode color
                                         ),
                                       ],
                                     ),
@@ -208,20 +215,20 @@ class HomeScreen extends StatelessWidget {
                                     index: 9,
                                     text: 'Ready to Learn Today ?',
                                   ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
+                                  const SizedBox(height: 15),
                                   Container(
                                     margin: EdgeInsets.symmetric(
-                                      horizontal: MediaQuery.of(context).size.width * 0.05, // Adjust the horizontal margin based on screen width
+                                      horizontal: MediaQuery.of(context).size.width * 0.05,
                                       vertical: 15,
                                     ),
-                                    width: MediaQuery.of(context).size.width * 0.5, // Adjust the width based on screen width
+                                    width: MediaQuery.of(context).size.width * 0.5,
                                     height: 50,
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(25.0),
-                                      color: Colors.white,
+                                      color: settingscontroller.isDarkMode.value
+                                          ? Colors.black54 // Use dark mode color
+                                          : Colors.white, // Use light mode color
                                     ),
                                     child: DefaultTextField(
                                       type: TextInputType.none,
@@ -236,8 +243,8 @@ class HomeScreen extends StatelessWidget {
                                 ],
                               ),
                               Container(
-                                height: 0.35 * MediaQuery.of(context).size.width, // Adjust the height as needed
-                                width: 0.35 * MediaQuery.of(context).size.width, // Adjust the width as needed
+                                height: 0.35 * MediaQuery.of(context).size.width,
+                                width: 0.35 * MediaQuery.of(context).size.width,
                                 child: FractionallySizedBox(
                                   alignment: Alignment.center,
                                   widthFactor: 1.0,
@@ -251,7 +258,6 @@ class HomeScreen extends StatelessWidget {
                             ],
                           ),
                         )
-
                       ],
                     )),
                 const SizedBox(
@@ -273,7 +279,7 @@ class HomeScreen extends StatelessWidget {
                             Get.to(() => const Service());
                           },
                           text: 'Services',
-                          urlimage: 'assets/images/service.png',
+                          icon: Icons.home_repair_service_rounded,
                           borderRadius: 16.0,
                           borderColor: primaryColor,
                           borderWidth: 2.0,
@@ -290,7 +296,7 @@ class HomeScreen extends StatelessWidget {
                             Get.to(() => const OnlineScreen());
                           },
                           text: 'Online',
-                          urlimage: 'assets/images/online.png',
+                          icon:  Icons.feed,
                           borderRadius: 16.0,
                           borderColor: buttonColor,
                           borderWidth: 2.0,
@@ -307,7 +313,7 @@ class HomeScreen extends StatelessWidget {
                             Get.to(() => Contact());
                           },
                           text: 'Contact Us',
-                          urlimage: 'assets/images/contact.png',
+                          icon:  Icons.contact_mail,
                           borderRadius: 16.0,
                           borderColor: primaryColor,
                           borderWidth: 2.0,
@@ -336,7 +342,11 @@ class HomeScreen extends StatelessWidget {
                           },
                           child:  Obx(() => Text(
                             courseController.showAllCourses.value ? "See Less" : "See More",
-                            style: const TextStyle(color: primaryColor),
+                            style:  TextStyle(
+                              color:settingscontroller.isDarkMode.value
+                                  ? Colors.white// Use dark mode color
+                                  : primaryColor,
+                            ),
                           )),
                         ),
                       ],
@@ -360,10 +370,15 @@ class HomeScreen extends StatelessWidget {
                                     vertical: 10),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white,
+                                  color: settingscontroller.isDarkMode.value
+                                      ? Colors.black54 // Use dark mode color
+                                      : Colors.white, // Use light mode color
+
                                   boxShadow: [
                                     BoxShadow(
-                                      color: primaryColor.withOpacity(0.5),
+                                      color: settingscontroller.isDarkMode.value
+                                          ? Colors.black26 // Use dark mode color
+                                          :primaryColor.withOpacity(0.5), // Use light mode color
                                       spreadRadius: 1,
                                       blurRadius: 8,
                                     ),
@@ -400,11 +415,13 @@ class HomeScreen extends StatelessWidget {
                                                 Expanded(
                                                   child: Text(
                                                     controller.courseList[i],
-                                                    style: const TextStyle(
+                                                    style:  TextStyle(
                                                       fontFamily: 'Poppins',
                                                       fontSize: 11,
                                                       fontWeight: FontWeight.w500,
-                                                      color: primaryColor,
+                                                      color: settingscontroller.isDarkMode.value
+                                                          ? Colors.white // Use dark mode color
+                                                          : primaryColor, // Use light mode color
                                                       letterSpacing: 2,
                                                     ),
                                                     maxLines: 2,

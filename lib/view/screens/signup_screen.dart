@@ -17,7 +17,6 @@ class SignupScreen extends StatelessWidget {
           FocusScope.of(context).unfocus();
         },
         child:Scaffold(
-          backgroundColor: Colors.white,
           body: SingleChildScrollView(
            child: Form(
             key: signupController.formKeys,

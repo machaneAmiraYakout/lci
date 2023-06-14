@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../presenter/controller/course_controller.dart';
 import '../../presenter/controller/home_controller.dart';
+import '../../presenter/controller/settings_controller.dart';
 class SubCourses extends StatelessWidget {
+  final SettingsController settingscontroller = Get.put(SettingsController());
   int index1;
   final HomeController homeController = Get.put(HomeController());
   final CourseController courseController = Get.put(CourseController());
-
   SubCourses({Key? key, required this.index1}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -37,9 +37,11 @@ class SubCourses extends StatelessWidget {
                               Get.back();
                               courseController.resetGridTapped();
                             },
-                            icon: const Icon(
+                            icon:  Icon(
                               Icons.arrow_circle_left_outlined,
-                              color: Colors.white,
+                              color: settingscontroller.isDarkMode.value
+                                  ? Colors.black54 // Use dark mode color
+                                  : Colors.white, // Use light mode color
                               size: 30,
                             )),
                       ),
@@ -63,10 +65,15 @@ class SubCourses extends StatelessWidget {
                             margin: const EdgeInsets.symmetric(vertical: 10),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
+                              color: settingscontroller.isDarkMode.value
+                                  ? Colors.black54 // Use dark mode color
+                                  : Colors.white, // Use light mode color
+
                               boxShadow: [
                                 BoxShadow(
-                                  color: primaryColor.withOpacity(0.5),
+                                  color: settingscontroller.isDarkMode.value
+                                      ? Colors.black54 // Use dark mode color
+                                      :primaryColor.withOpacity(0.5),// Use light mode color
                                   spreadRadius: 1,
                                   blurRadius: 8,
                                 ),
@@ -84,11 +91,13 @@ class SubCourses extends StatelessWidget {
                                         Expanded(
                                           child: Text(
                                             courseController.subCourseList[index],
-                                            style: const TextStyle(
+                                            style:  TextStyle(
                                               fontFamily: 'Poppins',
                                               fontSize: 13,
                                               fontWeight: FontWeight.w500,
-                                              color: primaryColor,
+                                              color: settingscontroller.isDarkMode.value
+                                                  ? Colors.white // Use dark mode color
+                                                  :primaryColor,// Use light mode color
                                               letterSpacing: 2,
                                             ),
                                             maxLines: 2,

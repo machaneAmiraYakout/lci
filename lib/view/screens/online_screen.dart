@@ -12,7 +12,6 @@ class OnlineScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: primaryColor,
         leading: IconButton(icon:const Icon(Icons.arrow_back,color: buttonColor, ),onPressed: (){Get.back();}),
       ),
       body: Padding(
@@ -26,7 +25,7 @@ class OnlineScreen extends StatelessWidget {
                 child: MyContainer(
                   gestuorTap:() => Get.to(() => Inscription()),
                   text: 'Inscription',
-                  urlimage: 'assets/images/inscription.png',
+                  // urlimage: 'assets/images/inscription.png',
                   borderRadius: 16.0,
                   borderColor: primaryColor,
                   borderWidth: 2.0,
@@ -37,7 +36,7 @@ class OnlineScreen extends StatelessWidget {
               MyContainer(
                 gestuorTap:() => Get.to(() => Hiring()),
                 text: 'Hiring',
-                urlimage: 'assets/images/hiring.png',
+                // urlimage: 'assets/images/hiring.png',
                 borderRadius: 16.0,
                 borderColor: buttonColor,
                 borderWidth: 2.0,
@@ -47,7 +46,7 @@ class OnlineScreen extends StatelessWidget {
               MyContainer(
                 gestuorTap:() => Get.to(() => FeedBack()),
                 text: 'Feedback',
-                urlimage: 'assets/images/feedback.png',
+                // urlimage: 'assets/images/feedback.png',
                 borderRadius: 16.0,
                 borderColor: primaryColor,
                 borderWidth: 2.0,

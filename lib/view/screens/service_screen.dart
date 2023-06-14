@@ -1,12 +1,15 @@
 import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../presenter/controller/settings_controller.dart';
 import '../widgets/colors.dart';
 import '../widgets/curve_container.dart';
 class Service extends StatelessWidget {
   const Service({super.key});
   @override
   Widget build(BuildContext context) {
+    final SettingsController settingscontroller = Get.put(SettingsController());
+
     return Scaffold(
       body: Column(
         children: [
@@ -19,7 +22,11 @@ class Service extends StatelessWidget {
                       onPressed: (){
                         Get.back();
                       },
-                      icon: const Icon(Icons.arrow_circle_left_outlined,color: Colors.white,size: 30,))),
+                      icon:  Icon(Icons.arrow_circle_left_outlined,
+                        color: settingscontroller.isDarkMode.value
+                            ? Colors.black54 // Use dark mode color
+                            : Colors.white, // Use light mode color
+                        size: 30,))),
             ],
           ),
           MyCustomTextWidget(index: 1,text: 'Services'),
@@ -39,10 +46,15 @@ class Service extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.4,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
+
+                      color: settingscontroller.isDarkMode.value
+                          ? Colors.black54 // Use dark mode color
+                          : Colors.white, // Use light mode color
                       boxShadow: [
                         BoxShadow(
-                          color: primaryColor.withOpacity(0.5),
+                          color: settingscontroller.isDarkMode.value
+                              ? Colors.black54 // Use dark mode color
+                              : primaryColor.withOpacity(0.5), // Use light mode color
                           spreadRadius: 1,
                           blurRadius: 8,
                         ),
@@ -73,10 +85,15 @@ class Service extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.4,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
+
+                    color: settingscontroller.isDarkMode.value
+                        ? Colors.black54 // Use dark mode color
+                        : Colors.white, // Use light mode color
                     boxShadow: [
                       BoxShadow(
-                        color: primaryColor.withOpacity(0.5),
+                        color: settingscontroller.isDarkMode.value
+                            ? Colors.black54 // Use dark mode color
+                            : primaryColor.withOpacity(0.5), // Use light mode color
                         spreadRadius: 1,
                         blurRadius: 8,
                       ),
@@ -114,10 +131,15 @@ class Service extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
+
+                color: settingscontroller.isDarkMode.value
+                    ? Colors.black54 // Use dark mode color
+                    : Colors.white, // Use light mode color
                 boxShadow: [
                   BoxShadow(
-                    color: primaryColor.withOpacity(0.5),
+                    color: settingscontroller.isDarkMode.value
+                        ? Colors.black54 // Use dark mode color
+                        : primaryColor.withOpacity(0.5), // Use light mode color
                     spreadRadius: 1,
                     blurRadius: 8,
                   ),

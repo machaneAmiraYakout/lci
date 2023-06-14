@@ -1,27 +1,25 @@
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import '../../presenter/controller/settings_controller.dart';
 class MyCustomTextWidget extends StatelessWidget {
+  final SettingsController settingscontroller = Get.put(SettingsController());
   final int index;
   final String text;
   final Color? color;
   final TextAlign alignment;
-
   MyCustomTextWidget({
     required this.index,
     required this.text,
     this.color = primaryColor,
     this.alignment = TextAlign.center,
   });
-
   double getResponsiveFontSize(BuildContext context, double referenceSize) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     final referenceWidth = 375; // Reference width for font size calculations (you can adjust it based on your design)
-
     // Calculate the ratio of the screen's width to the reference width
     final widthRatio = screenWidth / referenceWidth;
-
     // Calculate the responsive font size
     final fontSize = referenceSize * widthRatio;
 
@@ -31,14 +29,15 @@ class MyCustomTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextStyle textStyle;
-
     switch (index) {
       case 1: // Head
         textStyle = TextStyle(
           fontFamily: 'Poppins',
           fontSize: getResponsiveFontSize(context, 21),
           fontWeight: FontWeight.w700,
-          color: primaryColor,
+          color: settingscontroller.isDarkMode.value
+              ? Colors.white// Use dark mode color
+              : primaryColor, // Use light mode color
           letterSpacing: 2,
         );
         break;
@@ -47,7 +46,9 @@ class MyCustomTextWidget extends StatelessWidget {
           fontFamily: 'Poppins',
           fontSize:getResponsiveFontSize(context, 15),
           fontWeight: FontWeight.w400,
-          color: subTitleTextColor,
+          color: settingscontroller.isDarkMode.value
+              ? Colors.white// Use dark mode color
+              : subTitleTextColor, // Use light mode color
         );
         break;
       case 3://Subtitle
@@ -55,7 +56,9 @@ class MyCustomTextWidget extends StatelessWidget {
           fontFamily: 'Poppins',
           fontSize: getResponsiveFontSize(context, 12),
           fontWeight: FontWeight.w400,
-          color: thirdColor,
+          color: settingscontroller.isDarkMode.value
+              ? Colors.white// Use dark mode color
+              : thirdColor, // Use light mode color
         );
         break;
       case 4://Subtitle
@@ -63,7 +66,9 @@ class MyCustomTextWidget extends StatelessWidget {
           fontFamily: 'Poppins',
           fontSize:getResponsiveFontSize(context, 19),
           fontWeight: FontWeight.w400,
-          color: thirdColor,
+          color: settingscontroller.isDarkMode.value
+              ? Colors.white// Use dark mode color
+              : thirdColor, // Use light mode color
         );
         break;
       case 5://Subtitle
@@ -71,7 +76,9 @@ class MyCustomTextWidget extends StatelessWidget {
           fontFamily: 'Poppins',
           fontSize:getResponsiveFontSize(context, 19),
           fontWeight: FontWeight.w400,
-          color: secondColor,
+          color: settingscontroller.isDarkMode.value
+              ? Colors.white// Use dark mode color
+              : secondColor, // Use light mode color
         );
         break;
       case 6://Subtitle
@@ -79,7 +86,9 @@ class MyCustomTextWidget extends StatelessWidget {
           fontFamily: 'Poppins',
           fontSize:getResponsiveFontSize(context, 20),
           fontWeight: FontWeight.w400,
-          color: thirdColor,
+          color: settingscontroller.isDarkMode.value
+              ? Colors.white// Use dark mode color
+              : thirdColor, // Use light mode color
         );
         break;
       case 7://head
@@ -87,7 +96,9 @@ class MyCustomTextWidget extends StatelessWidget {
           fontFamily: 'Poppins',
           fontSize: getResponsiveFontSize(context, 25),
           fontWeight: FontWeight.w700,
-          color: buttonColor,
+          color: settingscontroller.isDarkMode.value
+              ? Colors.white// Use dark mode color
+              : buttonColor, // Use light mode color
           letterSpacing: 2,
         );
         break;
@@ -106,7 +117,9 @@ class MyCustomTextWidget extends StatelessWidget {
           fontFamily: 'Poppins',
           fontSize:getResponsiveFontSize(context, 15),
           fontWeight: FontWeight.w400,
-          color: textFieldCBackgroundColor,
+          color: settingscontroller.isDarkMode.value
+              ? Colors.white// Use dark mode color
+              : textFieldCBackgroundColor, // Use light mode color
         );
         break;
       case 10://Subtitle
@@ -114,7 +127,9 @@ class MyCustomTextWidget extends StatelessWidget {
           fontFamily: 'Poppins',
           fontSize:getResponsiveFontSize(context, 12),
           fontWeight: FontWeight.w400,
-          color: buttonColor,
+          color: settingscontroller.isDarkMode.value
+              ? Colors.white// Use dark mode color
+              : buttonColor, // Use light mode color
         );
         break;
       case 11://head
@@ -122,7 +137,9 @@ class MyCustomTextWidget extends StatelessWidget {
           fontFamily: 'Poppins',
           fontSize:getResponsiveFontSize(context, 21),
           fontWeight: FontWeight.w700,
-          color: buttonColor,
+          color: settingscontroller.isDarkMode.value
+              ? Colors.white// Use dark mode color
+              : buttonColor, // Use light mode color
           letterSpacing: 2,
         );
         break;
@@ -131,7 +148,9 @@ class MyCustomTextWidget extends StatelessWidget {
           fontFamily: 'Poppins',
           fontSize: getResponsiveFontSize(context, 19),
           fontWeight: FontWeight.w700,
-          color: buttonColor,
+          color: settingscontroller.isDarkMode.value
+              ? Colors.white// Use dark mode color
+              : buttonColor, // Use light mode color
           letterSpacing: 2,
         );
         break;
@@ -140,7 +159,9 @@ class MyCustomTextWidget extends StatelessWidget {
           fontFamily: 'Poppins',
           fontSize: getResponsiveFontSize(context, 15),
           fontWeight: FontWeight.w400,
-          color: buttonColor,
+          color: settingscontroller.isDarkMode.value
+              ? Colors.white// Use dark mode color
+              : buttonColor, // Use light mode color
         );
         break;
       case 14://head
@@ -148,7 +169,9 @@ class MyCustomTextWidget extends StatelessWidget {
           fontFamily: 'Poppins',
           fontSize:getResponsiveFontSize(context, 11),
           fontWeight: FontWeight.w500,
-          color: primaryColor,
+          color: settingscontroller.isDarkMode.value
+              ? Colors.white// Use dark mode color
+              : primaryColor, // Use light mode color
           letterSpacing: 2,
 
         );
@@ -170,7 +193,7 @@ class MyCustomTextWidget extends StatelessWidget {
         );
     }
 
-    return Text(
+    return  Text(
       text,
       style: textStyle,
     );
