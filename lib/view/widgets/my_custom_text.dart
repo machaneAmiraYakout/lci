@@ -118,8 +118,8 @@ class MyCustomTextWidget extends StatelessWidget {
           fontSize:getResponsiveFontSize(context, 15),
           fontWeight: FontWeight.w400,
           color: settingscontroller.isDarkMode.value
-              ? Colors.white// Use dark mode color
-              : textFieldCBackgroundColor, // Use light mode color
+              ? subTitleTextColor// Use dark mode color
+              : buttonColor , // Use light mode color
         );
         break;
       case 10://Subtitle

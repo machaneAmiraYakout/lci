@@ -8,7 +8,6 @@ class CustomPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body:SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 80,horizontal: 40),

@@ -159,107 +159,76 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 20, horizontal: 25),
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: double.infinity,
-                          height: 180,
-                          decoration: BoxDecoration(
-                            color: settingscontroller.isDarkMode.value
-                                ? Colors.black54// Use dark mode color
-                                : primaryColor, // Use light mode color
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          child:Row(
+                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+                    child:Container(
+                      width: double.infinity,
+                      height: 180,
+                      decoration: BoxDecoration(
+                        color: settingscontroller.isDarkMode.value
+                            ? Colors.black54 // Use dark mode color
+                            : primaryColor, // Use light mode color
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Column(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: 10,
-                                      horizontal: MediaQuery.of(context).size.width * 0.05,
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        GetBuilder<HomeController>(
-                                          init: HomeController(),
-                                          builder: (controller) => Text(
-                                            'Welcome, ${controller.name.value}',
-                                            style: const TextStyle(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.white,
-                                              letterSpacing: 2,
-                                            ),
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Icon(
-                                          Icons.waving_hand,
-                                          color: settingscontroller.isDarkMode.value
-                                              ? buttonColor // Use dark mode color
-                                              : thirdColor, // Use light mode color
-                                        ),
-                                      ],
-                                    ),
+                              GetBuilder<HomeController>(
+                                init: HomeController(),
+                                builder: (controller) => Text(
+                                  'Welcome, ${controller.name.value}',
+                                  style: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white,
+                                    letterSpacing: 2,
                                   ),
-                                  MyCustomTextWidget(
-                                    index: 9,
-                                    text: 'Ready to Learn Today ?',
-                                  ),
-                                  const SizedBox(height: 15),
-                                  Container(
-                                    margin: EdgeInsets.symmetric(
-                                      horizontal: MediaQuery.of(context).size.width * 0.05,
-                                      vertical: 15,
-                                    ),
-                                    width: MediaQuery.of(context).size.width * 0.5,
-                                    height: 50,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25.0),
-                                      color: settingscontroller.isDarkMode.value
-                                          ? Colors.black54 // Use dark mode color
-                                          : Colors.white, // Use light mode color
-                                    ),
-                                    child: DefaultTextField(
-                                      type: TextInputType.none,
-                                      hint: 'Search for course !',
-                                      prefixIcon: const Icon(Icons.search),
-                                      onPressed: () {
-                                        Get.to(() => Search());
-                                      },
-                                      controller: null,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Container(
-                                height: 0.35 * MediaQuery.of(context).size.width,
-                                width: 0.35 * MediaQuery.of(context).size.width,
-                                child: FractionallySizedBox(
-                                  alignment: Alignment.center,
-                                  widthFactor: 1.0,
-                                  heightFactor: 1.0,
-                                  child: Image.asset(
-                                    'assets/images/serr.png',
-                                    fit: BoxFit.cover,
-                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
+                              ),
+                              const SizedBox(width: 10),
+                              Icon(
+                                Icons.waving_hand,
+                                color: settingscontroller.isDarkMode.value
+                                    ? thirdColor  // Use dark mode color
+                                    :buttonColor , // Use light mode color
                               ),
                             ],
                           ),
-                        )
-                      ],
-                    )),
+                          const SizedBox(height: 10),
+                          MyCustomTextWidget(
+                            index: 9,
+                            text: 'Ready to Learn Today ?',
+                          ),
+                          const SizedBox(height: 20),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.7,
+                            height: 50,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20.0),
+                              color: settingscontroller.isDarkMode.value
+                                  ? Colors.black54 // Use dark mode color
+                                  : Colors.white, // Use light mode color
+                            ),
+                            child: DefaultTextField(
+                              type: TextInputType.none,
+                              hint: 'Search for course !',
+                              prefixIcon: const Icon(Icons.search),
+                              onPressed: () {
+                                Get.to(() => Search());
+                              },
+                              controller: null,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                ),
                 const SizedBox(
                   height: 30,
                 ),
@@ -398,12 +367,12 @@ class HomeScreen extends StatelessWidget {
                                           child: Image.asset(
                                             'assets/images/${homeController
                                                 .l[i]}.png',
-                                            width: 50,
-                                            height: 50,
+                                            width: 64,
+                                            height: 64,
                                             fit: BoxFit.contain,
                                           ),
                                         ),
-                                        SizedBox(height:40 ,),
+                                        SizedBox(height:25 ,),
                                         Padding(
                                           padding: const EdgeInsets.only(bottom:8, left:5),
                                           child: Container(

@@ -12,20 +12,11 @@ class Contact extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Stack(
-              children: [
-                Image.asset('assets/images/c.png'),
-                Positioned(
-                  bottom: 250,
-                  left: 173,
-                  child: Image.asset(
-                    'assets/images/lg.jpg',
-                    width: 75,
-                    height: 80,
-                  ),
-                ),
-              ],
-            ),
+           Container(
+             height: 350,
+             width: 200,
+             child:  Image.asset('assets/images/c.png'),
+           ),
             const SizedBox(
               height: 20,
             ),

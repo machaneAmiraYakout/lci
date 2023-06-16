@@ -66,7 +66,7 @@ class Service extends StatelessWidget {
                           margin: const EdgeInsets.all(10),
                           child: Image.asset(
                             'assets/images/formation.png',
-                            width: MediaQuery.of(context).size.width * 0.3,
+                            width: MediaQuery.of(context).size.width * 0.2,
                             height: MediaQuery.of(context).size.height * 0.15,
                             fit: BoxFit.contain,
                           ),
@@ -74,7 +74,6 @@ class Service extends StatelessWidget {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.02,
                         ),
-
                         MyCustomTextWidget(text: 'Formation', index: 5),
                       ],
                     ),
@@ -105,7 +104,7 @@ class Service extends StatelessWidget {
                         margin: const EdgeInsets.all(10),
                         child: Image.asset(
                           'assets/images/advice.png',
-                          width: MediaQuery.of(context).size.width * 0.3,
+                          width: MediaQuery.of(context).size.width * 0.2,
                           height: MediaQuery.of(context).size.height * 0.15,
                           fit: BoxFit.contain,
                         ),
@@ -152,8 +151,8 @@ class Service extends StatelessWidget {
                     margin: const EdgeInsets.all(10),
                     child: Image.asset(
                       'assets/images/tourisme.png',
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      height: MediaQuery.of(context).size.height * 0.15,
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      height: MediaQuery.of(context).size.height * 0.11,
                       fit: BoxFit.contain,
                     ),
                   ),
