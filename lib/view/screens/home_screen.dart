@@ -30,23 +30,23 @@ class HomeScreen extends StatelessWidget {
         iconTheme: const IconThemeData(
           color: buttonColor, // Set the color of the drawer icon
         ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Image.asset(
-              'assets/images/lgb.png',
-              height: 40,
-              width: 40,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            MyCustomTextWidget(
-              index: 10,
-              text: 'LCI Group',
-            )
-          ],
-        ),
+
+        actions: [
+          Row(
+            children: [
+              IconButton(onPressed: (){}, icon: Icon(Icons.notifications)),
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Image.asset(
+                  'assets/images/lgb.png',
+                  height: 40,
+                  width: 40,
+                ),
+              ),
+            ],
+          )
+        ]
+
       ),
       drawer: Drawer(
         child: ListView(
@@ -71,11 +71,11 @@ class HomeScreen extends StatelessWidget {
                           width: 40,
                         ),
                         const SizedBox(
-                          width: 10,
+                          width: 40,
                         ),
                         MyCustomTextWidget(
                           index: 10,
-                          text: 'LCI Group',
+                          text: 'E-LCI EveryWhere',
                         )
                       ],
                     ),
@@ -97,6 +97,7 @@ class HomeScreen extends StatelessWidget {
               onTap: () =>
                   Get.to(() =>
                   const CustomPage(
+                      image: 'assets/images/boss.jpeg',
                       title: 'Edito',
                       text:
                       'Nous ne pouvons nier l’importance du savoir, toujours considéré comme un pilier incontournable de l’émancipation des sociétés et des personnes.'
@@ -292,7 +293,7 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 40,),
+                const SizedBox(height: 20,),
                 Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: Row(
@@ -320,87 +321,76 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                     )),
-                const SizedBox(height: 20,),
+                const SizedBox(height:5,),
                 GetBuilder<CourseController>(
                   init: CourseController(),
-                  builder: (controller) =>
-                      Obx(() => GridView.count(
-                        crossAxisCount: 2,
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        children: [
-                          for (int i = 0; i < (controller.showAllCourses.value ? controller.courseList.length : 2)
-                              && i < controller.courseList.length; i++)
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20),
+                  builder: (controller) => Obx(
+                        () {
+                      final itemCount = controller.showAllCourses.value ? controller.courseList.length : 2;
+                      return Padding(
+                        padding: EdgeInsets.all(8),
+                        child: ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: itemCount,
+                          itemBuilder: (BuildContext context, int index) {
+                            if (index >= controller.courseList.length) {
+                              return Container(); // Return an empty container for indices beyond the valid range
+                            }
+
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20),
                               child: Container(
-                                margin: const EdgeInsets.symmetric(
-                                    vertical: 10),
+                                margin: const EdgeInsets.symmetric(vertical: 10),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   color: settingscontroller.isDarkMode.value
                                       ? Colors.black54 // Use dark mode color
                                       : Colors.white, // Use light mode color
-
                                   boxShadow: [
                                     BoxShadow(
                                       color: settingscontroller.isDarkMode.value
                                           ? Colors.black26 // Use dark mode color
-                                          :primaryColor.withOpacity(0.5), // Use light mode color
+                                          : primaryColor.withOpacity(0.5), // Use light mode color
                                       spreadRadius: 1,
                                       blurRadius: 8,
                                     ),
                                   ],
                                 ),
-                                // drt inkwell hna bah l grid kaml tapped
-                                child:  InkWell(
-                                    onTap: () async {
-                                      controller.setGridTapped(true, i);
-                                      await controller.fetchSubCourses(controller.courseList[i]);
-                                      Get.to(SubCourses(index1: i));
-                                    },
-                                    child:Column(
-                                      children: [
-                                        Container(
-                                          margin: const EdgeInsets.all(20),
-                                          child: Image.asset(
-                                            'assets/images/${homeController
-                                                .l[i]}.png',
-                                            width: 64,
-                                            height: 64,
-                                            fit: BoxFit.contain,
-                                          ),
-                                        ),
-                                        SizedBox(height:25 ,),
-                                        Padding(
-                                          padding: const EdgeInsets.only(bottom:8, left:5),
-                                          child: Container(
-                                            alignment: Alignment.centerLeft,
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                              children: [
-                                                Expanded(
-                                                  child: Text(
-                                                    controller.courseList[i],
-                                                    style:  TextStyle(
-                                                      fontFamily: 'Poppins',
-                                                      fontSize: 11,
-                                                      fontWeight: FontWeight.w500,
-                                                      color: settingscontroller.isDarkMode.value
-                                                          ? Colors.white // Use dark mode color
-                                                          : primaryColor, // Use light mode color
-                                                      letterSpacing: 2,
-                                                    ),
-                                                    maxLines: 2,
-                                                    overflow: TextOverflow.ellipsis,
+                                child: InkWell(
+                                  onTap: () async {
+                                    controller.setGridTapped(true, index);
+                                    await controller.fetchSubCourses(controller.courseList[index]);
+                                    Get.to(SubCourses(index1: index));
+                                  },
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(12),
+                                        child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  controller.courseList[index],
+                                                  style: TextStyle(
+                                                    fontFamily: 'Poppins',
+                                                    fontSize: 13,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: settingscontroller.isDarkMode.value
+                                                        ? Colors.white // Use dark mode color
+                                                        : primaryColor, // Use light mode color
+                                                    letterSpacing: 2,
                                                   ),
+                                                  maxLines: 2,
+                                                  overflow: TextOverflow.ellipsis,
                                                 ),
-                                                Obx(() =>
-                                                controller.isGridTapped.value &&
-                                                    controller
-                                                        .currentGridTappedIndex
-                                                        .value == i
+                                              ),
+                                              Obx(
+                                                    () => controller.isGridTapped.value &&
+                                                    controller.currentGridTappedIndex.value == index
                                                     ? const SizedBox(
                                                   width: 15,
                                                   height: 15,
@@ -410,18 +400,24 @@ class HomeScreen extends StatelessWidget {
                                                   ),
                                                 )
                                                     : const Icon(
-                                                    Icons.arrow_circle_right,
-                                                    color: buttonColor)),
-                                              ],
-                                            ),
+                                                  Icons.arrow_circle_right,
+                                                  color: buttonColor,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                      ],
-                                    )),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ),
-                        ],
-                      )),
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
                 ),
                 const SizedBox(height: 40,),
               ])),

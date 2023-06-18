@@ -34,6 +34,7 @@ class Inscription extends StatelessWidget {
                     gradient: LinearGradient(
                       colors: [
                         Colors.white,
+                        Colors.white,
                         primaryColor,
                         primaryColor,
                         thirdColor,
@@ -47,8 +48,7 @@ class Inscription extends StatelessWidget {
                   right: 10,
                   top: 25,
                   child: Column(children: [
-                    Image.asset('assets/images/lgb.png',width: 50,height: 50,),
-                    MyCustomTextWidget(index: 13,text:'Lci groupe' ,),
+                    Image.asset('assets/images/lgb.png',width: 65,height: 65,),
                   ]
                     ,),)
               ],),
@@ -77,7 +77,7 @@ class Inscription extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           MyCustomTextWidget(
-                              index: 11, text: 'registration Form'),
+                              index: 11, text: 'Registration Form'),
                           const SizedBox(height: 20),
                           DefaultTextField(
                             type: TextInputType.text,

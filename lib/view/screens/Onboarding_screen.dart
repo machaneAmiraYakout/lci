@@ -21,7 +21,7 @@ class OnboardingScreen extends StatelessWidget {
              CurvedContainer(height: 100,color: Colors.white,),
              CurvedContainer(height: 90,color: primaryColor), // hada blue
              CurvedContainer(height: 80,color: Colors.white,),
-             Image.asset('assets/images/lg.jpg',height: 50,width: 50,),
+             Image.asset('assets/images/lgb.png',height: 50,width: 50,),
            ],),
             Expanded(
               child: PageView.builder(

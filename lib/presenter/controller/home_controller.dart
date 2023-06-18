@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
 class HomeController extends GetxController {
   final TextEditingController searchController = TextEditingController();
   late ScrollController scrollController;
@@ -10,12 +12,14 @@ class HomeController extends GetxController {
   Timer? timer;
   final name = ''.obs;
   final currentIndex = 0.obs;
+  final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
   @override
   void onInit() {
     super.onInit();
     loadUserName();
     scrollController = ScrollController();
     startTimer();
+    configureFirebaseMessaging();
   }
   @override
   void onClose() {
@@ -66,5 +70,38 @@ class HomeController extends GetxController {
   void cancelTimer() {
     timer?.cancel();
     timer = null;
+  }
+  void configureFirebaseMessaging() async{
+    // Request permission to receive notifications
+    firebaseMessaging.requestPermission(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+    // Configure the handlers for incoming messages and when the app is in the foreground
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      // Handle the incoming message
+      print('Received message: ${message.notification?.title}');
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      // Handle the notification when the app is in the foreground
+      print('User tapped on the notification');
+    });
+    // Get the device token
+    String? deviceToken = await firebaseMessaging.getToken();
+    // Print the device token
+    print('Device token: $deviceToken');
+    storeDeviceToken(deviceToken);
+
+  }
+  void storeDeviceToken(String? token) async {
+    if (token != null) {
+      // Get the reference to the Firestore collection where you want to store the tokens
+      CollectionReference tokensRef = FirebaseFirestore.instance.collection('deviceTokens');
+      // Create a new document with a unique identifier
+      DocumentReference documentRef = tokensRef.doc();
+      // Set the token in the document
+      await documentRef.set({'token': token});
+    }
   }
 }

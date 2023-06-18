@@ -153,8 +153,8 @@ class GuestScreen extends StatelessWidget {
                 Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
                     child: Stack(
-                  children: [
-                    Container(
+                      children: [
+                        Container(
                       width: double.infinity,
                       height: 180,
                       decoration: BoxDecoration(
@@ -164,7 +164,7 @@ class GuestScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    Positioned(
+                        Positioned(
                       bottom: 0,
                       left: 0,
                       right: 0,
