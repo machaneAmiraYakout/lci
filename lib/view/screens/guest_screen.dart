@@ -128,15 +128,7 @@ class GuestScreen extends StatelessWidget {
               leading: const Icon(Icons.boy, color: primaryColor),
               title: MyCustomTextWidget(index: 6, text: 'Partners'),
             ),
-            ListTile(
-              onTap: () {
-                Get.lazyPut(
-                    () => LoginController()); // Initialize the controller
-                Get.find<LoginController>().logout();
-              },
-              leading: const Icon(Icons.logout, color: primaryColor),
-              title: MyCustomTextWidget(index: 6, text: 'Logout'),
-            ),
+
           ],
         ),
       ),

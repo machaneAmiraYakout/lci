@@ -62,6 +62,24 @@ class CourseController extends GetxController {
       print('Error fetching subcourses: $e');
     }
   }
+  Future<void> fetchLectures(  String selectCourse,String selectedSubCourse) async {
+    try {
+      subCourseList.clear();
+      final subcollectionsSnapshot = await FirebaseFirestore.instance
+          .collection('courses')
+          .doc(selectCourse)
+          .collection('subcourses')
+          .doc(selectedSubCourse)
+          .collection('lectures')
+          .get();
+      if (subCourseList.isNotEmpty) {
+        selectedSubCourseId.value = subCourseList[0];
+      }
+      update();
+    } catch (e) {
+      print('Error fetching subcourses: $e');
+    }
+  }
   void onCourseSelected(String? courseId) {
     if (courseId != null) {
       selectedCourseId.value = courseId;
