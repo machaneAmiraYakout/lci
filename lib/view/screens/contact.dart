@@ -46,8 +46,13 @@ class Contact extends StatelessWidget {
                           ),
                           MyCustomTextWidget(
                             index: 2,
-                            text: 'Park Mall 8 eme Etage- Sétif - Algérie',
+                            text: 'Park Mall 8 eme Etage',
                           ),
+                          MyCustomTextWidget(
+                            index: 2,
+                            text: 'Sétif - Algérie',
+                          ),
+
                         ],
                       ),
                     ],
@@ -94,7 +99,7 @@ class Contact extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GestureDetector(
+                  InkWell (
                     onTap: () async {
                       String url = 'https://www.facebook.com/GroupeLCI';
                       try {
@@ -106,7 +111,7 @@ class Contact extends StatelessWidget {
                     child: Image.asset('assets/images/fb.png', width: 40, height: 40),
                   ),
                   const SizedBox(width: 30),
-                  GestureDetector(
+                  InkWell (
                     onTap: () async {
                       String url = 'https://www.instagram.com/groupe_lci/';
                       try {
@@ -118,7 +123,7 @@ class Contact extends StatelessWidget {
                     child: Image.asset('assets/images/in.png', width: 40, height: 40),
                   ),
                   const SizedBox(width: 30),
-                  GestureDetector(
+                  InkWell (
                     onTap: () async {
                       String url = 'https://www.linkedin.com/company/groupelci/';
                       try {

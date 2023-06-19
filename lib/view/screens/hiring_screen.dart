@@ -1,3 +1,4 @@
+import 'package:elearning/presenter/controller/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../presenter/controller/hiring_controller.dart';
@@ -5,9 +6,10 @@ import '../widgets/colors.dart';
 import '../widgets/my_custom_button.dart';
 import '../widgets/my_custom_text.dart';
 import '../widgets/my_custom_textfield.dart';
-
 class Hiring extends StatelessWidget {
   final HiringController hiringController = Get.put(HiringController());
+  final SettingsController settingscontroller = Get.put(SettingsController());
+
   Hiring({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -22,19 +24,20 @@ class Hiring extends StatelessWidget {
               Container(
                 width: double.infinity,
                 height: double.infinity,
-                color: Colors.white,
+                color: settingscontroller.isDarkMode.value
+                    ? Colors.black54 // Use dark mode color
+                    : Colors.white, // Use light mode color
               ),
               Stack(children: [
                 Container(
                   width: double.infinity,
                   height: 300,
-                  decoration: const BoxDecoration(
+                  decoration:  BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Colors.white,
-                        primaryColor,
-                        primaryColor,
-                        thirdColor,
+                        settingscontroller.isDarkMode.value ? Colors.black54 : Colors.white,
+                        settingscontroller.isDarkMode.value ? Colors.black : primaryColor,
+                        settingscontroller.isDarkMode.value ? Colors.black : secondColor,
                       ],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
@@ -42,13 +45,23 @@ class Hiring extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  right: 10,
+                  right: 25,
                   top: 25,
-                  child: Column(children: [
-                    Image.asset('assets/images/lgb.png',width: 50,height: 50,),
-                    MyCustomTextWidget(index: 13,text:'Lci groupe' ,),
-                  ]
-                    ,),)
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                          onPressed: (){Get.back();},
+                          icon:  Icon(Icons.arrow_circle_left_outlined,
+                            color: settingscontroller.isDarkMode.value
+                                ? buttonColor // Use dark mode color
+                                : Colors.white, // Use light mode color
+                            size: 30,)),
+                      SizedBox(width:MediaQuery.of(context).size.width * 0.65,),
+                      Image.asset('assets/images/lgb.png',width: 50,height: 50,),
+                    ]
+                    ,),
+                )
               ],),
               Positioned(
                 top: 120,
@@ -57,13 +70,15 @@ class Hiring extends StatelessWidget {
                 child: Container(
                   height: 530,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: settingscontroller.isDarkMode.value
+                        ? Colors.black54 // Use dark mode color
+                        : Colors.white, // Use light mode color
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
+                        spreadRadius: 1,
+                        blurRadius: 1,
                         offset: const Offset(0, 3),
                       ),
                     ],
@@ -115,7 +130,7 @@ class Hiring extends StatelessWidget {
                             controller: hiringController.mobileController,
                           ),
                           const SizedBox(height: 10),
-                          GestureDetector(
+                          InkWell(
                             onTap: () {
                               hiringController.selectFile();
                             },
@@ -123,7 +138,7 @@ class Hiring extends StatelessWidget {
                               children: [
                                 Image.asset('assets/images/pdf.png',width: 40, height: 40),
                                 const SizedBox(width: 10),
-                                MyCustomTextWidget(text: 'Upload your CV(Choose a pdf File)', index: 2),
+                                MyCustomTextWidget(text: 'Upload your CV', index: 2),
                               ],
                             ),
                           ),

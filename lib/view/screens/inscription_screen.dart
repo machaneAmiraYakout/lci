@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../presenter/controller/course_controller.dart';
 import '../../presenter/controller/inscription_controller.dart';
+import '../../presenter/controller/settings_controller.dart';
 import '../widgets/colors.dart';
 import '../widgets/my_custom_button.dart';
 import '../widgets/my_custom_text.dart';
@@ -9,10 +10,11 @@ import '../widgets/my_custom_textfield.dart';
 class Inscription extends StatelessWidget {
   final InscriptionController inscriptionController = Get.put(InscriptionController());
   final CourseController courseController = Get.put(CourseController());
-
-   Inscription({super.key});
+  final SettingsController settingscontroller = Get.put(SettingsController());
+  Inscription({super.key});
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
         onTap: () {
           // hide keyboard when user taps outside of textfield
@@ -24,20 +26,20 @@ class Inscription extends StatelessWidget {
               Container(
                 width: double.infinity,
                 height: double.infinity,
-                color: Colors.white,
+                color: settingscontroller.isDarkMode.value
+                    ? Colors.black54 // Use dark mode color
+                    : Colors.white, // Use light mode color
               ),
               Stack(children: [
                 Container(
                   width: double.infinity,
                   height: 300,
-                  decoration: const BoxDecoration(
+                  decoration:  BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [
-                        Colors.white,
-                        Colors.white,
-                        primaryColor,
-                        primaryColor,
-                        thirdColor,
+                     colors: [
+                       settingscontroller.isDarkMode.value ? Colors.black54 : Colors.white,
+                       settingscontroller.isDarkMode.value ? Colors.black : primaryColor,
+                       settingscontroller.isDarkMode.value ? Colors.black : secondColor,
                       ],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
@@ -45,11 +47,20 @@ class Inscription extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  right: 10,
+                  right: 25,
                   top: 25,
-                  child: Column(children: [
-                    Image.asset('assets/images/lgb.png',width: 65,height: 65,),
-                  ]
+                  child: Row(
+                    children: [
+                      IconButton(
+                          onPressed: (){Get.back();},
+                          icon:  Icon(Icons.arrow_circle_left_outlined,
+                            color: settingscontroller.isDarkMode.value
+                                ? buttonColor // Use dark mode color
+                                : Colors.white, // Use light mode color
+                            size: 30,)),
+                      SizedBox(width:MediaQuery.of(context).size.width * 0.65,),
+                      Image.asset('assets/images/lgb.png',width: 50,height: 50,),
+                    ]
                     ,),)
               ],),
               Positioned(
@@ -59,7 +70,9 @@ class Inscription extends StatelessWidget {
                 child: Container(
                   height: 600,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: settingscontroller.isDarkMode.value
+                        ? Colors.black54 // Use dark mode color
+                        : Colors.white, // Use light mode color
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(

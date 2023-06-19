@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-
 class HomeController extends GetxController {
   final TextEditingController searchController = TextEditingController();
   late ScrollController scrollController;

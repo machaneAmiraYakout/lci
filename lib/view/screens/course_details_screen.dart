@@ -37,10 +37,10 @@ class CourseDetails extends StatelessWidget {
                  Image.asset('assets/images/$img.png',width: 280,height: 260,)),
                  Center(child:
                  MyCustomTextWidget(text:subCourseName,index:1,),),
-                 const SizedBox(height: 10,),
-                 MyCustomTextWidget(text:'s’iements s’iements s’iements s’iements  ' ,index:2),
-                 MyCustomTextWidget(text:'s’iements s’iements s’iements s’iements  ' ,index:2),
-                 MyCustomTextWidget(text:'s’iements s’iements s’iements s’iements  ' ,index:2),
+                 const SizedBox(height: 50,),
+                 // MyCustomTextWidget(text:'s’iements s’iements s’iements s’iements  ' ,index:2),
+                 // MyCustomTextWidget(text:'s’iements s’iements s’iements s’iements  ' ,index:2),
+                 // MyCustomTextWidget(text:'s’iements s’iements s’iements s’iements  ' ,index:2),
                  const SizedBox(
                    height: 40,),
                  Row(

@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 class CustomPage extends StatelessWidget {
   final String title;
   final String text;
-  final String? image;
-  const CustomPage({required this.title, required this.text,  this.image});
+  const CustomPage({super.key, required this.title, required this.text});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,9 +14,8 @@ class CustomPage extends StatelessWidget {
           child:  Container(
               child: Column(
                 children: [
-                  Image.asset(image!),
                   MyCustomTextWidget(index:1 ,text: title),
-                  SizedBox(height: 100,),
+                  const SizedBox(height: 100,),
                   Column(
                     children: text.split("\n\n").map((e) =>  Text(e,style: const TextStyle(
                       fontFamily: 'Poppins',

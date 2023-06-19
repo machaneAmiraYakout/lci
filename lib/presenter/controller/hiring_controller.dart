@@ -8,7 +8,6 @@ import 'package:intl/intl.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import '../../view/widgets/my_custom_snackbar.dart';
-
 class HiringController extends GetxController {
   TextEditingController fullNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -16,15 +15,12 @@ class HiringController extends GetxController {
   TextEditingController addressController = TextEditingController();
   TextEditingController mobileController = TextEditingController();
   late FocusNode birthdayFocusNode;
-
   @override
   void onInit() {
     super.onInit();
     birthdayFocusNode = FocusNode();
   }
-
   var selectedDate = DateTime.now().obs;
-
   Future<void> pickDate(BuildContext context) async {
     try {
       final DateTime? pickedDate = await showDatePicker(
@@ -42,15 +38,12 @@ class HiringController extends GetxController {
       print('Error while picking date: $error');
     }
   }
-
   @override
   void onClose() {
     birthdayFocusNode.dispose();
     super.onClose();
   }
-
   var selectedFile = Rx<File?>(null);
-
   Future<String> copyPdfFile(File file) async {
     try {
       final appDocDir = await getApplicationDocumentsDirectory();
@@ -64,8 +57,6 @@ class HiringController extends GetxController {
       return '';
     }
   }
-
-
   void selectFile() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
@@ -79,7 +70,6 @@ class HiringController extends GetxController {
       }
     }
   }
-
   Future<String> uploadPdfFile(File file) async {
     final storageRef = FirebaseStorage.instance.ref().child('pdf');
     final filePath = file.path;
@@ -100,7 +90,6 @@ class HiringController extends GetxController {
       return '';
     }
   }
-
   Future<void> storeHiringInfo(
       String fullName,
       String email,
@@ -127,7 +116,6 @@ class HiringController extends GetxController {
       // You can show an error message or take any other action to notify the user that they have already subscribed
     }
   }
-
   Future<void> submitForm() async {
     final fullName = fullNameController.text.trim();
     final email = emailController.text.trim();
@@ -135,18 +123,14 @@ class HiringController extends GetxController {
     final address = addressController.text.trim();
     final mobile = mobileController.text.trim();
     final file = selectedFile.value;
-
     if (fullName.isEmpty || email.isEmpty || date == null || file == null) {
       // Show an error message if any required field is missing
       return;
     }
-
     try {
       final copiedFilePath = await copyPdfFile(file);
-
       if (copiedFilePath.isNotEmpty) {
         final pdfUrl = await uploadPdfFile(File(copiedFilePath));
-
         if (pdfUrl.isNotEmpty) {
           await storeHiringInfo(fullName, email, date, address, mobile, pdfUrl);
           // Clear the form fields after successful submission

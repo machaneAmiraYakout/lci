@@ -97,7 +97,6 @@ class HomeScreen extends StatelessWidget {
               onTap: () =>
                   Get.to(() =>
                   const CustomPage(
-                      image: 'assets/images/boss.jpeg',
                       title: 'Edito',
                       text:
                       'Nous ne pouvons nier l’importance du savoir, toujours considéré comme un pilier incontournable de l’émancipation des sociétés et des personnes.'
@@ -263,7 +262,7 @@ class HomeScreen extends StatelessWidget {
                             .width,
                         child: MyContainer(
                           gestuorTap: () {
-                            Get.to(() => const OnlineScreen());
+                            Get.to(() =>  OnlineScreen());
                           },
                           text: 'Online',
                           icon:  Icons.feed,

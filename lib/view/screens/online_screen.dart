@@ -2,24 +2,37 @@ import 'package:elearning/view/screens/hiring_screen.dart';
 import 'package:elearning/view/screens/inscription_screen.dart';
 import 'package:elearning/view/screens/feedback_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
+import 'package:elearning/view/widgets/curve_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../presenter/controller/settings_controller.dart';
 import '../widgets/my_custom_container.dart';
 class OnlineScreen extends StatelessWidget {
-  const OnlineScreen({super.key});
-
+  final SettingsController settingscontroller = Get.put(SettingsController());
+   OnlineScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(icon:const Icon(Icons.arrow_back,color: buttonColor, ),onPressed: (){Get.back();}),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(height: 20,),
+              Stack(
+                children: [
+                  CurvedContainer(height: 130),
+                  Positioned(
+                      top: 20,
+                      child: IconButton(
+                          onPressed: (){
+                            Get.back();
+                          },
+                          icon:  Icon(Icons.arrow_circle_left_outlined,
+                            color: settingscontroller.isDarkMode.value
+                                ? Colors.black54 // Use dark mode color
+                                : Colors.white, // Use light mode color
+                            size: 30,))),
+                ],
+              ),
+              const SizedBox(height: 90,),
               Container(
                 width: MediaQuery.of(context).size.width,
                 child: MyContainer(
@@ -55,7 +68,7 @@ class OnlineScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
+
     );
   }
 }
