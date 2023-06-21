@@ -15,7 +15,6 @@ class CourseController extends GetxController {
   RxBool showAllCourses = false.obs;
   RxBool hasNewCourses = false.obs;
   TextEditingController searchController = TextEditingController();
-
   @override
   void onInit() {
     super.onInit();
@@ -42,7 +41,7 @@ class CourseController extends GetxController {
       print('Error fetching courses: $e');
     }
   }
-  Future<void> fetchSubCourses( String selectCourse) async {
+  Future<void> fetchSubCourses(String selectCourse) async {
     try {
       subCourseList.clear();
       final subcollectionsSnapshot = await FirebaseFirestore.instance
@@ -50,9 +49,12 @@ class CourseController extends GetxController {
           .doc(selectCourse)
           .collection('subcourses')
           .get();
+
       for (final doc in subcollectionsSnapshot.docs) {
         final subCourseName = doc.id;
         subCourseList.add(subCourseName);
+        final lectures = await fetchLectures(selectCourse, subCourseName);
+        print(' Lectures for subcourse Lectures for subcourse Lectures for subcourse $subCourseName: $lectures');
       }
       if (subCourseList.isNotEmpty) {
         selectedSubCourseId.value = subCourseList[0];
@@ -62,22 +64,22 @@ class CourseController extends GetxController {
       print('Error fetching subcourses: $e');
     }
   }
-  Future<void> fetchLectures(  String selectCourse,String selectedSubCourse) async {
+  Future<List<Map<String, dynamic>>> fetchLectures(String course, String subCourse) async{
     try {
-      subCourseList.clear();
-      final subcollectionsSnapshot = await FirebaseFirestore.instance
+      final lecturesSnapshot = await FirebaseFirestore.instance
           .collection('courses')
-          .doc(selectCourse)
+          .doc(course)
           .collection('subcourses')
-          .doc(selectedSubCourse)
+          .doc(subCourse)
           .collection('lectures')
           .get();
-      if (subCourseList.isNotEmpty) {
-        selectedSubCourseId.value = subCourseList[0];
-      }
-      update();
+      final lectures = lecturesSnapshot.docs.map((doc) => doc.data()).toList();
+      print('lectures lectures lectures lectures lectures lectures lectures lectures lectures lectures: $lectures');
+
+      return lectures;
     } catch (e) {
-      print('Error fetching subcourses: $e');
+      print('Error fetching lectures: $e');
+      rethrow;
     }
   }
   void onCourseSelected(String? courseId) {

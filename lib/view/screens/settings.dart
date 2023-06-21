@@ -88,7 +88,7 @@ class Settings extends StatelessWidget {
                                         inactiveThumbColor: primaryColor,
                                       ),
                                     ),
-                                    const SizedBox(width: 5),
+                                    SizedBox(width: MediaQuery.of(context).size.width * 0.01,),
                                     Obx(
                                           () => Text(
                                         settingsController.isDarkMode.value ? 'On' : 'Off',
