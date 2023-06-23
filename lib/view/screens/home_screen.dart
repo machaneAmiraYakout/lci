@@ -336,7 +336,6 @@ class HomeScreen extends StatelessWidget {
                             if (index >= controller.courseList.length) {
                               return Container(); // Return an empty container for indices beyond the valid range
                             }
-
                             return Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 20),
                               child: Container(
@@ -387,8 +386,7 @@ class HomeScreen extends StatelessWidget {
                                                   overflow: TextOverflow.ellipsis,
                                                 ),
                                               ),
-                                              Obx(
-                                                    () => controller.isGridTapped.value &&
+                                              Obx(() => controller.isGridTapped.value &&
                                                     controller.currentGridTappedIndex.value == index
                                                     ? const SizedBox(
                                                   width: 15,
@@ -396,13 +394,10 @@ class HomeScreen extends StatelessWidget {
                                                   child: CircularProgressIndicator(
                                                     color: buttonColor,
                                                     strokeWidth: 2.0,
-                                                  ),
-                                                )
-                                                    : const Icon(
-                                                  Icons.arrow_circle_right,
+                                                  ),)
+                                                  : const Icon(Icons.arrow_circle_right,
                                                   color: buttonColor,
-                                                ),
-                                              ),
+                                                ),),
                                             ],
                                           ),
                                         ),
