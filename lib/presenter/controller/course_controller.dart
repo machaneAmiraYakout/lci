@@ -10,6 +10,7 @@ class CourseController extends GetxController {
   var lectureCourseList = <String>[].obs;
   var timeCourseList = <String>[].obs;
   var descriptionCourseList = <String>[].obs;
+  var codeCourseList = <String>[].obs;
   RxList<String> filteredSubcourses = <String>[].obs;
   var selectedSubCourseId = ''.obs;
   RxBool isGridTapped = false.obs;
@@ -123,6 +124,27 @@ class CourseController extends GetxController {
       }
       update();
       return descriptionCourseList;
+    } catch (e) {
+      print('Error fetching lectures: $e');
+      return ['no Cnnx'];
+    }
+  }
+  Future<List<String>> fetchCode(String selectCourse, String selectedSubCourse) async {
+    codeCourseList.clear();
+    try {
+      final codecollectionsSnapshot = await FirebaseFirestore.instance
+          .collection('courses')
+          .doc(selectCourse)
+          .collection('subcourses')
+          .doc(selectedSubCourse)
+          .collection('code')
+          .get();
+      for (final doc in codecollectionsSnapshot.docs) {
+        final codeCourseName = doc.id;
+        codeCourseList.add(codeCourseName);
+      }
+      update();
+      return codeCourseList;
     } catch (e) {
       print('Error fetching lectures: $e');
       return ['no Cnnx'];

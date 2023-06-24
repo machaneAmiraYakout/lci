@@ -33,7 +33,9 @@ class Settings extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 35.0, horizontal: 20),
             child: Column(
               children: [
-                Obx(() => Container(
+                Obx(
+                        () =>
+                    Container(
                   width: double.infinity,
                   height: 80,
                   decoration: BoxDecoration(

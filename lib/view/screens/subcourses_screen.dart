@@ -66,12 +66,16 @@ class SubCourses extends StatelessWidget {
                             //fetch description
                             final description = await courseController.fetchLectures(courseController.courseList[index1], courseController.subCourseList[index],);
                             final descriptionsString = description.join(', ');
+                            //fetch code
+                            final code = await courseController.fetchCode(courseController.courseList[index1], courseController.subCourseList[index],);
+                            final codeString = code.join(', ');
                             Get.to(CourseDetails(
                               img: homeController.l[index1],
                               subCourseName: courseController.subCourseList[index],
                               lectures: lecturesString,
                               time:timeString,
                               description:descriptionsString,
+                              code:codeString,
                             ));
                           },
                           child: Container(

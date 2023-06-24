@@ -2,6 +2,7 @@ import 'package:elearning/presenter/controller/home_controller.dart';
 import 'package:elearning/view/screens/inscription_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:elearning/view/widgets/my_custom_button.dart';
+import 'package:elearning/view/widgets/my_custom_container.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,8 +18,9 @@ class CourseDetails extends StatelessWidget {
   String lectures;
   String time;
   String description;
+  String code;
   CourseDetails({Key? key, required this.img, required this.subCourseName,
-    required this.lectures,required this.time,required this.description}) : super(key: key);
+    required this.lectures,required this.time,required this.description,required this.code}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -45,6 +47,28 @@ class CourseDetails extends StatelessWidget {
              child: Column(
                crossAxisAlignment: CrossAxisAlignment.center,
                children: [
+                 Container(
+                   width: 90,
+                   height: 70,
+                   decoration: BoxDecoration(
+                     color: settingscontroller.isDarkMode.value
+                         ? primaryColor // Use dark mode color
+                         : Colors.white, // Use light mode color
+                     borderRadius: BorderRadius.circular(20),
+                     border: Border.all( color: settingscontroller.isDarkMode.value
+                         ? Colors.black // Use dark mode color
+                         : buttonColor, // Use light mode color
+                      ),
+                   ),
+                   child: Column(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     children: [
+                       MyCustomTextWidget(text:'Réf',index:2),
+                       const SizedBox(height: 5),
+                       MyCustomTextWidget(text:code ,index:2),
+                     ],
+                   ),
+                 ),
                  Center(child:
                  Image.asset('assets/images/$img.png',width: 280,height: 260,)),
                  Center(child:
