@@ -7,6 +7,9 @@ class CourseController extends GetxController {
   var selectedCourseId = ''.obs;
   var selectedCourseName = ''.obs;
   var subCourseList = <String>[].obs;
+  var lectureCourseList = <String>[].obs;
+  var timeCourseList = <String>[].obs;
+  var descriptionCourseList = <String>[].obs;
   RxList<String> filteredSubcourses = <String>[].obs;
   var selectedSubCourseId = ''.obs;
   RxBool isGridTapped = false.obs;
@@ -14,6 +17,7 @@ class CourseController extends GetxController {
   final isConnected = true.obs;
   RxBool showAllCourses = false.obs;
   RxBool hasNewCourses = false.obs;
+  RxList lectures = [].obs;
   TextEditingController searchController = TextEditingController();
   @override
   void onInit() {
@@ -41,7 +45,7 @@ class CourseController extends GetxController {
       print('Error fetching courses: $e');
     }
   }
-  Future<void> fetchSubCourses(String selectCourse) async {
+  Future<void> fetchSubCourses( String selectCourse) async {
     try {
       subCourseList.clear();
       final subcollectionsSnapshot = await FirebaseFirestore.instance
@@ -49,12 +53,9 @@ class CourseController extends GetxController {
           .doc(selectCourse)
           .collection('subcourses')
           .get();
-
       for (final doc in subcollectionsSnapshot.docs) {
         final subCourseName = doc.id;
         subCourseList.add(subCourseName);
-        final lectures = await fetchLectures(selectCourse, subCourseName);
-        print(' Lectures for subcourse Lectures for subcourse Lectures for subcourse $subCourseName: $lectures');
       }
       if (subCourseList.isNotEmpty) {
         selectedSubCourseId.value = subCourseList[0];
@@ -64,22 +65,67 @@ class CourseController extends GetxController {
       print('Error fetching subcourses: $e');
     }
   }
-  Future<List<Map<String, dynamic>>> fetchLectures(String course, String subCourse) async{
+  Future<List<String>> fetchLectures(String selectCourse, String selectedSubCourse) async {
+    lectureCourseList.clear();
     try {
-      final lecturesSnapshot = await FirebaseFirestore.instance
+      final lecturecollectionsSnapshot = await FirebaseFirestore.instance
           .collection('courses')
-          .doc(course)
+          .doc(selectCourse)
           .collection('subcourses')
-          .doc(subCourse)
+          .doc(selectedSubCourse)
           .collection('lectures')
           .get();
-      final lectures = lecturesSnapshot.docs.map((doc) => doc.data()).toList();
-      print('lectures lectures lectures lectures lectures lectures lectures lectures lectures lectures: $lectures');
-
-      return lectures;
+      for (final doc in lecturecollectionsSnapshot.docs) {
+        final lectureCourseName = doc.id;
+        lectureCourseList.add(lectureCourseName);
+      }
+      update();
+      return lectureCourseList;
     } catch (e) {
       print('Error fetching lectures: $e');
-      rethrow;
+      return [];
+    }
+  }
+  Future<List<String>> fetchTime(String selectCourse, String selectedSubCourse) async {
+    timeCourseList.clear();
+    try {
+      final timecollectionsSnapshot = await FirebaseFirestore.instance
+          .collection('courses')
+          .doc(selectCourse)
+          .collection('subcourses')
+          .doc(selectedSubCourse)
+          .collection('time')
+          .get();
+      for (final doc in timecollectionsSnapshot.docs) {
+        final timeCourseName = doc.id;
+        timeCourseList.add(timeCourseName);
+      }
+      update();
+      return timeCourseList;
+    } catch (e) {
+      print('Error fetching lectures: $e');
+      return ['no Cnnx'];
+    }
+  }
+  Future<List<String>> fetchDescription(String selectCourse, String selectedSubCourse) async {
+    descriptionCourseList.clear();
+    try {
+      final descriptioncollectionsSnapshot = await FirebaseFirestore.instance
+          .collection('courses')
+          .doc(selectCourse)
+          .collection('subcourses')
+          .doc(selectedSubCourse)
+          .collection('description')
+          .get();
+      for (final doc in descriptioncollectionsSnapshot.docs) {
+        final descCourseName = doc.id;
+        descriptionCourseList.add(descCourseName);
+      }
+      update();
+      return descriptionCourseList;
+    } catch (e) {
+      print('Error fetching lectures: $e');
+      return ['no Cnnx'];
     }
   }
   void onCourseSelected(String? courseId) {
@@ -92,6 +138,7 @@ class CourseController extends GetxController {
   void onSubCourseSelected(String? subCourseId) {
     if (subCourseId != null) {
       selectedSubCourseId.value = subCourseId;
+      fetchLectures(selectedCourseId.value, selectedSubCourseId.value);
       print('subcourse selected: $subCourseId');
     }
   }

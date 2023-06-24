@@ -5,22 +5,34 @@ import 'package:elearning/view/widgets/my_custom_button.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import '../../presenter/controller/course_controller.dart';
 import '../../presenter/controller/settings_controller.dart';
 class CourseDetails extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
   final SettingsController settingscontroller = Get.put(SettingsController());
+  final CourseController courseController = Get.put(CourseController());
+
   String img;
   final String subCourseName;
-  CourseDetails({Key? key, required this.img, required this.subCourseName,}) : super(key: key);
+  String lectures;
+  String time;
+  String description;
+  CourseDetails({Key? key, required this.img, required this.subCourseName,
+    required this.lectures,required this.time,required this.description}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async {
+          courseController.resetGridTapped();
+          return true; // Return true to allow the back navigation
+        },
+        child: Scaffold(
       appBar: AppBar(
 
           leading:   IconButton(
           onPressed: () {
             Get.back();
+            courseController.resetGridTapped();
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -38,9 +50,7 @@ class CourseDetails extends StatelessWidget {
                  Center(child:
                  MyCustomTextWidget(text:subCourseName,index:1,),),
                  const SizedBox(height: 50,),
-                 // MyCustomTextWidget(text:'s’iements s’iements s’iements s’iements  ' ,index:2),
-                 // MyCustomTextWidget(text:'s’iements s’iements s’iements s’iements  ' ,index:2),
-                 // MyCustomTextWidget(text:'s’iements s’iements s’iements s’iements  ' ,index:2),
+                  MyCustomTextWidget(text:description ,index:2),
                  const SizedBox(
                    height: 40,),
                  Row(
@@ -71,7 +81,7 @@ class CourseDetails extends StatelessWidget {
                              child: Column(
                                mainAxisAlignment: MainAxisAlignment.center,
                                children: [
-                                 MyCustomTextWidget(text: '8 Hours', index: 1),
+                                 MyCustomTextWidget(text: time, index: 1),
                                  const Divider(height: 30, endIndent: 50, indent: 50, thickness: 5, color: buttonColor),
                                  MyCustomTextWidget(text: 'Theory and', index: 4),
                                  MyCustomTextWidget(text: 'Practices', index: 4),
@@ -108,7 +118,7 @@ class CourseDetails extends StatelessWidget {
                              child: Column(
                                mainAxisAlignment: MainAxisAlignment.center,
                                children: [
-                                 MyCustomTextWidget(text: '17', index: 1),
+                                 MyCustomTextWidget(text: lectures, index: 1),
                                  const Divider(height: 40, endIndent: 50, indent: 50, thickness: 5, color: buttonColor),
                                  const SizedBox(height: 15),
                                  MyCustomTextWidget(text: 'Lectures', index: 4),
@@ -135,6 +145,6 @@ class CourseDetails extends StatelessWidget {
           ),
         )),
       ),
-    );
+    ));
   }
 }

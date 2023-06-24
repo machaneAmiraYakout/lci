@@ -55,10 +55,23 @@ class SubCourses extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: InkWell(
-                          onTap: () {
+                          onTap: ()async {
+                            courseController.setGridTapped(true, index);
+                            //fetch lectures
+                            final lectures = await courseController.fetchLectures(courseController.courseList[index1], courseController.subCourseList[index],);
+                            final lecturesString = lectures.join(', ');
+                            //fetch time
+                            final time = await courseController.fetchTime(courseController.courseList[index1], courseController.subCourseList[index],);
+                            final timeString = time.join(', ');
+                            //fetch description
+                            final description = await courseController.fetchLectures(courseController.courseList[index1], courseController.subCourseList[index],);
+                            final descriptionsString = description.join(', ');
                             Get.to(CourseDetails(
                               img: homeController.l[index1],
                               subCourseName: courseController.subCourseList[index],
+                              lectures: lecturesString,
+                              time:timeString,
+                              description:descriptionsString,
                             ));
                           },
                           child: Container(
@@ -104,11 +117,18 @@ class SubCourses extends StatelessWidget {
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
-                                        const Icon(
-                                          Icons.arrow_circle_right,
+                                        Obx(() => courseController.isGridTapped.value &&
+                                            courseController.currentGridTappedIndex.value == index
+                                            ? const SizedBox(
+                                          width: 15,
+                                          height: 15,
+                                          child: CircularProgressIndicator(
+                                            color: buttonColor,
+                                            strokeWidth: 2.0,
+                                          ),)
+                                            : const Icon(Icons.arrow_circle_right,
                                           color: buttonColor,
-                                          size: 35,
-                                        ),
+                                        ),),
                                       ],
                                     ),
                                   ),
