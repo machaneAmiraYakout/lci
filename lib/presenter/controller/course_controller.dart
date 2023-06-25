@@ -20,6 +20,7 @@ class CourseController extends GetxController {
   RxBool hasNewCourses = false.obs;
   RxList lectures = [].obs;
   TextEditingController searchController = TextEditingController();
+
   @override
   void onInit() {
     super.onInit();

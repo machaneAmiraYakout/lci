@@ -2,7 +2,6 @@ import 'package:elearning/presenter/cache_helper.dart';
 import 'package:elearning/presenter/controller/settings_controller.dart';
 import 'package:elearning/view/screens/BottomBar_screen.dart';
 import 'package:elearning/view/screens/splash_screen.dart';
-import 'package:elearning/view/widgets/colors.dart';
 import 'package:elearning/view/widgets/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

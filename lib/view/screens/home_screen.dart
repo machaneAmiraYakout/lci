@@ -2,6 +2,7 @@ import'package:elearning/presenter/controller/course_controller.dart';
 import 'package:elearning/presenter/controller/login_controller.dart';
 import 'package:elearning/view/screens/contact.dart';
 import 'package:elearning/view/screens/online_screen.dart';
+import 'package:elearning/view/screens/profile_screen.dart';
 import 'package:elearning/view/screens/search_screen.dart';
 import 'package:elearning/view/screens/service_screen.dart';
 import 'package:elearning/view/screens/subcourses_screen.dart';
@@ -80,6 +81,12 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                   )),
+            ),
+            ListTile(
+              onTap: () =>
+                  Get.to(() =>const Profile()),
+              leading: const Icon(Icons.person, color: primaryColor),
+              title: MyCustomTextWidget(index: 6, text: 'Your Profile'),
             ),
             ListTile(
               onTap: () =>

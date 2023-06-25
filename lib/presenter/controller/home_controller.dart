@@ -28,13 +28,14 @@ class HomeController extends GetxController {
   Future<void> loadUserName() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      final docSnapshot = await FirebaseFirestore.instance.collection('userInformation').doc(user.uid).get();
+      final docSnapshot = await FirebaseFirestore.instance
+          .collection('userInformation')
+          .doc(user.uid)
+          .get();
       if (docSnapshot.exists) {
         final data = docSnapshot.data()!;
         name.value = data['name'] ?? '';
         update();
-        print('${name.value}gggggggggggggggggggg');
-        print(data['name']);
       }
     }
   }
@@ -62,8 +63,6 @@ class HomeController extends GetxController {
       // Access the position property of the ScrollController
       ScrollPosition position = scrollController.position;
       // Use the position object as needed
-      print('Scroll position: ${position.pixels}');
-      print('Scroll activity: ${position.activity}');
     });
   }
   void cancelTimer() {
