@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
             ),
             ListTile(
               onTap: () =>
-                  Get.to(() =>const Profile()),
+                  Get.to(() => const Profile()),
               leading: const Icon(Icons.person, color: primaryColor),
               title: MyCustomTextWidget(index: 6, text: 'Your Profile'),
             ),
@@ -182,21 +182,18 @@ class HomeScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              GetBuilder<HomeController>(
-                                init: HomeController(),
-                                builder: (controller) => Text(
-                                  'Welcome, ${controller.name.value}',
-                                  style: const TextStyle(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white,
-                                    letterSpacing: 2,
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
+                            Obx(() => Text(
+                           'Welcome, ${homeController.name.value}',
+                            style: const TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                            letterSpacing: 2,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                             )),
                               const SizedBox(width: 10),
                               Icon(
                                 Icons.waving_hand,
