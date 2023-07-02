@@ -118,7 +118,7 @@ class Profile extends StatelessWidget {
                           Container(
                             padding: const EdgeInsets.all(16.0),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
+                              borderRadius: BorderRadius.circular(20.0),
                             ),
                             child: Obx(() {
                               if (profileController.isEditing.value) {
@@ -141,6 +141,7 @@ class Profile extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
+                          MyCustomTextWidget(index: 1, text: 'Password '),
                           Container(
                             padding: const EdgeInsets.all(16.0),
                             decoration: BoxDecoration(
