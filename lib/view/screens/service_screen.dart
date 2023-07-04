@@ -9,7 +9,6 @@ class Service extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final SettingsController settingscontroller = Get.put(SettingsController());
-
     return Scaffold(
       body: Column(
         children: [

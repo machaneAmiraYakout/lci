@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../view/widgets/colors.dart';
 class SettingsController extends GetxController {
   RxBool isDarkMode = false.obs;

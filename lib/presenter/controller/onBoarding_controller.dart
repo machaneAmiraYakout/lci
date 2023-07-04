@@ -1,7 +1,6 @@
+import 'package:elearning/view/screens/darkmode_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../view/screens/started_screen.dart';
 import '../../view/widgets/colors.dart';
 import '../../view/widgets/my_custom_text.dart';
 class OnboardingController extends GetxController {
@@ -34,7 +33,7 @@ class OnboardingController extends GetxController {
         curve: Curves.ease,
       );
     } else {
-      Get.to(StartScreen());
+      Get.to(DarkModeScreen());
     }
   }
   List<Widget> buildPageIndicator() {
