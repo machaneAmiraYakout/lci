@@ -29,7 +29,9 @@ class OnlineScreen extends StatelessWidget {
                             color: settingscontroller.isDarkMode.value
                                 ? Colors.black54 // Use dark mode color
                                 : Colors.white, // Use light mode color
-                            size: 30,))),
+                            size: 30,)
+                      )
+                  ),
                 ],
               ),
               const SizedBox(height: 90,),

@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
             ListTile(
               onTap: () =>
                   Get.to(() =>
-                  const CustomPage(
+                   CustomPage(
                       title: 'Presentation',
                       text:
                       'LCI Formation & Conseils est un institut privé créé en 2014, certifié ISO 9001 : 2015 par AFAQ AFNOR International sous le N° 94219, spécialisé en formation inter et intra entreprises dans les différents domaines et en conseils d’entreprises. Il assure aussi les services en tant que centre d’examen International pour : TFI, TOEIC, TOEFL Junior, CERT et Bright.'
@@ -103,7 +103,8 @@ class HomeScreen extends StatelessWidget {
             ListTile(
               onTap: () =>
                   Get.to(() =>
-                  const CustomPage(
+                   CustomPage(
+                     imagePath: 'assets/images/boss.png',
                       title: 'Edito',
                       text:
                       'Nous ne pouvons nier l’importance du savoir, toujours considéré comme un pilier incontournable de l’émancipation des sociétés et des personnes.'
@@ -118,7 +119,7 @@ class HomeScreen extends StatelessWidget {
             ListTile(
               onTap: () =>
                   Get.to(() =>
-                  const CustomPage(
+                   CustomPage(
                       title: 'Valeur',
                       text: 'Professionnalisme :'
                           '\n\n  Notre équipe est toujours mobilisée, s’impliquera pleinement afin de répondre au mieux à vos attentes. Notre professionnalisme est basé sur la confiance de notre clientèle; la capacité à tenir nos engagements est notre priorité principale.'
@@ -132,7 +133,7 @@ class HomeScreen extends StatelessWidget {
             ListTile(
               onTap: () =>
                   Get.to(() =>
-                  const CustomPage(
+                   CustomPage(
                       title: 'Objectif',
                       text:
                       'Notre objectif principal à travers notre mission, est de favoriser et promouvoir l’accès à la formation professionnelle pour TOUS, quelque soit la taille, et l’activité de votre entreprise, nous saurons vous apporter des solutions et des conseils pour la réussite de vos projets par nos experts reconnus dans leur domaine')),
@@ -142,7 +143,8 @@ class HomeScreen extends StatelessWidget {
             ListTile(
               onTap: () =>
                   Get.to(() =>
-                  const CustomPage(
+                   CustomPage(
+                      imagePath: 'assets/images/partners.png',
                       title: 'Partners',
                       text:
                       'Depuis sa création, LCI Formation & Conseils ne cesse de tisser et de développer des relations de formation, de coopération avec des partenaires internationaux afin d’assurer l’évolution de l’institut et la réalisation de ces projets.')),

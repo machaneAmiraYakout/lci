@@ -78,42 +78,44 @@ class Service extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.25,
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-
-                    color: settingscontroller.isDarkMode.value
-                        ? Colors.black54 // Use dark mode color
-                        : Colors.white, // Use light mode color
-                    boxShadow: [
-                      BoxShadow(
-                        color: settingscontroller.isDarkMode.value
-                            ? Colors.black54 // Use dark mode color
-                            : primaryColor.withOpacity(0.5), // Use light mode color
-                        spreadRadius: 1,
-                        blurRadius: 8,
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.all(10),
-                        child: Image.asset(
-                          'assets/images/advice.png',
-                          width: MediaQuery.of(context).size.width * 0.2,
-                          height: MediaQuery.of(context).size.height * 0.15,
-                          fit: BoxFit.contain,
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.25,
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: settingscontroller.isDarkMode.value
+                          ? Colors.black54 // Use dark mode color
+                          : Colors.white, // Use light mode color
+                      boxShadow: [
+                        BoxShadow(
+                          color: settingscontroller.isDarkMode.value
+                              ? Colors.black54 // Use dark mode color
+                              : primaryColor.withOpacity(0.5), // Use light mode color
+                          spreadRadius: 1,
+                          blurRadius: 8,
                         ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.all(10),
+                          child: Image.asset(
+                            'assets/images/advice.png',
+                            width: MediaQuery.of(context).size.width * 0.2,
+                            height: MediaQuery.of(context).size.height * 0.15,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
 
-                      MyCustomTextWidget(text: 'Conseils', index: 5),
-                    ],
+                        MyCustomTextWidget(text: 'Conseils', index: 5),
+                      ],
+                    ),
                   ),
                 ),
               ],

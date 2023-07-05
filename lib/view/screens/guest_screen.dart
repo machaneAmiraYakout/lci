@@ -78,7 +78,7 @@ class GuestScreen extends StatelessWidget {
                   )),
             ),
             ListTile(
-              onTap: () => Get.to(() => const CustomPage(
+              onTap: () => Get.to(() =>  CustomPage(
                   title: 'Presentation',
                   text:
                       'LCI Formation & Conseils est un institut privé créé en 2014, certifié ISO 9001 : 2015 par AFAQ AFNOR International sous le N° 94219, spécialisé en formation inter et intra entreprises dans les différents domaines et en conseils d’entreprises. Il assure aussi les services en tant que centre d’examen International pour : TFI, TOEIC, TOEFL Junior, CERT et Bright.'
@@ -88,7 +88,7 @@ class GuestScreen extends StatelessWidget {
               title: MyCustomTextWidget(index: 6, text: 'Presentation'),
             ),
             ListTile(
-              onTap: () => Get.to(() => const CustomPage(
+              onTap: () => Get.to(() =>  CustomPage(
                   title: 'Edito',
                   text:
                       'Nous ne pouvons nier l’importance du savoir, toujours considéré comme un pilier incontournable de l’émancipation des sociétés et des personnes.'
@@ -101,7 +101,7 @@ class GuestScreen extends StatelessWidget {
               title: MyCustomTextWidget(index: 6, text: 'Edito'),
             ),
             ListTile(
-              onTap: () => Get.to(() => const CustomPage(
+              onTap: () => Get.to(() =>  CustomPage(
                   title: 'Valeur',
                   text: 'Professionnalisme :'
                       '\n\n  Notre équipe est toujours mobilisée, s’impliquera pleinement afin de répondre au mieux à vos attentes. Notre professionnalisme est basé sur la confiance de notre clientèle; la capacité à tenir nos engagements est notre priorité principale.'
@@ -113,7 +113,7 @@ class GuestScreen extends StatelessWidget {
               title: MyCustomTextWidget(index: 6, text: 'Valeurs'),
             ),
             ListTile(
-              onTap: () => Get.to(() => const CustomPage(
+              onTap: () => Get.to(() =>  CustomPage(
                   title: 'Objectif',
                   text:
                       'Notre objectif principal à travers notre mission, est de favoriser et promouvoir l’accès à la formation professionnelle pour TOUS, quelque soit la taille, et l’activité de votre entreprise, nous saurons vous apporter des solutions et des conseils pour la réussite de vos projets par nos experts reconnus dans leur domaine')),
@@ -121,7 +121,7 @@ class GuestScreen extends StatelessWidget {
               title: MyCustomTextWidget(index: 6, text: 'Objectifs'),
             ),
             ListTile(
-              onTap: () => Get.to(() => const CustomPage(
+              onTap: () => Get.to(() =>  CustomPage(
                   title: 'Partners',
                   text:
                       'Depuis sa création, LCI Formation & Conseils ne cesse de tisser et de développer des relations de formation, de coopération avec des partenaires internationaux afin d’assurer l’évolution de l’institut et la réalisation de ces projets.')),
