@@ -1,6 +1,5 @@
 import 'package:elearning/presenter/controller/course_controller.dart';
 import 'package:elearning/view/screens/contact.dart';
-import 'package:elearning/view/screens/darkmode_screen.dart';
 import 'package:elearning/view/screens/online_screen.dart';
 import 'package:elearning/view/screens/service_screen.dart';
 import 'package:elearning/view/screens/signup_screen.dart';
@@ -89,6 +88,7 @@ class GuestScreen extends StatelessWidget {
             ),
             ListTile(
               onTap: () => Get.to(() =>  CustomPage(
+                  imagePath: 'assets/images/boss.png',
                   title: 'Edito',
                   text:
                       'Nous ne pouvons nier l’importance du savoir, toujours considéré comme un pilier incontournable de l’émancipation des sociétés et des personnes.'
@@ -122,13 +122,13 @@ class GuestScreen extends StatelessWidget {
             ),
             ListTile(
               onTap: () => Get.to(() =>  CustomPage(
+                  imagePath: 'assets/images/partners.png',
                   title: 'Partners',
                   text:
                       'Depuis sa création, LCI Formation & Conseils ne cesse de tisser et de développer des relations de formation, de coopération avec des partenaires internationaux afin d’assurer l’évolution de l’institut et la réalisation de ces projets.')),
               leading: const Icon(Icons.boy, color: primaryColor),
               title: MyCustomTextWidget(index: 6, text: 'Partners'),
             ),
-
           ],
         ),
       ),

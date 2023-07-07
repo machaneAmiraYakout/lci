@@ -12,6 +12,8 @@ class HomeController extends GetxController {
   final name = ''.obs;
   final currentIndex = 0.obs;
   final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+  FirebaseAuth auth = FirebaseAuth.instance;
+  RxBool isAuthenticated = false.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,6 +21,7 @@ class HomeController extends GetxController {
     scrollController = ScrollController();
     startTimer();
     configureFirebaseMessaging();
+    checkAuthStatus();
   }
   @override
   void onClose() {
@@ -100,6 +103,13 @@ class HomeController extends GetxController {
       DocumentReference documentRef = tokensRef.doc();
       // Set the token in the document
       await documentRef.set({'token': token});
+    }
+  }
+  void checkAuthStatus() {
+    if (auth.currentUser != null) {
+      isAuthenticated.value = true;
+    } else {
+      isAuthenticated.value = false;
     }
   }
 }

@@ -19,7 +19,7 @@ class MyContainer extends StatelessWidget {
   MyContainer({
     required this.text,
     this.borderRadius = 20.0,
-    this.borderColor = Colors.grey,
+    this.borderColor = primaryColor,
     this.borderWidth = 1.0,
     required this.index,
     this.containerColor = Colors.white,

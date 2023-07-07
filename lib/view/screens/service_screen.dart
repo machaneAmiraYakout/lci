@@ -1,3 +1,4 @@
+import 'package:elearning/view/screens/quiz_screen.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -79,7 +80,12 @@ class Service extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(QuizQuestionWidget(choices: ['amita','gatah','agjaj'],
+                        onChoiceSelected:(value) {},
+                        question:'what is your nane' ,
+                      selectedChoiceIndex: 1, onNextPressed: () {  },));
+                  },
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.25,
                     width: MediaQuery.of(context).size.width * 0.4,

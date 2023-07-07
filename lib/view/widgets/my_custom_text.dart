@@ -184,6 +184,16 @@ class MyCustomTextWidget extends StatelessWidget {
           color: Colors.white,
         );
         break;
+      case 16://Subtitle
+        textStyle = TextStyle(
+          fontFamily: 'Poppins',
+          fontSize:getResponsiveFontSize(context, 15),
+          fontWeight: FontWeight.w400,
+          color: settingscontroller.isDarkMode.value
+              ? subTitleTextColor// Use dark mode color
+              : primaryColorwithopacity , // Use light mode color
+        );
+        break;
 
       default:
         textStyle = TextStyle(
