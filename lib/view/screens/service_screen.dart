@@ -1,4 +1,5 @@
 import 'package:elearning/view/screens/quiz_screen.dart';
+import 'package:elearning/view/screens/verification_screen.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -62,7 +63,9 @@ class Service extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        Container(
+                       GestureDetector(
+                         onTap: (){},
+                           child: Container(
                           margin: const EdgeInsets.all(10),
                           child: Image.asset(
                             'assets/images/formation.png',
@@ -70,7 +73,7 @@ class Service extends StatelessWidget {
                             height: MediaQuery.of(context).size.height * 0.15,
                             fit: BoxFit.contain,
                           ),
-                        ),
+                        )),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.02,
                         ),

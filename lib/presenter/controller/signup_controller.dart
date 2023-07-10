@@ -11,6 +11,7 @@ class SignupController extends GetxController {
   final mailController = TextEditingController();
   final passwordController = TextEditingController();
   final FirebaseAuth auth = FirebaseAuth.instance;
+
   final formKeys = GlobalKey<FormState>();
   late bool obscurePassword = true;
   late final bool isSuccess;
@@ -30,7 +31,6 @@ class SignupController extends GetxController {
       update();
     });
   }
-
   Future<void> signup() async {
     String name = nameController.text;
     String email = mailController.text;
@@ -54,4 +54,28 @@ class SignupController extends GetxController {
       CustomSnackbar('Error', e.toString());
     }
   }
+  Future<bool> checkEmailVerification() async {
+    User? user = auth.currentUser;
+    await user?.reload();
+    user = auth.currentUser;
+    if (user != null) {
+      return user.emailVerified;
+    }
+    return false;
+  }
+  Future<void> resendEmailVerification() async {
+    User? user = auth.currentUser;
+
+    if (user != null) {
+      try {
+        await user.sendEmailVerification();
+        print('Verification email sent successfully');
+        CustomSnackbar('Success', 'Verification email sent successfully', isSuccess: true);
+      } catch (e) {
+        print('Error sending verification email: $e');
+        CustomSnackbar('Error', e.toString());
+      }
+    }
+  }
+
 }

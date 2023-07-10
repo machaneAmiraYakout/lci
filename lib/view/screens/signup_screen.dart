@@ -1,4 +1,5 @@
 import 'package:elearning/view/screens/login_screen.dart';
+import 'package:elearning/view/screens/verification_screen.dart';
 import 'package:elearning/view/widgets/colors.dart';
 import 'package:elearning/view/widgets/my_custom_button.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
@@ -143,9 +144,7 @@ class SignupScreen extends StatelessWidget {
                 // ),
                 CustomButton(
                   onPressed: () {
-                    if (signupController.formKeys.currentState!.validate()) {
-                      signupController.signup();
-                    }
+                    Get.to(ConfirmationScreen());
                   },
                   text: 'SIGNUP',
                   primary: buttonColor,
