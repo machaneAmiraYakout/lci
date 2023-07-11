@@ -11,7 +11,6 @@ class SignupController extends GetxController {
   final mailController = TextEditingController();
   final passwordController = TextEditingController();
   final FirebaseAuth auth = FirebaseAuth.instance;
-
   final formKeys = GlobalKey<FormState>();
   late bool obscurePassword = true;
   late final bool isSuccess;
@@ -37,45 +36,32 @@ class SignupController extends GetxController {
     String password = passwordController.text;
     try {
       // Create a new user account in Firebase
-      final UserCredential userCredential =
-      await auth.createUserWithEmailAndPassword(email: email, password: password,);
+      final UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: email, password: password);
+
+      // Send verification email
+      await userCredential.user!.sendEmailVerification();
+
       // Store the user's name in Cloud Firestore
       await FirebaseFirestore.instance.collection('userInformation').doc(userCredential.user!.uid).set({
         'name': name,
         'role': role,
       });
+
       // Update the name field
       final HomeController homeController = Get.put(HomeController());
       await homeController.loadUserName();
       await CacheHelper.saveData(key: 'token', value: userCredential.user!.uid);
-      CustomSnackbar('Success', 'Registration successful', isSuccess: true);
-      Get.to(() => BottomBar());
+
+      CustomSnackbar('Success', 'Registration successful. Please check your email for verification.', isSuccess: true);
+
+      // Check if the email is verified
+      if (userCredential.user!.emailVerified) {
+        Get.to(() => BottomBar());
+      } else {
+        Get.snackbar('Email Not Verified', 'Please verify your email before proceeding.');
+      }
     } catch (e) {
       CustomSnackbar('Error', e.toString());
     }
   }
-  Future<bool> checkEmailVerification() async {
-    User? user = auth.currentUser;
-    await user?.reload();
-    user = auth.currentUser;
-    if (user != null) {
-      return user.emailVerified;
-    }
-    return false;
-  }
-  Future<void> resendEmailVerification() async {
-    User? user = auth.currentUser;
-
-    if (user != null) {
-      try {
-        await user.sendEmailVerification();
-        print('Verification email sent successfully');
-        CustomSnackbar('Success', 'Verification email sent successfully', isSuccess: true);
-      } catch (e) {
-        print('Error sending verification email: $e');
-        CustomSnackbar('Error', e.toString());
-      }
-    }
-  }
-
 }

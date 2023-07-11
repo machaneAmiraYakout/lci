@@ -18,26 +18,10 @@ class ConfirmationScreen extends StatelessWidget {
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                print('Resending email verification...');
-                signupController.resendEmailVerification();
-              },
-              child: const Text('Resend Email'),
-            ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
-                bool isVerified = await signupController.checkEmailVerification();
-                if (isVerified) {
-                  // Handle verified status
-                  print('Email is verified');
-                  // Continue with sign-up process or navigate to the next screen
-                } else {
-                  print('Email is not verified');
-                  // Handle not verified status
-                  // For example: Get.snackbar('Email Not Verified', 'Please verify your email');
-                }
+               signupController.signup();
               },
               child: const Text('Check Verification Status'),
             ),

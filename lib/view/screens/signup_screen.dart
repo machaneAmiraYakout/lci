@@ -144,7 +144,9 @@ class SignupScreen extends StatelessWidget {
                 // ),
                 CustomButton(
                   onPressed: () {
-                    Get.to(ConfirmationScreen());
+                    if (signupController.formKeys.currentState!.validate()) {
+                      Get.to(ConfirmationScreen());
+                    }
                   },
                   text: 'SIGNUP',
                   primary: buttonColor,
