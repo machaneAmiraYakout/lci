@@ -71,13 +71,37 @@ class SignupScreen extends StatelessWidget {
                   ),),
                 ],),
                 DefaultTextField(
-                  hintText: 'Name',
+                  hintText: 'First Name',
                   prefixIcon: const Icon(
                     Icons.person,
                     color: primaryColor,
                   ),
                   controller: signupController.nameController,
                   type: TextInputType.text,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                DefaultTextField(
+                  hintText: 'Last Name',
+                  prefixIcon: const Icon(
+                    Icons.perm_identity_sharp,
+                    color: primaryColor,
+                  ),
+                  controller: signupController.lastnameController,
+                  type: TextInputType.text,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                DefaultTextField(
+                  hintText: 'Phone Number',
+                  prefixIcon: const Icon(
+                    Icons.phone,
+                    color: primaryColor,
+                  ),
+                  controller: signupController.phoneController,
+                  type: TextInputType.phone,
                 ),
                 const SizedBox(
                   height: 10,
@@ -144,9 +168,7 @@ class SignupScreen extends StatelessWidget {
                 // ),
                 CustomButton(
                   onPressed: () {
-                    if (signupController.formKeys.currentState!.validate()) {
-                      Get.to(ConfirmationScreen());
-                    }
+                    Get.to(ConfirmationScreen());
                   },
                   text: 'SIGNUP',
                   primary: buttonColor,

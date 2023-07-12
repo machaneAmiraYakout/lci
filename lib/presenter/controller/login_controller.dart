@@ -15,7 +15,6 @@ class LoginController extends GetxController {
   final RxString email = ''.obs;
   final RxString password = ''.obs;
   late bool obscurePassword = true;
-  late PageController _pageController;
   void togglePasswordVisibility() {
     obscurePassword = !obscurePassword;
     update(); // Update the state of the widget
@@ -27,17 +26,14 @@ class LoginController extends GetxController {
       try {
         // Sign in the user
         final UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
-
         // Check if the email is verified
         if (userCredential.user!.emailVerified) {
           // Save login info
           await CacheHelper.saveData(key: 'token', value: userCredential.user!.uid);
-
           // Update the HomeController instance to load the user name
           final HomeController homeController = Get.put(HomeController());
           await homeController.loadUserName();
           homeController.startTimer();
-
           // Clear the input fields and show a success message
           mailController.clear();
           passwordController.clear();

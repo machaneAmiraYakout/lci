@@ -1,5 +1,6 @@
 import'package:elearning/presenter/controller/course_controller.dart';
 import 'package:elearning/presenter/controller/login_controller.dart';
+import 'package:elearning/view/screens/catalogue_screen.dart';
 import 'package:elearning/view/screens/contact.dart';
 import 'package:elearning/view/screens/online_screen.dart';
 import 'package:elearning/view/screens/profile_screen.dart';
@@ -31,7 +32,6 @@ class HomeScreen extends StatelessWidget {
         iconTheme: const IconThemeData(
           color: buttonColor, // Set the color of the drawer icon
         ),
-
         actions: [
           Row(
             children: [
@@ -47,7 +47,6 @@ class HomeScreen extends StatelessWidget {
             ],
           )
         ]
-
       ),
       drawer: Drawer(
         child: ListView(
@@ -150,6 +149,14 @@ class HomeScreen extends StatelessWidget {
                       'Depuis sa création, LCI Formation & Conseils ne cesse de tisser et de développer des relations de formation, de coopération avec des partenaires internationaux afin d’assurer l’évolution de l’institut et la réalisation de ces projets.')),
               leading: const Icon(Icons.boy, color: primaryColor),
               title: MyCustomTextWidget(index: 6, text: 'Partners'),
+            ),
+            ListTile(
+              onTap: ()async{
+                 await homeController.fetchVideo();
+                 // Use the localPath to display or play the video in your Flutter app
+                Get.to(() =>  Catalogue());},
+              leading: const Icon(Icons.book_online, color: primaryColor),
+              title: MyCustomTextWidget(index: 6, text: 'catalog '),
             ),
             ListTile(
               onTap: () {

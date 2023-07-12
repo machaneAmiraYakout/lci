@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -12,6 +13,7 @@ class HomeController extends GetxController {
   final name = ''.obs;
   final currentIndex = 0.obs;
   final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+  final FirebaseStorage storage = FirebaseStorage.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
   RxBool isAuthenticated = false.obs;
   @override
@@ -112,4 +114,13 @@ class HomeController extends GetxController {
       isAuthenticated.value = false;
     }
   }
+  Future<String> fetchVideo() async {
+    // Create a reference to the video file in Firebase Storage
+    Reference ref = storage.ref().child('catalogue/catalogue.mp4');
+    // Get the download URL for the video
+    String downloadURL = await ref.getDownloadURL();
+    // Return the download URL of the video
+    return downloadURL;
+  }
+
 }

@@ -21,7 +21,7 @@ class ConfirmationScreen extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
-               signupController.signup();
+                signupController.signup();
               },
               child: const Text('Check Verification Status'),
             ),

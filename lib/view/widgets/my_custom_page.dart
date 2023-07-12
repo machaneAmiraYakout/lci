@@ -2,23 +2,18 @@ import 'package:elearning/view/widgets/colors.dart';
 import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../presenter/controller/settings_controller.dart';
-
 class CustomPage extends StatelessWidget {
-  final SettingsController settingscontroller = Get.put(SettingsController());
-
+  final SettingsController settingsController = Get.put(SettingsController());
   final String title;
   final String text;
   final String? imagePath; // Optional image path
-
    CustomPage({
     Key? key,
     required this.title,
     required this.text,
     this.imagePath,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,12 +24,12 @@ class CustomPage extends StatelessWidget {
             child: Column(
              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-               IconButton(
+                IconButton(
                       onPressed: (){
                         Get.back();
                       },
                       icon:  Icon(Icons.arrow_circle_left_outlined,
-                        color: settingscontroller.isDarkMode.value
+                        color: settingsController.isDarkMode.value
                             ? buttonColor // Use dark mode color
                             : primaryColor , // Use light mode color
                         size: 30,)

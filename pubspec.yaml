@@ -54,6 +54,8 @@ dependencies:
   path_provider: ^2.0.5
   firebase_messaging: ^14.6.3
   flutter_localization: ^0.1.12
+  video_player: ^2.2.5
+
 
 
 dev_dependencies:
