@@ -114,13 +114,5 @@ class HomeController extends GetxController {
       isAuthenticated.value = false;
     }
   }
-  Future<String> fetchVideo() async {
-    // Create a reference to the video file in Firebase Storage
-    Reference ref = storage.ref().child('catalogue/catalogue.mp4');
-    // Get the download URL for the video
-    String downloadURL = await ref.getDownloadURL();
-    // Return the download URL of the video
-    return downloadURL;
-  }
 
 }

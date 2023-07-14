@@ -55,6 +55,8 @@ dependencies:
   firebase_messaging: ^14.6.3
   flutter_localization: ^0.1.12
   video_player: ^2.2.5
+  google_sign_in: ^5.2.1
+
 
 
 

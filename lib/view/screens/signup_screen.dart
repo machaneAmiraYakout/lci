@@ -6,10 +6,13 @@ import 'package:elearning/view/widgets/my_custom_text.dart';
 import 'package:elearning/view/widgets/my_custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../presenter/controller/auth_google_controller.dart';
 import '../../presenter/controller/signup_controller.dart';
 class SignupScreen extends StatelessWidget {
   final SignupController signupController = Get.put(SignupController());
-   SignupScreen({super.key});
+  final AuthenticationGoogleController authenticationgoogleController = Get.put(AuthenticationGoogleController());
+
+  SignupScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -139,33 +142,6 @@ class SignupScreen extends StatelessWidget {
                 const SizedBox(
                   height: 40,
                 ),
-                // DropdownButtonFormField<String>(
-                //   value: signupController.role,
-                //   items: const [
-                //     DropdownMenuItem(
-                //       value: 'boss',
-                //       child: Text('boss'),
-                //     ),
-                //     DropdownMenuItem(
-                //       value: 'user',
-                //       child: Text('user'),
-                //     ),
-                //     DropdownMenuItem(
-                //       value: 'controller',
-                //       child: Text('controller'),
-                //     ),
-                //   ],
-                //   onChanged: (value) {
-                //     signupController.role = value!;
-                //   },
-                //   decoration: const InputDecoration(
-                //     labelText: 'Role',
-                //     border: OutlineInputBorder(
-                //       borderRadius: BorderRadius.all(Radius.circular(20)),
-                //     ),
-                //     prefixIcon: Icon(Icons.people_outlined,color: primaryColor,),
-                //   ),
-                // ),
                 CustomButton(
                   onPressed: () {
                     Get.to(ConfirmationScreen());
@@ -174,6 +150,44 @@ class SignupScreen extends StatelessWidget {
                   primary: buttonColor,
                   onPrimary: Colors.white,
                   sideColor: buttonColor,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: const [
+                    Expanded(
+                      child: Divider(
+                        color: primaryColor,
+                        thickness: 1.0,
+                        indent: 1,
+                        endIndent: 2,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 1),
+                      child: Text(
+                        'Or',
+                      ),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        color: primaryColor,
+                        thickness: 1.0,
+                        indent: 1,
+                        endIndent: 3,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  onTap: (){
+                    authenticationgoogleController.signUpWithGoogle();
+                  },
+                  child:Center(child: Image.asset('assets/images/google.png',width: 20,height: 20,),),
                 ),
                 const SizedBox(
                   height: 20,
@@ -198,6 +212,7 @@ class SignupScreen extends StatelessWidget {
                         ],
                       )),
                 ),
+
               ],
             ),
           ),

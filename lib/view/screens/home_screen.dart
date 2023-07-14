@@ -152,8 +152,6 @@ class HomeScreen extends StatelessWidget {
             ),
             ListTile(
               onTap: ()async{
-                 await homeController.fetchVideo();
-                 // Use the localPath to display or play the video in your Flutter app
                 Get.to(() =>  Catalogue());},
               leading: const Icon(Icons.book_online, color: primaryColor),
               title: MyCustomTextWidget(index: 6, text: 'catalog '),
