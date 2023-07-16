@@ -56,9 +56,7 @@ class SignupController extends GetxController {
       final HomeController homeController = Get.put(HomeController());
       await homeController.loadUserName();
       await CacheHelper.saveData(key: 'token', value: userCredential.user!.uid);
-      CustomSnackbar('Success',
-          'Registration successful. Please check your email for verification.',
-          isSuccess: true);
+      CustomSnackbar('Success', 'Registration successful. Please check your email for verification.',isSuccess: true);
       // Check if the email is verified
       if (userCredential.user!.emailVerified) {
         Get.to(() => BottomBar());

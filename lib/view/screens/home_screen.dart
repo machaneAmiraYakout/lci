@@ -19,14 +19,14 @@ import '../widgets/my_custom_container.dart';
 class HomeScreen extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
   final CourseController courseController = Get.put(CourseController());
-  final SettingsController settingscontroller = Get.put(SettingsController());
+  final SettingsController settingsController = Get.put(SettingsController());
   HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 5.0,
-        shadowColor:  settingscontroller.isDarkMode.value
+        shadowColor:  settingsController.isDarkMode.value
             ? Colors.black26// Use dark mode color
             : primaryColor,
         iconTheme: const IconThemeData(
@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           Row(
             children: [
-              IconButton(onPressed: (){}, icon: Icon(Icons.notifications)),
+              IconButton(onPressed: (){}, icon: const Icon(Icons.notifications)),
               Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: Image.asset(
@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                   height: 70,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50.0),
-                    color:  settingscontroller.isDarkMode.value
+                    color:  settingsController.isDarkMode.value
                         ? Colors.black26// Use dark mode color
                         : Colors.white,
                   ),
@@ -178,7 +178,7 @@ class HomeScreen extends StatelessWidget {
                       width: double.infinity,
                       height: 180,
                       decoration: BoxDecoration(
-                        color: settingscontroller.isDarkMode.value
+                        color: settingsController.isDarkMode.value
                             ? Colors.black54 // Use dark mode color
                             : primaryColor, // Use light mode color
                         borderRadius: BorderRadius.circular(20),
@@ -204,7 +204,7 @@ class HomeScreen extends StatelessWidget {
                               const SizedBox(width: 10),
                               Icon(
                                 Icons.waving_hand,
-                                color: settingscontroller.isDarkMode.value
+                                color: settingsController.isDarkMode.value
                                     ? thirdColor  // Use dark mode color
                                     :buttonColor , // Use light mode color
                               ),
@@ -222,7 +222,7 @@ class HomeScreen extends StatelessWidget {
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20.0),
-                              color: settingscontroller.isDarkMode.value
+                              color: settingsController.isDarkMode.value
                                   ? Colors.black54 // Use dark mode color
                                   : Colors.white, // Use light mode color
                             ),
@@ -323,7 +323,7 @@ class HomeScreen extends StatelessWidget {
                           child:  Obx(() => Text(
                             courseController.showAllCourses.value ? "See Less" : "See More",
                             style:  TextStyle(
-                              color:settingscontroller.isDarkMode.value
+                              color:settingsController.isDarkMode.value
                                   ? Colors.white// Use dark mode color
                                   : primaryColor,
                             ),
@@ -338,7 +338,7 @@ class HomeScreen extends StatelessWidget {
                         () {
                       final itemCount = controller.showAllCourses.value ? controller.courseList.length : 2;
                       return Padding(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
@@ -353,12 +353,12 @@ class HomeScreen extends StatelessWidget {
                                 margin: const EdgeInsets.symmetric(vertical: 10),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: settingscontroller.isDarkMode.value
+                                  color: settingsController.isDarkMode.value
                                       ? Colors.black54 // Use dark mode color
                                       : Colors.white, // Use light mode color
                                   boxShadow: [
                                     BoxShadow(
-                                      color: settingscontroller.isDarkMode.value
+                                      color: settingsController.isDarkMode.value
                                           ? Colors.black26 // Use dark mode color
                                           : primaryColor.withOpacity(0.5), // Use light mode color
                                       spreadRadius: 1,
@@ -388,7 +388,7 @@ class HomeScreen extends StatelessWidget {
                                                     fontFamily: 'Poppins',
                                                     fontSize: 13,
                                                     fontWeight: FontWeight.w500,
-                                                    color: settingscontroller.isDarkMode.value
+                                                    color: settingsController.isDarkMode.value
                                                         ? Colors.white // Use dark mode color
                                                         : primaryColor, // Use light mode color
                                                     letterSpacing: 2,
